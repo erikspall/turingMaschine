@@ -15,7 +15,9 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
     Button4: TButton;
+    Button5: TButton;
     Edit1: TEdit;
     EditButton1: TEditButton;
     Image1: TImage;
@@ -42,6 +44,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
     procedure EditButton1ButtonClick(Sender: TObject);
     procedure EditButton1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -59,19 +62,21 @@ type
   private
 
   public
-
-  end;
-
-var
-  Form1: TForm1;
+     Var   hasMoved:Boolean;
   Band: array[0..13] of TPanel;
-  i, zeiger,k: integer;
-  temp: integer;
+  zeiger,k: integer;
+  temp,currentZ: integer;
   hasErw: boolean;
   bandContent: StringList;
   leerzeichen:char;
    MaschineAl: StringList;
    Zustand2:Array of Integer;
+  end;
+
+var
+  Form1: TForm1;
+  i:Integer;
+
 implementation
 
 {$R *.lfm}
@@ -94,6 +99,15 @@ end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 begin
+  SetLength(Zustand2,Length(Zustand2)+1);
+  Zustand2[Length(Zustand2)-1]:=Length(Zustand2);
+  with StringGrid1 do
+  begin
+       RowCount:=RowCount+1;
+       Cells[0,RowCount-1]:='Z'+Zustand2[Length(Zustand2)-1].ToString;
+
+  end;
+
 end;
 
 procedure TForm1.Button4Click(Sender: TObject);
@@ -115,6 +129,54 @@ begin
   initBand();
   debugListBox;
   PrepareStringGrid;
+
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+var read:Char;
+  dir,X,Y:Integer;
+  writeS:String;
+begin
+
+    read:=bandContent.getItem(zeiger)[1];
+    for i:=1 to StringGrid1.ColCount-1 do
+    begin
+      if StringGrid1.Cells[i,0] = read then
+      begin
+        X:=i;
+        break;
+      end;
+    end;
+    for i:=1 to StringGrid1.RowCount-1 do
+    begin
+      if StrToInt(StringGrid1.Cells[0,i].Chars[1]) = currentZ then
+      begin
+        Y:=i;
+        break;
+      end;
+    end;
+    if StringGrid1.Cells[X,Y] <> '- Ende -'then
+    begin
+    if StringGrid1.Cells[X,Y].Chars[0] = 'L' then moveBackwards();
+   // if StringGrid1.Cells[X,Y].Chars[0] = '0' then true;
+    if StringGrid1.Cells[X,Y].Chars[0] = 'R' then moveForward();
+
+
+
+
+
+    writeS:=StringGrid1.Cells[X,Y].Chars[2];
+
+    currentZ:=StrToInt(StringGrid1.Cells[X,Y].Substring(5));
+
+    bandContent.replaceItem(zeiger,writeS);
+    band[5].Caption:=writeS;
+
+    //ShowMessage(dir.ToString + ' ' + writeS);
+    end else
+    begin
+      ShowMessage('Ende');
+    end;
 
 end;
 
@@ -148,12 +210,32 @@ end;
 procedure TForm1.moveForward();
 
 begin
+if hasMoved then begin
+  //ShowMessage('Bewegen');
+  hasMoved:=false;
   temp := Band[0].Left;
   Form1.Timer1.Enabled := True;
-
+                     end else
+                     begin
+             // ShowMessage('nicht Bewegen');
+                     end;
 
 
 end;
+
+
+procedure TForm1.moveBackwards();
+begin
+if hasMoved then begin
+  hasMoved:=false;
+  temp := Band[0].Left;
+  hasErw := False;
+
+
+
+  Form1.Timer2.Enabled := True;
+
+  end;    end;
 
 procedure TForm1.initBand();
 begin
@@ -206,6 +288,7 @@ begin
   begin
 
     timer2.Enabled := False;
+    hasMoved:=true;
     Dec(Zeiger);
     debugListBox;
 
@@ -237,7 +320,9 @@ Var rawA,tempStr:String;
   isIn:Boolean;
 begin
    rawA:=Edit1.Text;
-
+   SetLength(Zustand2,0);
+    SetLength(Zustand2,Length(Zustand2)+1);
+     Zustand2[Length(Zustand2)]:=1;
    isIn:=false;
    StringGrid1.ColCount:=2;
 
@@ -273,22 +358,12 @@ begin
 
 end;
 
-procedure TForm1.moveBackwards();
-begin
-  temp := Band[0].Left;
-  hasErw := False;
-
-
-
-  Form1.Timer2.Enabled := True;
-
-  end;
 
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-
-
+  hasMoved:=true;
+  currentZ:=1;
   bandContent.Create;
   MaschineAl.Create;
   Self.DoubleBuffered := True;
@@ -316,15 +391,30 @@ begin
 end;
 
 procedure TForm1.StringGrid1DblClick(Sender: TObject);
+Var wohin:Char;
 begin
 
-
+    if (StringGrid1.Col<>0)and (StringGrid1.Row<>0) then
+    begin
     if Form2.Execute then
     begin
+       if Form2.EndZustand then
+       begin
+          StringGrid1.Cells[StringGrid1.Col,StringGrid1.Row]:='- Ende -';
+       end else
+       begin
+         case Form2.WhereToGo  of
 
+         -1:Wohin:='L';
+         0:Wohin:='0';
+         1:Wohin:='R';
+         end;
+         StringGrid1.Cells[StringGrid1.Col,StringGrid1.Row]:=Wohin+';'+Form2.WhatToWrite+';Z'+Form2.Zustand.toString;
+
+       end;
     end;
 end;
-
+   end;
 procedure TForm1.Timer1Timer(Sender: TObject);
 var
   tempP: TPanel;
@@ -346,7 +436,9 @@ begin
       band[0].Caption:=leerzeichen;
       bandContent.addItem(leerzeichen);
     end;
+    hasMoved:=true;
     timer1.Enabled := False;
+
     Inc(zeiger);
     debugListBox;
     tempP := Band[0];
