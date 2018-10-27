@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 26
+  Left = 33
   Height = 738
-  Top = 203
+  Top = 390
   Width = 1201
   Caption = 'Form1'
   ClientHeight = 738
@@ -996,7 +996,7 @@ object Form1: TForm1
     Stretch = True
   end
   object Button1: TButton
-    Left = 306
+    Left = 504
     Height = 31
     Top = 360
     Width = 94
@@ -1013,39 +1013,12 @@ object Form1: TForm1
     OnClick = Button2Click
     TabOrder = 15
   end
-  object Button3: TButton
-    Left = 576
-    Height = 31
-    Top = 380
-    Width = 94
-    Caption = 'Button3'
-    OnClick = Button3Click
-    TabOrder = 16
-  end
-  object Label1: TLabel
-    Left = 490
-    Height = 20
-    Top = 195
-    Width = 44
-    Caption = 'Label1'
-    ParentColor = False
-  end
-  object Label2: TLabel
-    AnchorSideLeft.Control = Label1
-    AnchorSideLeft.Side = asrBottom
-    Left = 534
-    Height = 20
-    Top = 195
-    Width = 44
-    Caption = 'Label2'
-    ParentColor = False
-  end
   object Edit1: TEdit
     Left = 32
     Height = 28
     Top = 88
     Width = 136
-    TabOrder = 17
+    TabOrder = 16
     Text = 'Edit1'
   end
   object Button4: TButton
@@ -1055,36 +1028,66 @@ object Form1: TForm1
     Width = 75
     Caption = 'Ok'
     OnClick = Button4Click
-    TabOrder = 18
+    TabOrder = 17
   end
   object ListBox1: TListBox
-    Left = 799
+    Left = 32
     Height = 380
-    Top = 130
+    Top = 240
     Width = 125
     ItemHeight = 0
-    TabOrder = 19
+    TabOrder = 18
   end
   object Label3: TLabel
-    Left = 928
+    Left = 161
     Height = 20
-    Top = 130
+    Top = 240
     Width = 44
     Caption = 'Label3'
     ParentColor = False
+  end
+  object EditButton1: TEditButton
+    Left = 32
+    Height = 28
+    Top = 136
+    Width = 217
+    ButtonCaption = 'Ok'
+    ButtonWidth = 50
+    MaxLength = 1
+    NumGlyphs = 1
+    OnButtonClick = EditButton1ButtonClick
+    OnChange = EditButton1Change
+    PasswordChar = #0
+    TabOrder = 19
+    Text = '#'
+  end
+  object StringGrid1: TStringGrid
+    Left = 736
+    Height = 588
+    Top = 32
+    Width = 456
+    AutoFillColumns = True
+    ColCount = 2
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goAutoAddRows, goSmoothScroll, goAutoAddRowsSkipContentCheck]
+    TabOrder = 20
+    OnDblClick = StringGrid1DblClick
+    ColWidths = (
+      64
+      388
+    )
   end
   object Timer1: TTimer
     Enabled = False
     Interval = 15
     OnTimer = Timer1Timer
-    left = 40
-    top = 24
+    left = 88
+    top = 544
   end
   object Timer2: TTimer
     Enabled = False
     Interval = 15
     OnTimer = Timer2Timer
-    left = 108
-    top = 28
+    left = 128
+    top = 544
   end
 end

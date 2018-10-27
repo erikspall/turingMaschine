@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls,obtlist;
+  ExtCtrls, EditBtn, Grids,obtlist, inputDialogforTM;
 
 type
 
@@ -15,12 +15,10 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Button2: TButton;
-    Button3: TButton;
     Button4: TButton;
     Edit1: TEdit;
+    EditButton1: TEditButton;
     Image1: TImage;
-    Label1: TLabel;
-    Label2: TLabel;
     Label3: TLabel;
     ListBox1: TListBox;
     Panel1: TPanel;
@@ -37,14 +35,18 @@ type
     Panel7: TPanel;
     Panel8: TPanel;
     Panel9: TPanel;
+    StringGrid1: TStringGrid;
     Timer1: TTimer;
     Timer2: TTimer;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure EditButton1ButtonClick(Sender: TObject);
+    procedure EditButton1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Panel15Click(Sender: TObject);
+   procedure StringGrid1DblClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure moveForward();
     procedure initBand();
@@ -52,6 +54,8 @@ type
     procedure Timer2Timer(Sender: TObject);
     function whatCaption(Var woZeiger:Integer):Char;
     procedure debugListBox();
+    procedure prepareStringGrid();
+
   private
 
   public
@@ -61,11 +65,13 @@ type
 var
   Form1: TForm1;
   Band: array[0..13] of TPanel;
-  i, zeiger: integer;
+  i, zeiger,k: integer;
   temp: integer;
   hasErw: boolean;
   bandContent: StringList;
-
+  leerzeichen:char;
+   MaschineAl: StringList;
+   Zustand2:Array of Integer;
 implementation
 
 {$R *.lfm}
@@ -92,19 +98,51 @@ end;
 
 procedure TForm1.Button4Click(Sender: TObject);
 begin
+  Edit1.text:=AnsiUpperCase(edit1.Text);
+
   for i:=0 to Length(Edit1.Text)-1 do
   begin
-     if i+5 > bandContent.size then
+     if i+zeiger-1 < bandContent.size-1 then
      begin
-       bandContent.addItem(Edit1.Text[i+1]);
+       bandContent.replaceItem(i+5,Edit1.Text[i+1]);
      end
      else
      begin
-        bandContent.replaceItem(i+5,Edit1.Text[i+1]);
+       bandContent.addItem(Edit1.Text[i+1]);
      end;
   end;
+
   initBand();
   debugListBox;
+  PrepareStringGrid;
+
+end;
+
+procedure TForm1.EditButton1ButtonClick(Sender: TObject);
+var changed2:boolean;
+  prev:Char;
+begin
+
+  prev:=leerzeichen;
+  if leerzeichen = EditButton1.Text[1] then changed2:= false
+  else changed2:=true;
+
+  leerzeichen:=EditButton1.Text[1];
+
+  if changed2 then
+  begin
+    for i:=0 to bandContent.size()-1 do
+    begin
+       if bandContent.getItem(i) = prev then bandContent.replaceItem(i,leerzeichen);
+    end;
+    initBand;
+  end;
+
+end;
+
+procedure TForm1.EditButton1Change(Sender: TObject);
+begin
+
 end;
 
 procedure TForm1.moveForward();
@@ -119,9 +157,11 @@ end;
 
 procedure TForm1.initBand();
 begin
-  for i:=zeiger to 13 do
+  for i:=0 to 13 do
   begin
-     Band[i].Caption:=bandContent.getItem(i);
+     if i>=zeiger then
+     Band[i].Caption:=bandContent.getItem(i)
+     else Band[i].Caption:=leerzeichen;
   end;
 end;
 
@@ -142,8 +182,8 @@ begin
     end
     else
     begin
-      band[Length(Band)-1].Caption:='#';
-      bandContent.insertItem('#',0);
+      band[Length(Band)-1].Caption:=leerzeichen;
+      bandContent.insertItem(leerzeichen,0);
       Inc(Zeiger);
     end;
 
@@ -189,6 +229,50 @@ begin
   ListBox1.ItemIndex:=Zeiger;
 end;
 
+procedure TForm1.prepareStringGrid();
+Var rawA,tempStr:String;
+  C:Char;
+  Col,Col2:Integer;
+  j:Integer;
+  isIn:Boolean;
+begin
+   rawA:=Edit1.Text;
+
+   isIn:=false;
+   StringGrid1.ColCount:=2;
+
+   StringGrid1.Cells[1,0]:=leerzeichen;
+   for j:=1 to Length(rawA) do
+   begin
+        for Col:=1 to StringGrid1.ColCount-1 do
+        begin
+          if rawA[j] = StringGrid1.Cells[Col,0] then
+          begin
+            isIn:=true;
+
+          end;
+        end;
+
+        if not isIn then
+        begin
+          StringGrid1.ColCount:=StringGrid1.ColCount+1;
+          StringGrid1.Cells[Col+1,0]:=rawA[j];
+           Inc(Col);
+           isIn:=false;
+        end;
+   end;
+
+   StringGrid1.RowCount:=Length(Zustand2)+1;
+
+   for i:=1 to StringGrid1.RowCount-1 do
+   begin
+     StringGrid1.Cells[0,i]:='Z'+Zustand2[i].toString;
+   end;
+
+
+
+end;
+
 procedure TForm1.moveBackwards();
 begin
   temp := Band[0].Left;
@@ -203,22 +287,42 @@ begin
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+
+
   bandContent.Create;
+  MaschineAl.Create;
   Self.DoubleBuffered := True;
+  leerzeichen:='#';
   zeiger := 5;
   for i := 0 to 13 do
   begin
     Band[i] := TPanel(Form1.FindComponent('Panel' + (i + 1).ToString));
     Band[i].DoubleBuffered := True;
-    bandContent.addItem('#');
+    bandContent.addItem(leerzeichen);
 
   end;
     debugListBox;
-end;
+
+
+      SetLength(Zustand2,Length(Zustand2)+1);
+     Zustand2[Length(Zustand2)]:=1;
+
+   end;
+
 
 procedure TForm1.Panel15Click(Sender: TObject);
 begin
 
+end;
+
+procedure TForm1.StringGrid1DblClick(Sender: TObject);
+begin
+
+
+    if Form2.Execute then
+    begin
+
+    end;
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
@@ -239,8 +343,8 @@ begin
     end
     else
     begin
-      band[0].Caption:='#';
-      bandContent.addItem('#');
+      band[0].Caption:=leerzeichen;
+      bandContent.addItem(leerzeichen);
     end;
     timer1.Enabled := False;
     Inc(zeiger);
