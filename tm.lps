@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="10"/>
+    <BuildModes Active="Default"/>
+    <Units Count="5">
+      <Unit0>
+        <Filename Value="tm.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="67"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="tm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="22" Y="11"/>
+        <UsageCount Value="67"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\..\lcl\include\control.inc"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="3476"/>
+        <CursorPos X="11" Y="3484"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\..\lcl\include\customlistbox.inc"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="170"/>
+        <CursorPos X="16" Y="180"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="tm.lfm"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="24" Y="16"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit4>
+    </Units>
+    <JumpHistory HistoryIndex="-1"/>
+  </ProjectSession>
+</CONFIG>
