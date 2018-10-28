@@ -1,16 +1,17 @@
 object Form1: TForm1
-  Left = 121
-  Height = 738
-  Top = 373
+  Left = 652
+  Height = 767
+  Top = 396
   Width = 1201
-  Caption = 'Form1'
-  ClientHeight = 738
+  Caption = 'Turing Maschine'
+  ClientHeight = 742
   ClientWidth = 1201
-  Constraints.MaxHeight = 738
+  Constraints.MaxHeight = 767
   Constraints.MaxWidth = 1201
-  Constraints.MinHeight = 738
+  Constraints.MinHeight = 767
   Constraints.MinWidth = 1201
   DesignTimePPI = 120
+  Menu = MainMenu1
   OnCreate = FormCreate
   LCLVersion = '1.8.4.0'
   object Panel1: TPanel
@@ -995,116 +996,237 @@ object Form1: TForm1
     }
     Stretch = True
   end
-  object Button1: TButton
-    Left = 504
-    Height = 31
-    Top = 360
-    Width = 94
-    Caption = 'Button1'
-    OnClick = Button1Click
-    TabOrder = 14
-  end
-  object Button2: TButton
-    Left = 408
-    Height = 31
-    Top = 360
-    Width = 94
-    Caption = 'Button2'
-    OnClick = Button2Click
-    TabOrder = 15
-  end
-  object Edit1: TEdit
-    Left = 32
-    Height = 28
-    Top = 88
-    Width = 136
-    TabOrder = 16
-    Text = 'Edit1'
-  end
-  object Button4: TButton
-    Left = 176
-    Height = 25
-    Top = 88
-    Width = 75
-    Caption = 'Ok'
-    OnClick = Button4Click
-    TabOrder = 17
-  end
-  object ListBox1: TListBox
-    Left = 32
-    Height = 380
-    Top = 240
-    Width = 125
-    ItemHeight = 0
-    TabOrder = 18
-  end
-  object Label3: TLabel
-    Left = 161
-    Height = 20
-    Top = 240
-    Width = 44
-    Caption = 'Label3'
-    ParentColor = False
-  end
-  object EditButton1: TEditButton
-    Left = 32
-    Height = 28
-    Top = 136
-    Width = 217
-    ButtonCaption = 'Ok'
-    ButtonWidth = 50
-    MaxLength = 1
-    NumGlyphs = 1
-    OnButtonClick = EditButton1ButtonClick
-    OnChange = EditButton1Change
-    PasswordChar = #0
-    TabOrder = 19
-    Text = '#'
-  end
   object StringGrid1: TStringGrid
     Left = 736
-    Height = 588
+    Height = 484
     Top = 32
     Width = 456
     AutoFillColumns = True
     ColCount = 2
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goAutoAddRows, goSmoothScroll, goAutoAddRowsSkipContentCheck]
-    TabOrder = 20
+    TabOrder = 14
     OnDblClick = StringGrid1DblClick
     ColWidths = (
       64
       388
     )
   end
-  object Button3: TButton
-    Left = 632
-    Height = 31
-    Top = 32
-    Width = 94
-    Caption = 'Zustand +'
-    OnClick = Button3Click
-    TabOrder = 21
-  end
   object Button5: TButton
-    Left = 481
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = GroupBox3
+    AnchorSideTop.Side = asrBottom
+    Left = 5
     Height = 79
-    Top = 480
+    Top = 209
     Width = 143
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Run'
     OnClick = Button5Click
-    TabOrder = 22
+    TabOrder = 15
+  end
+  object GroupBox1: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 5
+    Height = 63
+    Top = 5
+    Width = 231
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Eingabewort und Leerzeichen'
+    ClientHeight = 38
+    ClientWidth = 227
+    TabOrder = 16
+    object Edit1: TEdit
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideTop.Control = GroupBox1
+      AnchorSideRight.Control = Button4
+      AnchorSideBottom.Control = GroupBox1
+      AnchorSideBottom.Side = asrBottom
+      Left = 5
+      Height = 28
+      Top = 5
+      Width = 137
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Left = 5
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      BorderSpacing.Bottom = 5
+      TabOrder = 0
+      Text = 'Edit1'
+    end
+    object Button4: TButton
+      AnchorSideLeft.Control = Edit1
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Edit1
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = Edit1
+      AnchorSideBottom.Side = asrBottom
+      Left = 147
+      Height = 26
+      Top = 6
+      Width = 75
+      Anchors = [akTop, akRight, akBottom]
+      BorderSpacing.Top = 1
+      BorderSpacing.Right = 5
+      BorderSpacing.Bottom = 1
+      Caption = 'Ok'
+      OnClick = Button4Click
+      TabOrder = 1
+    end
+  end
+  object GroupBox2: TGroupBox
+    AnchorSideTop.Control = GroupBox1
+    AnchorSideTop.Side = asrBottom
+    Left = 8
+    Height = 63
+    Top = 73
+    Width = 231
+    BorderSpacing.Top = 5
+    Caption = 'Leerzeichen'
+    ClientHeight = 38
+    ClientWidth = 227
+    TabOrder = 17
+    object EditButton1: TEditButton
+      Left = 5
+      Height = 28
+      Top = 5
+      Width = 217
+      Align = alClient
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Left = 5
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      BorderSpacing.Bottom = 5
+      ButtonCaption = 'Ok'
+      ButtonWidth = 75
+      MaxLength = 1
+      NumGlyphs = 1
+      OnButtonClick = EditButton1ButtonClick
+      OnChange = EditButton1Change
+      PasswordChar = #0
+      TabOrder = 0
+      Text = '#'
+    end
+  end
+  object GroupBox3: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = GroupBox2
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 63
+    Top = 141
+    Width = 231
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Alphabet'
+    ClientHeight = 38
+    ClientWidth = 227
+    Enabled = False
+    TabOrder = 18
+    object EditButton2: TEditButton
+      Left = 5
+      Height = 28
+      Top = 5
+      Width = 217
+      Align = alClient
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Left = 5
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 5
+      BorderSpacing.Bottom = 5
+      ButtonCaption = 'Ok'
+      ButtonWidth = 75
+      MaxLength = 1
+      NumGlyphs = 1
+      OnButtonClick = EditButton1ButtonClick
+      OnChange = EditButton1Change
+      PasswordChar = #0
+      TabOrder = 0
+    end
+  end
+  object GroupBox4: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 0
+    Height = 16
+    Top = 552
+    Width = 1201
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Band'
+    TabOrder = 19
+  end
+  object Button6: TButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Button5
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 79
+    Top = 293
+    Width = 143
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    Caption = 'Zurücksetzen'
+    OnClick = Button6Click
+    TabOrder = 20
   end
   object Timer1: TTimer
     Enabled = False
     Interval = 15
     OnTimer = Timer1Timer
-    left = 88
-    top = 544
+    left = 368
+    top = 289
   end
   object Timer2: TTimer
     Enabled = False
     Interval = 15
     OnTimer = Timer2Timer
-    left = 128
-    top = 544
+    left = 408
+    top = 289
+  end
+  object Timer3: TTimer
+    Enabled = False
+    Interval = 10
+    OnTimer = Timer3Timer
+    left = 493
+    top = 264
+  end
+  object MainMenu1: TMainMenu
+    left = 331
+    top = 75
+    object MenuItem1: TMenuItem
+      Caption = 'TM...'
+      OnClick = MenuItem1Click
+      object MenuItem2: TMenuItem
+        Caption = 'TM Speichern...'
+        OnClick = MenuItem2Click
+      end
+      object MenuItem3: TMenuItem
+        Caption = 'TM Laden...'
+        OnClick = MenuItem3Click
+      end
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Programmtabelle'
+      object MenuItem5: TMenuItem
+        Caption = 'Zustand hinzufügen'
+        ShortCut = 16453
+        OnClick = MenuItem5Click
+      end
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '.tm'
+    Filter = 'Turing Maschine|.tm'
+    left = 424
+    top = 98
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 'Turing Maschine|.tm'
+    left = 424
+    top = 168
   end
 end

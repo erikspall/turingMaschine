@@ -80,7 +80,7 @@ begin
   Result := (ShowModal = mrOk);
   EndZustand:=CheckBoxThemed1.Checked;
 
-  Zustand:=StrToInt(ComboBox2.Items[ComboBox2.ItemIndex][1]);
+  Zustand:=StrToInt(ComboBox2.Items[ComboBox2.ItemIndex][2]);
   WhatToWrite:=ComboBox1.Items[ComboBox1.ItemIndex][1];
   if RadioButton1.Checked then wheretogo:=-1;
   if RadioButton2.checked then wheretogo:=0;
