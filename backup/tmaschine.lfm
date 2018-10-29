@@ -1220,12 +1220,12 @@ object Form1: TForm1
   end
   object SaveDialog1: TSaveDialog
     DefaultExt = '.tm'
-    Filter = 'Turing Maschine|.tm'
+    Filter = 'Turing Maschine|*.tm'
     left = 424
     top = 98
   end
   object OpenDialog1: TOpenDialog
-    Filter = 'Turing Maschine|.tm'
+    Filter = 'Turing Maschine|*.tm'
     left = 424
     top = 168
   end
