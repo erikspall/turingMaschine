@@ -1,5 +1,5 @@
 git add *
 @echo off
-set /p Message="Commit Message: "
-git commit -m Message
+set /p message=Commit Message: 
+git commit -m "%message%"
 git push origin master
