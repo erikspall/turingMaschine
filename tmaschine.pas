@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, TAGraph, DividerBevel, Forms, Controls, Graphics,
   Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, obtlist, inputDialogforTM,
-  Dos;
+  Dos,settings;
 
 type
 
@@ -32,6 +32,7 @@ type
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
     OpenDialog1: TOpenDialog;
     Panel1: TPanel;
     Panel10: TPanel;
@@ -68,6 +69,7 @@ type
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
     procedure MenuItem6Click(Sender: TObject);
+    procedure MenuItem7Click(Sender: TObject);
     procedure Panel15Click(Sender: TObject);
    procedure StringGrid1DblClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -640,6 +642,11 @@ begin
 
   end;
   end;
+end;
+
+procedure TForm1.MenuItem7Click(Sender: TObject);
+begin
+  Form3.ShowModal;
 end;
 
 
