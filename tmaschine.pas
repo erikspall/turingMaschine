@@ -5,8 +5,9 @@ unit tMaschine;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, TAGraph, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, ExtCtrls, EditBtn, Grids, Menus, obtlist, inputDialogforTM, Dos;
+  Classes, SysUtils, FileUtil, TAGraph, DividerBevel, Forms, Controls, Graphics,
+  Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, obtlist, inputDialogforTM,
+  Dos;
 
 type
 
@@ -16,13 +17,13 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    DividerBevel1: TDividerBevel;
     Edit1: TEdit;
     EditButton1: TEditButton;
     EditButton2: TEditButton;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
-    GroupBox4: TGroupBox;
     Image1: TImage;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
@@ -171,7 +172,14 @@ begin
   bandContent.Clear;
   MaschineAl.Clear;
   Self.DoubleBuffered := True;
-  leerzeichen:='#';
+  if EditButton1.Text <> '' then
+  begin
+  leerzeichen:=EditButton1.Text[1];
+  end
+  else
+  begin
+    leerzeichen:='#';
+  end;
   zeiger := 5;
   for i := 0 to 13 do
   begin

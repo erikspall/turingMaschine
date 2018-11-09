@@ -5,8 +5,9 @@ unit tMaschine;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, TAGraph, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, ExtCtrls, EditBtn, Grids, Menus, obtlist, inputDialogforTM, Dos;
+  Classes, SysUtils, FileUtil, TAGraph, DividerBevel, Forms, Controls, Graphics,
+  Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, obtlist, inputDialogforTM,
+  Dos;
 
 type
 
@@ -16,13 +17,13 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    DividerBevel1: TDividerBevel;
     Edit1: TEdit;
     EditButton1: TEditButton;
     EditButton2: TEditButton;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
-    GroupBox4: TGroupBox;
     Image1: TImage;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
@@ -30,6 +31,7 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
     OpenDialog1: TOpenDialog;
     Panel1: TPanel;
     Panel10: TPanel;
@@ -65,6 +67,7 @@ type
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
+    procedure MenuItem6Click(Sender: TObject);
     procedure Panel15Click(Sender: TObject);
    procedure StringGrid1DblClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -169,7 +172,14 @@ begin
   bandContent.Clear;
   MaschineAl.Clear;
   Self.DoubleBuffered := True;
-  leerzeichen:='#';
+  if EditButton1.Text <> '' then
+  begin
+  leerzeichen:=EditButton1.Text[0];
+  end
+  else
+  begin
+    leerzeichen:='#';
+  end;
   zeiger := 5;
   for i := 0 to 13 do
   begin
@@ -614,6 +624,22 @@ begin
 
   end;
 
+end;
+
+procedure TForm1.MenuItem6Click(Sender: TObject);
+begin
+  if Length(Zustand2) > 1 then
+  begin
+   SetLength(Zustand2,Length(Zustand2)-1);
+
+  //Zustand2[Length(Zustand2)-1]:=Length(Zustand2);
+  with StringGrid1 do
+  begin
+       RowCount:=RowCount-1;
+      // Cells[0,RowCount-1]:='Z'+Zustand2[Length(Zustand2)-1].ToString;
+
+  end;
+  end;
 end;
 
 
