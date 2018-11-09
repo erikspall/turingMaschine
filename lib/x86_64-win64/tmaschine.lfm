@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 295
+  Left = 176
   Height = 767
-  Top = 80
+  Top = 38
   Width = 1201
   Caption = 'Turing Maschine'
   ClientHeight = 747
@@ -1620,6 +1620,11 @@ object Form1: TForm1
         Caption = 'Zustand hinzufügen'
         ShortCut = 16453
         OnClick = MenuItem5Click
+      end
+      object MenuItem6: TMenuItem
+        Caption = 'Zustand entfernen'
+        ShortCut = 16465
+        OnClick = MenuItem6Click
       end
     end
   end

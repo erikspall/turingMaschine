@@ -30,6 +30,7 @@ type
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
     MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
     OpenDialog1: TOpenDialog;
     Panel1: TPanel;
     Panel10: TPanel;
@@ -65,6 +66,7 @@ type
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
+    procedure MenuItem6Click(Sender: TObject);
     procedure Panel15Click(Sender: TObject);
    procedure StringGrid1DblClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -614,6 +616,22 @@ begin
 
   end;
 
+end;
+
+procedure TForm1.MenuItem6Click(Sender: TObject);
+begin
+  if Length(Zustand2) > 1 then
+  begin
+   SetLength(Zustand2,Length(Zustand2)-1);
+
+  //Zustand2[Length(Zustand2)-1]:=Length(Zustand2);
+  with StringGrid1 do
+  begin
+       RowCount:=RowCount-1;
+      // Cells[0,RowCount-1]:='Z'+Zustand2[Length(Zustand2)-1].ToString;
+
+  end;
+  end;
 end;
 
 

@@ -409,8 +409,9 @@ begin
             StringGrid1.ColCount:=StringGrid1.ColCount+1;
             StringGrid1.Cells[Col+1,0]:=EditButton2.Text[i];
             Inc(Col);
-            isIn:=false;
+
           end;
+          isIn:=false;
        end
        else if EditButton2.Text[i] = ',' then
        begin
