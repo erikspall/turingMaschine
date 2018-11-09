@@ -5,8 +5,8 @@ unit tMaschine;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, EditBtn, Grids, Menus,obtlist, inputDialogforTM,Dos;
+  Classes, SysUtils, FileUtil, TAGraph, Forms, Controls, Graphics, Dialogs,
+  StdCtrls, ExtCtrls, EditBtn, Grids, Menus, obtlist, inputDialogforTM, Dos;
 
 type
 
@@ -58,6 +58,8 @@ type
     procedure Button6Click(Sender: TObject);
     procedure EditButton1ButtonClick(Sender: TObject);
     procedure EditButton1Change(Sender: TObject);
+    procedure EditButton2ButtonClick(Sender: TObject);
+    procedure EditButton2EditingDone(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
@@ -158,6 +160,9 @@ end;
 
 procedure TForm1.Button6Click(Sender: TObject);
 begin
+  Timer1.enabled:=false;
+  Timer2.enabled:=false;
+  Timer3.enabled:=false;
   finished:=true;
   hasMoved:=true;
   currentZ:=1;
@@ -216,12 +221,22 @@ begin
     end;
     initBand;
   end;
-
+  Form1.StringGrid1.Cells[1,0]:=leerzeichen;
 end;
 
 procedure TForm1.EditButton1Change(Sender: TObject);
 begin
 
+end;
+
+procedure TForm1.EditButton2ButtonClick(Sender: TObject);
+begin
+  PrepareStringGrid;
+end;
+
+procedure TForm1.EditButton2EditingDone(Sender: TObject);
+begin
+  EditButton2.Text:=AnsiUpperCase(EditButton2.Text);
 end;
 
 procedure TForm1.moveForward();
@@ -372,6 +387,43 @@ begin
            isIn:=false;
         end;
    end;
+
+   isIn:=false;
+
+   if (Length(EditButton2.Text)<>0) and (EditButton2.Text <> ',') and (EditButton2.Text <> '') then
+   begin
+     for i:=1 to Length(EditButton2.Text) do
+     begin
+       if EditButton2.text[i] <> ',' then
+       begin
+          for Col:=1 to StringGrid1.ColCount-1 do
+          begin
+            if EditButton2.Text[i] = StringGrid1.Cells[Col,0] then
+            begin
+              isIn:=true;
+            end;
+          end;
+
+          if not isIn then
+          begin
+            StringGrid1.ColCount:=StringGrid1.ColCount+1;
+            StringGrid1.Cells[Col+1,0]:=EditButton2.Text[i];
+            Inc(Col);
+
+          end;
+          isIn:=false;
+       end
+       else if EditButton2.Text[i] = ',' then
+       begin
+         //Do Nothing
+       end
+       else
+       begin
+         //Do Nothing
+       end;
+     end;
+   end;
+
 
    StringGrid1.RowCount:=Length(Zustand2)+1;
 

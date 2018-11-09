@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazcontrols, tMaschine, inputDialogforTM;
+  Forms, lazcontrols, tachartlazaruspkg, tMaschine, inputDialogforTM;
 
 {$R *.res}
 
