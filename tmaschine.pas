@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, TAGraph, DividerBevel, Forms, Controls, Graphics,
-  Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, obtlist, inputDialogforTM,
-  Dos,settings;
+  Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, IniPropStorage, obtlist,
+  inputDialogforTM, Dos, settings;
 
 type
 
@@ -25,6 +25,7 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     Image1: TImage;
+    IniFile: TIniPropStorage;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -64,6 +65,7 @@ type
     procedure EditButton2ButtonClick(Sender: TObject);
     procedure EditButton2EditingDone(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure IniFileRestoreProperties(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
@@ -71,12 +73,14 @@ type
     procedure MenuItem6Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure Panel15Click(Sender: TObject);
+    procedure einstellungenLesenUndSetzen();
    procedure StringGrid1DblClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure moveForward();
     procedure initBand();
     procedure moveBackwards();
     procedure Timer2Timer(Sender: TObject);
+    procedure Timer3StartTimer(Sender: TObject);
     procedure Timer3Timer(Sender: TObject);
     function whatCaption(Var woZeiger:Integer):Char;
     procedure debugListBox();
@@ -94,12 +98,16 @@ type
   leerzeichen:char;
    MaschineAl: StringList;
    Zustand2:Array of Integer;
+   animation:Boolean;
+         delay:Integer;
   end;
 
 var
   Form1: TForm1;
   i:Integer;
   finished:Boolean;
+
+
 implementation
 
 {$R *.lfm}
@@ -159,6 +167,7 @@ procedure TForm1.Button5Click(Sender: TObject);
 
 begin
   if finished then finished:=false;
+
   Timer3.Enabled:=true;
 
 end;
@@ -321,13 +330,22 @@ begin
     end;
     Band[0] := tempP;
   end;
+  if animation then
+  begin
+
 
   for i := 0 to Length(Band) - 1 do
   begin
     Band[i].Left := Band[i].Left + 1;
   end;
 
-
+   end else
+   begin
+     for i := 0 to Length(Band) - 1 do
+  begin
+    Band[i].Left := Band[i].Left + 100;
+  end;
+   end;
   if Band[1].Left = temp + 100 then
   begin
 
@@ -338,6 +356,12 @@ begin
 
   end;
 
+end;
+
+procedure TForm1.Timer3StartTimer(Sender: TObject);
+begin
+     handleMove();
+  if finished then Timer3.Enabled:=false;
 end;
 
 procedure TForm1.Timer3Timer(Sender: TObject);
@@ -509,8 +533,10 @@ end;
 
 
 
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  einstellungenLesenUndSetzen;
   finished:=true;
   hasMoved:=true;
   currentZ:=1;
@@ -533,6 +559,12 @@ begin
      Zustand2[Length(Zustand2)]:=1;
 
    end;
+
+procedure TForm1.IniFileRestoreProperties(Sender: TObject);
+begin
+
+end;
+
 
 procedure TForm1.MenuItem1Click(Sender: TObject);
 begin
@@ -647,12 +679,26 @@ end;
 procedure TForm1.MenuItem7Click(Sender: TObject);
 begin
   Form3.ShowModal;
+  Timer3.Interval:=delay;
+  //Timer2.Interval:=delay;
 end;
 
 
 procedure TForm1.Panel15Click(Sender: TObject);
 begin
 
+end;
+
+procedure TForm1.einstellungenLesenUndSetzen();
+
+begin
+
+     if FileExists('settings.ini') then
+     begin
+        animation:=IniFile.ReadBoolean('animation',true);
+        delay:=IniFile.ReadInteger('delay',15);
+
+     end;
 end;
 
 procedure TForm1.StringGrid1DblClick(Sender: TObject);
@@ -684,10 +730,19 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 var
   tempP: TPanel;
 begin
-
+  if animation then
+  begin
   for i := 0 to Length(Band) - 1 do
   begin
     Band[i].Left := Band[i].Left - 1;
+  end;
+
+  end else
+  begin
+     for i := 0 to Length(Band) - 1 do
+  begin
+    Band[i].Left := Band[i].Left - 100;
+  end;
   end;
 
   if Band[0].Left = temp - 100 then

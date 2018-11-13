@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="26" Y="20"/>
-        <UsageCount Value="101"/>
+        <UsageCount Value="105"/>
       </Unit0>
       <Unit1>
         <Filename Value="tmaschine.pas"/>
@@ -19,8 +19,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="tMaschine"/>
-        <CursorPos X="15" Y="10"/>
-        <UsageCount Value="101"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="360"/>
+        <CursorPos X="43" Y="364"/>
+        <UsageCount Value="105"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -34,53 +36,66 @@
         <EditorIndex Value="3"/>
         <TopLine Value="55"/>
         <CursorPos X="59" Y="83"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
+        <Filename Value="settings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form3"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="45"/>
+        <CursorPos X="30" Y="78"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit3>
+      <Unit4>
         <Filename Value="..\..\lcl\include\control.inc"/>
         <EditorIndex Value="9"/>
         <TopLine Value="3476"/>
         <CursorPos X="11" Y="3484"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
-      </Unit3>
-      <Unit4>
+      </Unit4>
+      <Unit5>
         <Filename Value="..\..\lcl\include\customlistbox.inc"/>
         <EditorIndex Value="8"/>
         <TopLine Value="170"/>
         <CursorPos Y="196"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
-      </Unit4>
-      <Unit5>
+      </Unit5>
+      <Unit6>
         <Filename Value="tm.lfm"/>
         <EditorIndex Value="7"/>
         <CursorPos X="24" Y="16"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
-      </Unit5>
-      <Unit6>
+      </Unit6>
+      <Unit7>
         <Filename Value="obtlist.pas"/>
         <UnitName Value="OBTList"/>
         <EditorIndex Value="6"/>
         <TopLine Value="2"/>
         <CursorPos Y="120"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
-      </Unit6>
-      <Unit7>
+      </Unit7>
+      <Unit8>
         <Filename Value="..\..\lcl\grids.pas"/>
         <UnitName Value="Grids"/>
         <EditorIndex Value="2"/>
         <TopLine Value="9588"/>
         <CursorPos Y="9617"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
-      </Unit7>
-      <Unit8>
+      </Unit8>
+      <Unit9>
         <Filename Value="inputdialog.pas"/>
         <ComponentName Value="Form2"/>
         <ResourceBaseClass Value="Form"/>
@@ -89,165 +104,152 @@
         <TopLine Value="5"/>
         <CursorPos X="39" Y="58"/>
         <UsageCount Value="21"/>
-      </Unit8>
-      <Unit9>
+      </Unit9>
+      <Unit10>
         <Filename Value="..\..\lcl\include\customform.inc"/>
         <EditorIndex Value="5"/>
         <TopLine Value="2034"/>
         <CursorPos Y="2063"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="22"/>
         <Loaded Value="True"/>
-      </Unit9>
-      <Unit10>
+      </Unit10>
+      <Unit11>
         <Filename Value="maschinethread.pas"/>
         <UnitName Value="maschineThread"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="70"/>
         <CursorPos X="2" Y="106"/>
         <UsageCount Value="20"/>
-      </Unit10>
-      <Unit11>
+      </Unit11>
+      <Unit12>
         <Filename Value="..\EasyListForLazarus\obtlist.pas"/>
         <UnitName Value="OBTList"/>
         <EditorIndex Value="4"/>
         <CursorPos X="75" Y="21"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="settings.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form3"/>
-        <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="7"/>
-        <CursorPos X="14" Y="42"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit12>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="154" Column="3" TopLine="151"/>
+        <Caret Line="10" Column="15" TopLine="6"/>
       </Position1>
       <Position2>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="161" Column="3" TopLine="153"/>
+        <Caret Line="513" Column="3" TopLine="505"/>
       </Position2>
       <Position3>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="433" Column="39" TopLine="412"/>
+        <Caret Line="515" Column="3" TopLine="507"/>
       </Position3>
       <Position4>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="182" Column="6" TopLine="153"/>
+        <Caret Line="76" Column="42" TopLine="51"/>
       </Position4>
       <Position5>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="131" Column="2" TopLine="126"/>
+        <Caret Line="677" Column="8" TopLine="533"/>
       </Position5>
       <Position6>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="195" Column="11" TopLine="150"/>
+        <Caret Line="518" Column="31" TopLine="516"/>
       </Position6>
       <Position7>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="147" Column="20" TopLine="131"/>
+        <Caret Line="675" Column="58" TopLine="659"/>
       </Position7>
       <Position8>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="376" Column="16" TopLine="351"/>
+        <Caret Line="676" Column="64" TopLine="660"/>
       </Position8>
       <Position9>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="219" Column="44" TopLine="193"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="29" Column="23" TopLine="13"/>
       </Position9>
       <Position10>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="161" Column="3" TopLine="161"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="30" Column="23" TopLine="13"/>
       </Position10>
       <Position11>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="162" Column="3" TopLine="162"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="32" Column="23" TopLine="13"/>
       </Position11>
       <Position12>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="161" Column="3" TopLine="161"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="54" Column="61" TopLine="27"/>
       </Position12>
       <Position13>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="208" Column="3" TopLine="204"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="43" Column="9" TopLine="27"/>
       </Position13>
       <Position14>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="233" Column="3" TopLine="149"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="72" Column="8" TopLine="47"/>
       </Position14>
       <Position15>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="392" Column="4" TopLine="370"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="49" Column="4" TopLine="42"/>
       </Position15>
       <Position16>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="417" Column="22" TopLine="384"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="56" Column="16" TopLine="46"/>
       </Position16>
       <Position17>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="393" Column="83" TopLine="374"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="64" Column="5" TopLine="53"/>
       </Position17>
       <Position18>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="417" Column="31" TopLine="409"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="53" Column="16" TopLine="47"/>
       </Position18>
       <Position19>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="419" Column="31" TopLine="411"/>
+        <Caret Line="727" Column="24" TopLine="710"/>
       </Position19>
       <Position20>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="634" Column="3" TopLine="629"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="51" Column="40" TopLine="45"/>
       </Position20>
       <Position21>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="633" Column="3" TopLine="628"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="52" Column="40" TopLine="46"/>
       </Position21>
       <Position22>
-        <Filename Value="tmaschine.pas"/>
-        <Caret Line="635" Column="3" TopLine="630"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="54" Column="32" TopLine="73"/>
       </Position22>
       <Position23>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="342" Column="24" TopLine="323"/>
+        <Caret Line="341" Column="6" TopLine="91"/>
       </Position23>
       <Position24>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="181" Column="22" TopLine="164"/>
+        <Caret Line="675" Column="26" TopLine="666"/>
       </Position24>
       <Position25>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="177" Column="34" TopLine="172"/>
+        <Caret Line="361" Column="3" TopLine="525"/>
       </Position25>
       <Position26>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="179" Column="34" TopLine="174"/>
+        <Caret Line="672" Column="13" TopLine="653"/>
       </Position26>
       <Position27>
-        <Filename Value="settings.pas"/>
-        <Caret Line="7" Column="15"/>
+        <Filename Value="tmaschine.pas"/>
+        <Caret Line="169" Column="3" TopLine="158"/>
       </Position27>
       <Position28>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="649" Column="3" TopLine="647"/>
+        <Caret Line="362" Column="3" TopLine="357"/>
       </Position28>
       <Position29>
         <Filename Value="tmaschine.pas"/>
-        <Caret Line="514" Column="3" TopLine="512"/>
+        <Caret Line="169" Column="19" TopLine="165"/>
       </Position29>
       <Position30>
-        <Filename Value="settings.pas"/>
-        <Caret Column="23"/>
+        <Filename Value="tmaschine.pas"/>
+        <Caret Line="170" Column="2" TopLine="154"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

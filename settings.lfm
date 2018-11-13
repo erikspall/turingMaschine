@@ -1,11 +1,14 @@
 object Form3: TForm3
-  Left = 399
+  Left = 717
   Height = 297
-  Top = 176
+  Top = 206
   Width = 374
   Caption = 'Einstellungen'
   ClientHeight = 297
   ClientWidth = 374
+  DesignTimePPI = 120
+  OnCreate = FormCreate
+  OnShow = FormShow
   LCLVersion = '1.8.4.0'
   object Button1: TButton
     AnchorSideRight.Control = Button2
@@ -35,6 +38,7 @@ object Form3: TForm3
     BorderSpacing.Right = 5
     BorderSpacing.Bottom = 5
     Caption = 'Abbrechen'
+    OnClick = Button2Click
     TabOrder = 1
   end
   object DividerBevel1: TDividerBevel
@@ -43,8 +47,8 @@ object Form3: TForm3
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Button1
     Left = 5
-    Height = 15
-    Top = 252
+    Height = 20
+    Top = 247
     Width = 364
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Left = 5
@@ -59,7 +63,7 @@ object Form3: TForm3
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = DividerBevel1
     Left = 5
-    Height = 247
+    Height = 242
     Top = 5
     Width = 364
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -70,11 +74,11 @@ object Form3: TForm3
     object PairSplitterSide1: TPairSplitterSide
       Cursor = crArrow
       Left = 0
-      Height = 247
+      Height = 242
       Top = 0
       Width = 150
       ClientWidth = 150
-      ClientHeight = 247
+      ClientHeight = 242
       object TreeView1: TTreeView
         AnchorSideLeft.Control = PairSplitterSide1
         AnchorSideTop.Control = PairSplitterSide1
@@ -83,7 +87,7 @@ object Form3: TForm3
         AnchorSideBottom.Control = PairSplitterSide1
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 247
+        Height = 242
         Top = 0
         Width = 150
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -103,11 +107,11 @@ object Form3: TForm3
     object PairSplitterSide2: TPairSplitterSide
       Cursor = crArrow
       Left = 155
-      Height = 247
+      Height = 242
       Top = 0
       Width = 209
       ClientWidth = 209
-      ClientHeight = 247
+      ClientHeight = 242
       object GroupBox1: TGroupBox
         AnchorSideLeft.Control = PairSplitterSide2
         AnchorSideTop.Control = PairSplitterSide2
@@ -116,13 +120,85 @@ object Form3: TForm3
         AnchorSideBottom.Control = PairSplitterSide2
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 247
+        Height = 242
         Top = 0
         Width = 209
         Anchors = [akTop, akLeft, akRight, akBottom]
-        Caption = 'GroupBox1'
+        Caption = 'Turing-Maschine'
+        ClientHeight = 217
+        ClientWidth = 205
         TabOrder = 0
+        object Label1: TLabel
+          AnchorSideLeft.Control = GroupBox1
+          AnchorSideTop.Control = GroupBox1
+          Left = 5
+          Height = 20
+          Top = 5
+          Width = 72
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 5
+          Caption = 'Animation:'
+          ParentColor = False
+        end
+        object ToggleBox1: TToggleBox
+          AnchorSideLeft.Control = Label1
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Label1
+          AnchorSideTop.Side = asrCenter
+          AnchorSideRight.Control = GroupBox1
+          AnchorSideRight.Side = asrBottom
+          Left = 82
+          Height = 31
+          Top = 0
+          Width = 118
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
+          BorderSpacing.Right = 5
+          Caption = 'Ja'
+          Checked = True
+          OnChange = ToggleBox1Change
+          OnClick = ToggleBox1Click
+          State = cbChecked
+          TabOrder = 0
+        end
+        object Label2: TLabel
+          AnchorSideLeft.Control = GroupBox1
+          AnchorSideTop.Control = SpinEdit1
+          AnchorSideTop.Side = asrCenter
+          Left = 5
+          Height = 20
+          Top = 40
+          Width = 41
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 12
+          Caption = 'Delay:'
+          ParentColor = False
+        end
+        object SpinEdit1: TSpinEdit
+          AnchorSideLeft.Control = ToggleBox1
+          AnchorSideTop.Control = ToggleBox1
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = ToggleBox1
+          AnchorSideRight.Side = asrBottom
+          Left = 82
+          Height = 28
+          Top = 36
+          Width = 118
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Top = 5
+          MaxValue = 10000
+          MinValue = 15
+          TabOrder = 1
+          Value = 15
+        end
       end
     end
+  end
+  object IniFile: TIniPropStorage
+    StoredValues = <>
+    IniFileName = 'settings.ini'
+    IniSection = 'settings'
+    left = 90
+    top = 280
   end
 end
