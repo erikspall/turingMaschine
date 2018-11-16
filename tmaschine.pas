@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, TAGraph, DividerBevel, Forms, Controls, Graphics,
-  Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, IniPropStorage, obtlist,
-  inputDialogforTM, Dos, settings;
+  Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, IniPropStorage,
+  PairSplitter, obtlist, inputDialogforTM, Dos, settings;
 
 type
 
@@ -24,6 +24,7 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
+    GroupBox4: TGroupBox;
     Image1: TImage;
     IniFile: TIniPropStorage;
     MainMenu1: TMainMenu;
@@ -35,12 +36,16 @@ type
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
     OpenDialog1: TOpenDialog;
+    PairSplitter1: TPairSplitter;
+    PairSplitterSide1: TPairSplitterSide;
+    PairSplitterSide2: TPairSplitterSide;
     Panel1: TPanel;
     Panel10: TPanel;
     Panel11: TPanel;
     Panel12: TPanel;
     Panel13: TPanel;
     Panel14: TPanel;
+    Panel15: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
@@ -695,9 +700,14 @@ begin
 
      if FileExists('settings.ini') then
      begin
+     IniFile.IniSection:='settings';
         animation:=IniFile.ReadBoolean('animation',true);
         delay:=IniFile.ReadInteger('delay',15);
-
+     IniFile.IniSection:='colors';
+        Panel15.Color:=StringToColor(IniFile.ReadString('panel','$00FEE3DE'));
+        PairSplitter1.Color:=StringToColor(IniFile.ReadString('kontrast','$00DE8F65'));
+        StringGrid1.Color:=StringToColor(IniFile.ReadString('tabelle','$00FEE3DE'));
+        Form1.Color:=StringToColor(IniFile.ReadString('band','$00FFF0EE'));
      end;
 end;
 

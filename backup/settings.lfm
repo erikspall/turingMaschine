@@ -1,7 +1,7 @@
 object Form3: TForm3
-  Left = 717
+  Left = 524
   Height = 297
-  Top = 206
+  Top = 244
   Width = 374
   Caption = 'Einstellungen'
   ClientHeight = 297
@@ -97,10 +97,13 @@ object Form3: TForm3
         RightClickSelect = True
         ScrollBars = ssAutoBoth
         TabOrder = 0
+        OnClick = TreeView1Click
         Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRightClickSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
         Items.Data = {
-          F9FFFFFF020001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
-          0000000F000000547572696E672D4D61736368696E65
+          F9FFFFFF020001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF020000000000
+          0000010F000000547572696E672D4D61736368696E65FFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFF0000000000000000000600000046617262656EFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFF00000000000000000008000000537072616368656E
         }
       end
     end
@@ -192,13 +195,125 @@ object Form3: TForm3
           Value = 15
         end
       end
+      object GroupBox2: TGroupBox
+        AnchorSideLeft.Control = PairSplitterSide2
+        AnchorSideTop.Control = PairSplitterSide2
+        AnchorSideRight.Control = PairSplitterSide2
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = PairSplitterSide2
+        AnchorSideBottom.Side = asrBottom
+        Left = 0
+        Height = 242
+        Top = 0
+        Width = 209
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        Caption = 'GroupBox2'
+        ClientHeight = 217
+        ClientWidth = 205
+        TabOrder = 1
+        object ColorButton1: TColorButton
+          AnchorSideLeft.Control = GroupBox2
+          AnchorSideTop.Control = GroupBox2
+          AnchorSideRight.Control = GroupBox2
+          AnchorSideRight.Side = asrBottom
+          Left = 0
+          Height = 31
+          Top = 0
+          Width = 205
+          Anchors = [akTop, akLeft, akRight]
+          BorderWidth = 2
+          ButtonColorSize = 16
+          ButtonColor = 16704478
+          Caption = '     Panel'
+          Color = 16704478
+        end
+        object ColorButton2: TColorButton
+          AnchorSideLeft.Control = GroupBox2
+          AnchorSideTop.Control = ColorButton1
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = GroupBox2
+          AnchorSideRight.Side = asrBottom
+          Left = 0
+          Height = 31
+          Top = 31
+          Width = 205
+          Anchors = [akTop, akLeft, akRight]
+          BorderWidth = 2
+          ButtonColorSize = 16
+          ButtonColor = clBlack
+          Caption = 'Kontrast'
+        end
+        object ColorButton3: TColorButton
+          AnchorSideLeft.Control = GroupBox2
+          AnchorSideTop.Control = ColorButton2
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = GroupBox2
+          AnchorSideRight.Side = asrBottom
+          Left = 0
+          Height = 31
+          Top = 62
+          Width = 205
+          Anchors = [akTop, akLeft, akRight]
+          BorderWidth = 2
+          ButtonColorSize = 16
+          ButtonColor = clBlack
+          Caption = '  Tabelle'
+        end
+        object ColorButton4: TColorButton
+          AnchorSideLeft.Control = GroupBox2
+          AnchorSideTop.Control = ColorButton3
+          AnchorSideTop.Side = asrBottom
+          AnchorSideRight.Control = GroupBox2
+          AnchorSideRight.Side = asrBottom
+          Left = 0
+          Height = 31
+          Top = 93
+          Width = 205
+          Anchors = [akTop, akLeft, akRight]
+          BorderWidth = 2
+          ButtonColorSize = 16
+          ButtonColor = clBlack
+          Caption = '     Band'
+        end
+      end
+      object GroupBox3: TGroupBox
+        AnchorSideLeft.Control = PairSplitterSide2
+        AnchorSideTop.Control = PairSplitterSide2
+        AnchorSideRight.Control = PairSplitterSide2
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = PairSplitterSide2
+        AnchorSideBottom.Side = asrBottom
+        Left = 0
+        Height = 242
+        Top = 0
+        Width = 209
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        Caption = 'Sprachen'
+        ClientHeight = 217
+        ClientWidth = 205
+        TabOrder = 2
+        object ComboBox1: TComboBox
+          AnchorSideLeft.Control = GroupBox3
+          AnchorSideTop.Control = GroupBox3
+          AnchorSideRight.Control = GroupBox3
+          AnchorSideRight.Side = asrBottom
+          Left = 0
+          Height = 28
+          Top = 0
+          Width = 205
+          Anchors = [akTop, akLeft, akRight]
+          ItemHeight = 20
+          TabOrder = 0
+          Text = 'ComboBox1'
+        end
+      end
     end
   end
   object IniFile: TIniPropStorage
     StoredValues = <>
     IniFileName = 'settings.ini'
     IniSection = 'settings'
-    left = 90
-    top = 280
+    left = 80
+    top = 256
   end
 end

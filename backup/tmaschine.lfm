@@ -1,11 +1,13 @@
 object Form1: TForm1
-  Left = 180
+  Left = 146
   Height = 767
-  Top = 137
+  Top = 197
   Width = 1201
+  Anchors = [akLeft]
   Caption = 'Turing Maschine'
   ClientHeight = 742
   ClientWidth = 1201
+  Color = 16773358
   Constraints.MaxHeight = 767
   Constraints.MaxWidth = 1201
   Constraints.MinHeight = 767
@@ -420,10 +422,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 0
   end
   object Panel2: TPanel
@@ -437,10 +441,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 1
   end
   object Panel3: TPanel
@@ -454,10 +460,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 2
   end
   object Panel4: TPanel
@@ -471,10 +479,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 3
   end
   object Panel5: TPanel
@@ -488,10 +498,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 4
   end
   object Panel6: TPanel
@@ -505,10 +517,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 5
   end
   object Panel7: TPanel
@@ -522,10 +536,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 6
   end
   object Panel8: TPanel
@@ -540,10 +556,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 7
   end
   object Panel9: TPanel
@@ -557,10 +575,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 8
   end
   object Panel10: TPanel
@@ -574,10 +594,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 9
   end
   object Panel11: TPanel
@@ -591,10 +613,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 10
   end
   object Panel12: TPanel
@@ -608,10 +632,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 11
   end
   object Panel13: TPanel
@@ -625,10 +651,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 12
   end
   object Panel14: TPanel
@@ -642,10 +670,12 @@ object Form1: TForm1
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = '#'
+    Color = clWhite
     Constraints.MaxHeight = 100
     Constraints.MaxWidth = 100
     Constraints.MinHeight = 100
     Constraints.MinWidth = 100
+    ParentColor = False
     TabOrder = 13
   end
   object Image1: TImage
@@ -1392,181 +1422,6 @@ object Form1: TForm1
     }
     Stretch = True
   end
-  object StringGrid1: TStringGrid
-    Left = 736
-    Height = 484
-    Top = 32
-    Width = 456
-    AutoFillColumns = True
-    ColCount = 2
-    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goAutoAddRows, goSmoothScroll, goAutoAddRowsSkipContentCheck]
-    RowCount = 2
-    TabOrder = 14
-    OnDblClick = StringGrid1DblClick
-    ColWidths = (
-      64
-      388
-    )
-    Cells = (
-      2
-      0
-      1
-      'Z1'
-      1
-      0
-      '#'
-    )
-  end
-  object Button5: TButton
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = GroupBox3
-    AnchorSideTop.Side = asrBottom
-    Left = 5
-    Height = 79
-    Top = 209
-    Width = 143
-    BorderSpacing.Left = 5
-    BorderSpacing.Top = 5
-    Caption = 'Run'
-    OnClick = Button5Click
-    TabOrder = 15
-  end
-  object GroupBox1: TGroupBox
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = Owner
-    Left = 5
-    Height = 63
-    Top = 5
-    Width = 231
-    BorderSpacing.Left = 5
-    BorderSpacing.Top = 5
-    Caption = 'Eingabewort'
-    ClientHeight = 38
-    ClientWidth = 227
-    TabOrder = 16
-    object Edit1: TEdit
-      AnchorSideLeft.Control = GroupBox1
-      AnchorSideTop.Control = GroupBox1
-      AnchorSideRight.Control = Button4
-      AnchorSideBottom.Control = GroupBox1
-      AnchorSideBottom.Side = asrBottom
-      Left = 5
-      Height = 28
-      Top = 5
-      Width = 137
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      BorderSpacing.Left = 5
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 5
-      BorderSpacing.Bottom = 5
-      TabOrder = 0
-      Text = 'Edit1'
-    end
-    object Button4: TButton
-      AnchorSideLeft.Control = Edit1
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = Edit1
-      AnchorSideRight.Control = GroupBox1
-      AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = Edit1
-      AnchorSideBottom.Side = asrBottom
-      Left = 147
-      Height = 26
-      Top = 6
-      Width = 75
-      Anchors = [akTop, akRight, akBottom]
-      BorderSpacing.Top = 1
-      BorderSpacing.Right = 5
-      BorderSpacing.Bottom = 1
-      Caption = 'Ok'
-      OnClick = Button4Click
-      TabOrder = 1
-    end
-  end
-  object GroupBox2: TGroupBox
-    AnchorSideTop.Control = GroupBox1
-    AnchorSideTop.Side = asrBottom
-    Left = 8
-    Height = 63
-    Top = 73
-    Width = 231
-    BorderSpacing.Top = 5
-    Caption = 'Leerzeichen'
-    ClientHeight = 38
-    ClientWidth = 227
-    TabOrder = 17
-    object EditButton1: TEditButton
-      Left = 5
-      Height = 28
-      Top = 5
-      Width = 217
-      Align = alClient
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 5
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 5
-      BorderSpacing.Bottom = 5
-      ButtonCaption = 'Ok'
-      ButtonWidth = 75
-      MaxLength = 1
-      NumGlyphs = 1
-      OnButtonClick = EditButton1ButtonClick
-      OnChange = EditButton1Change
-      PasswordChar = #0
-      TabOrder = 0
-      Text = '#'
-    end
-  end
-  object GroupBox3: TGroupBox
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = GroupBox2
-    AnchorSideTop.Side = asrBottom
-    Left = 5
-    Height = 63
-    Top = 141
-    Width = 231
-    BorderSpacing.Left = 5
-    BorderSpacing.Top = 5
-    Caption = 'Alphabet'
-    ClientHeight = 38
-    ClientWidth = 227
-    TabOrder = 18
-    object EditButton2: TEditButton
-      Left = 5
-      Height = 28
-      Top = 5
-      Width = 217
-      Align = alClient
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 5
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 5
-      BorderSpacing.Bottom = 5
-      ButtonCaption = 'Ok'
-      ButtonWidth = 75
-      MaxLength = 0
-      NumGlyphs = 1
-      OnButtonClick = EditButton2ButtonClick
-      OnChange = EditButton1Change
-      OnEditingDone = EditButton2EditingDone
-      PasswordChar = #0
-      TabOrder = 0
-    end
-  end
-  object Button6: TButton
-    AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = Button5
-    AnchorSideTop.Side = asrBottom
-    Left = 5
-    Height = 79
-    Top = 293
-    Width = 143
-    BorderSpacing.Left = 5
-    BorderSpacing.Top = 5
-    Caption = 'Zurücksetzen'
-    OnClick = Button6Click
-    TabOrder = 19
-  end
   object DividerBevel1: TDividerBevel
     AnchorSideLeft.Control = Owner
     AnchorSideRight.Control = Owner
@@ -1582,31 +1437,329 @@ object Form1: TForm1
     ParentBiDiMode = False
     ParentFont = False
   end
+  object Panel15: TPanel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 0
+    Height = 72
+    Top = 0
+    Width = 1201
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Turing-Maschine'
+    Color = 16704478
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -40
+    Font.Name = 'Bauhaus 93'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 14
+  end
+  object PairSplitter1: TPairSplitter
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Panel15
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = DividerBevel1
+    Left = 0
+    Height = 489
+    Top = 72
+    Width = 1201
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Color = 14585701
+    Position = 545
+    object PairSplitterSide1: TPairSplitterSide
+      Cursor = crArrow
+      Left = 0
+      Height = 489
+      Top = 0
+      Width = 545
+      ClientWidth = 545
+      ClientHeight = 489
+      object GroupBox1: TGroupBox
+        AnchorSideLeft.Control = PairSplitterSide1
+        AnchorSideTop.Control = PairSplitterSide1
+        AnchorSideRight.Control = PairSplitterSide1
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 63
+        Top = 14
+        Width = 540
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 14
+        Caption = 'Eingabewort'
+        ClientHeight = 38
+        ClientWidth = 536
+        TabOrder = 0
+        object Edit1: TEdit
+          AnchorSideLeft.Control = GroupBox1
+          AnchorSideTop.Control = GroupBox1
+          AnchorSideRight.Control = Button4
+          AnchorSideBottom.Side = asrBottom
+          Left = 5
+          Height = 28
+          Top = 5
+          Width = 446
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 5
+          TabOrder = 0
+        end
+        object Button4: TButton
+          AnchorSideLeft.Control = Edit1
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Edit1
+          AnchorSideRight.Control = GroupBox1
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = Edit1
+          AnchorSideBottom.Side = asrBottom
+          Left = 456
+          Height = 28
+          Top = 5
+          Width = 75
+          Anchors = [akTop, akRight, akBottom]
+          BorderSpacing.Right = 5
+          Caption = 'Ok'
+          OnClick = Button4Click
+          TabOrder = 1
+        end
+      end
+      object GroupBox2: TGroupBox
+        AnchorSideLeft.Control = PairSplitterSide1
+        AnchorSideTop.Control = GroupBox1
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = PairSplitterSide1
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 63
+        Top = 82
+        Width = 540
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Leerzeichen'
+        ClientHeight = 38
+        ClientWidth = 536
+        TabOrder = 1
+        object EditButton1: TEditButton
+          AnchorSideLeft.Control = GroupBox2
+          AnchorSideTop.Control = GroupBox2
+          AnchorSideRight.Control = GroupBox2
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GroupBox2
+          AnchorSideBottom.Side = asrBottom
+          Left = 5
+          Height = 28
+          Top = 5
+          Width = 526
+          Align = alClient
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 5
+          BorderSpacing.Bottom = 5
+          ButtonCaption = 'Ok'
+          ButtonWidth = 75
+          MaxLength = 1
+          NumGlyphs = 1
+          OnButtonClick = EditButton1ButtonClick
+          OnChange = EditButton1Change
+          PasswordChar = #0
+          TabOrder = 0
+          Text = '#'
+        end
+      end
+      object GroupBox3: TGroupBox
+        AnchorSideLeft.Control = PairSplitterSide1
+        AnchorSideTop.Control = GroupBox2
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = PairSplitterSide1
+        AnchorSideRight.Side = asrBottom
+        Left = 5
+        Height = 63
+        Top = 150
+        Width = 540
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        Caption = 'Alphabet'
+        ClientHeight = 38
+        ClientWidth = 536
+        TabOrder = 2
+        object EditButton2: TEditButton
+          AnchorSideLeft.Control = GroupBox3
+          AnchorSideTop.Control = GroupBox3
+          AnchorSideRight.Control = GroupBox3
+          AnchorSideBottom.Control = GroupBox3
+          AnchorSideBottom.Side = asrBottom
+          Left = 5
+          Height = 28
+          Top = 5
+          Width = 526
+          Align = alClient
+          Anchors = [akTop, akLeft, akRight]
+          BorderSpacing.Left = 5
+          BorderSpacing.Top = 5
+          BorderSpacing.Right = 5
+          BorderSpacing.Bottom = 5
+          ButtonCaption = 'Ok'
+          ButtonWidth = 75
+          MaxLength = 0
+          NumGlyphs = 1
+          OnButtonClick = EditButton2ButtonClick
+          OnChange = EditButton1Change
+          OnEditingDone = EditButton2EditingDone
+          PasswordChar = #0
+          TabOrder = 0
+        end
+      end
+      object Button5: TButton
+        AnchorSideLeft.Control = PairSplitterSide1
+        AnchorSideTop.Control = GroupBox3
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = Button6
+        AnchorSideBottom.Control = PairSplitterSide1
+        AnchorSideBottom.Side = asrBottom
+        Left = 5
+        Height = 79
+        Top = 405
+        Width = 254
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        BorderSpacing.Bottom = 5
+        Caption = 'Run'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -23
+        Font.Name = 'Bauhaus 93'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = Button5Click
+        ParentFont = False
+        TabOrder = 3
+      end
+      object Button6: TButton
+        AnchorSideLeft.Control = PairSplitterSide1
+        AnchorSideLeft.Side = asrCenter
+        AnchorSideTop.Control = Button5
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = PairSplitterSide1
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = PairSplitterSide1
+        AnchorSideBottom.Side = asrBottom
+        Left = 264
+        Height = 79
+        Top = 405
+        Width = 281
+        Anchors = [akRight, akBottom]
+        BorderSpacing.Left = 5
+        BorderSpacing.Top = 5
+        BorderSpacing.Bottom = 5
+        Caption = 'Zurücksetzen'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -23
+        Font.Name = 'Bauhaus 93'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = Button6Click
+        ParentFont = False
+        TabOrder = 4
+      end
+    end
+    object PairSplitterSide2: TPairSplitterSide
+      Cursor = crArrow
+      Left = 550
+      Height = 489
+      Top = 0
+      Width = 651
+      ClientWidth = 651
+      ClientHeight = 489
+      object GroupBox4: TGroupBox
+        AnchorSideLeft.Control = PairSplitterSide2
+        AnchorSideTop.Control = PairSplitterSide2
+        AnchorSideRight.Control = PairSplitterSide2
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = PairSplitterSide2
+        AnchorSideBottom.Side = asrBottom
+        Left = 0
+        Height = 479
+        Top = 5
+        Width = 646
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Top = 5
+        BorderSpacing.Right = 5
+        BorderSpacing.Bottom = 5
+        Caption = 'Programmtabelle'
+        ClientHeight = 454
+        ClientWidth = 642
+        TabOrder = 0
+        object StringGrid1: TStringGrid
+          AnchorSideLeft.Control = GroupBox4
+          AnchorSideTop.Control = GroupBox4
+          AnchorSideRight.Control = GroupBox4
+          AnchorSideRight.Side = asrBottom
+          AnchorSideBottom.Control = GroupBox4
+          AnchorSideBottom.Side = asrBottom
+          Left = 0
+          Height = 454
+          Top = 0
+          Width = 642
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          AutoFillColumns = True
+          Color = 16704478
+          ColCount = 2
+          Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goAutoAddRows, goSmoothScroll, goAutoAddRowsSkipContentCheck]
+          RowCount = 2
+          TabOrder = 0
+          OnDblClick = StringGrid1DblClick
+          ColWidths = (
+            64
+            574
+          )
+          Cells = (
+            2
+            0
+            1
+            'Z1'
+            1
+            0
+            '#'
+          )
+        end
+      end
+    end
+  end
   object Timer1: TTimer
     Enabled = False
     Interval = 15
     OnTimer = Timer1Timer
-    left = 368
-    top = 289
+    left = 424
+    top = 368
   end
   object Timer2: TTimer
     Enabled = False
     Interval = 15
     OnTimer = Timer2Timer
-    left = 408
-    top = 289
+    left = 520
+    top = 368
   end
   object Timer3: TTimer
     Enabled = False
     Interval = 10
     OnTimer = Timer3Timer
     OnStartTimer = Timer3StartTimer
-    left = 493
-    top = 264
+    left = 336
+    top = 432
   end
   object MainMenu1: TMainMenu
-    left = 331
-    top = 75
+    left = 336
+    top = 304
     object MenuItem1: TMenuItem
       Caption = 'TM...'
       OnClick = MenuItem1Click
@@ -1641,19 +1794,19 @@ object Form1: TForm1
     DefaultExt = '.tm'
     Filter = 'Turing Maschine|*.tm'
     left = 424
-    top = 98
+    top = 304
   end
   object OpenDialog1: TOpenDialog
     Filter = 'Turing Maschine|*.tm'
-    left = 424
-    top = 168
+    left = 520
+    top = 304
   end
   object IniFile: TIniPropStorage
     StoredValues = <>
     IniFileName = 'Settings.ini'
     IniSection = 'settings'
     OnRestoreProperties = IniFileRestoreProperties
-    left = 319
-    top = 211
+    left = 336
+    top = 368
   end
 end
