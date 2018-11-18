@@ -112,7 +112,7 @@ var
   Form1: TForm1;
   i:Integer;
   finished:Boolean;
-
+  schritte:Integer;
 
 implementation
 
@@ -173,7 +173,7 @@ procedure TForm1.Button5Click(Sender: TObject);
 
 begin
   if finished then finished:=false;
-
+  schritte:=1;
   Timer3.Enabled:=true;
 
 end;
@@ -365,8 +365,10 @@ begin
 end;
 
 procedure TForm1.Timer3StartTimer(Sender: TObject);
+
 begin
      handleMove();
+
   if finished then Timer3.Enabled:=false;
 end;
 
@@ -375,6 +377,8 @@ begin
   while (not finished) and (hasMoved) do
 begin
   handleMove();
+      // Inc(Schritte);
+     //Label1.Caption:=Schritte.toString;
   if finished then Timer3.Enabled:=false;
 end;
  end;
@@ -607,7 +611,7 @@ end;
 procedure TForm1.MenuItem3Click(Sender: TObject);
 Var f:Textfile;
   stream:TStream;
-    g:Integer;
+    g,h:Integer;
     tempString:String;
 begin
    if OpenDialog1.Execute then
@@ -619,14 +623,22 @@ begin
      EditButton2.Text:=tmInhalt.ReadString('alphabet','');
 
      Button4.Click;
-     EditButton1.Click;
-     EditButton2.Click;
-     for g:=tmInhalt.ReadInteger('zustände',2) downto 1 do
+     EditButton1.Button.Click;
+     EditButton2.Button.Click;
+     for g:=tmInhalt.ReadInteger('zustände',2) downto 2 do
      begin
         MenuItem5.Click;
      end;
      tmInhalt.IniSection:='grid';
-
+     h:=1;
+      for g:=1 to StringGrid1.RowCount-1 do
+      begin
+        for i:=1 to StringGrid1.ColCount-1 do
+        begin
+          StringGrid1.Cells[i,g]:=tmInhalt.ReadString('I'+h.toString,'');
+          inc(h);
+        end;
+      end;
      //To be continued
 
 
