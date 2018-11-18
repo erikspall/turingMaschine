@@ -27,6 +27,7 @@ type
     GroupBox4: TGroupBox;
     Image1: TImage;
     IniFile: TIniPropStorage;
+    tmInhalt: TIniPropStorage;
     MainMenu1: TMainMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -579,38 +580,26 @@ end;
 procedure TForm1.MenuItem2Click(Sender: TObject); //Speichern
 Var f:Textfile;
   stream:TStream;
-    g:Integer;
+    g,h:Integer;
 begin
     if SaveDialog1.Execute then
     begin
-    AssignFile(f,SaveDialog1.FileName);
-    ShowMessage('Save To: ' + SaveDialog1.FileName);
-    Rewrite(f);
-    //Alle Rows
-         //  WriteLn(f,StringGrid1.RowCount.ToString);
-    //Alle Cols
-         //  WriteLN(f,StringGrid1.ColCount.ToString);
-    //Eingabe
-             WriteLN(f,Edit1.Text);
-    //Leerzeichen
-                 WriteLN(f,leerzeichen);
-      CloseFile(f);
-      AssignFile(f,SaveDialog1.FileName+'g');
-      Rewrite(f);
-      SetFAttr(f,Hidden);
-
-      for i:=1 to StringGrid1.RowCount-1 do
-      begin
-       // ShowMessage(i.toString);
-        for g:=1 to StringGrid1.ColCount-1 do
-        begin
-        //  ShowMessage(g.toString);
-          WriteLN(f,StringGrid1.Cells[g,i]);
-        end;
-      end;
-      CloseFile(f);
-
-
+    tmInhalt.IniFileName:=SaveDialog1.FileName;
+    tmInhalt.IniSection:='edits';
+    tmInhalt.WriteString('eingabewort',Edit1.Text);
+    tmInhalt.WriteString('leerzeichen',EditButton1.Text);
+    tmInhalt.WriteString('alphabet',EditButton2.Text);
+    tmInhalt.WriteInteger('zustände',StringGrid1.RowCount);
+    tmInhalt.IniSection:='grid';
+    h:=1;
+    for g:=1 to StringGrid1.RowCount-1 do
+    begin
+       for i:=1 to StringGrid1.ColCount-1 do
+       begin
+         tmInhalt.WriteString('I'+h.toString,StringGrid1.Cells[i,g]);
+         Inc(h);
+       end;
+    end;
 
     end;
 end;
@@ -623,7 +612,28 @@ Var f:Textfile;
 begin
    if OpenDialog1.Execute then
     begin
-    AssignFile(f,OpenDialog1.FileName);
+     tmInhalt.IniFileName:=OpenDialog1.FileName;
+     tmInhalt.IniSection:='edits';
+     Edit1.Text:=tmInhalt.ReadString('eingabewort','');
+     EditButton1.Text:=tmInhalt.ReadString('leerzeichen','#');
+     EditButton2.Text:=tmInhalt.ReadString('alphabet','');
+
+     Button4.Click;
+     EditButton1.Click;
+     EditButton2.Click;
+     for g:=tmInhalt.ReadInteger('zustände',2) downto 1 do
+     begin
+        MenuItem5.Click;
+     end;
+     tmInhalt.IniSection:='grid';
+
+     //To be continued
+
+
+
+
+    end;
+    {AssignFile(f,OpenDialog1.FileName);
     Reset(f);
 
       ReadLN(f,tempString);
@@ -649,7 +659,7 @@ begin
       end;
       CloseFile(f);
     end;
-
+     }
 end;
 
 procedure TForm1.MenuItem5Click(Sender: TObject);
