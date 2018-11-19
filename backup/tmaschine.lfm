@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 192
+  Left = 127
   Height = 767
-  Top = 211
+  Top = 134
   Width = 1201
   Anchors = [akLeft]
   Caption = 'Turing Maschine'
@@ -1558,7 +1558,6 @@ object Form1: TForm1
           Height = 28
           Top = 5
           Width = 526
-          Align = alClient
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Left = 5
           BorderSpacing.Top = 5
@@ -1596,13 +1595,13 @@ object Form1: TForm1
           AnchorSideLeft.Control = GroupBox3
           AnchorSideTop.Control = GroupBox3
           AnchorSideRight.Control = GroupBox3
+          AnchorSideRight.Side = asrBottom
           AnchorSideBottom.Control = GroupBox3
           AnchorSideBottom.Side = asrBottom
           Left = 5
           Height = 28
           Top = 5
           Width = 526
-          Align = alClient
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Left = 5
           BorderSpacing.Top = 5
@@ -1670,18 +1669,6 @@ object Form1: TForm1
         OnClick = Button6Click
         ParentFont = False
         TabOrder = 4
-      end
-      object Label1: TLabel
-        AnchorSideLeft.Control = PairSplitterSide1
-        AnchorSideBottom.Control = Button6
-        Left = 5
-        Height = 20
-        Top = 380
-        Width = 44
-        Anchors = [akLeft, akBottom]
-        BorderSpacing.Left = 5
-        Caption = 'Label1'
-        ParentColor = False
       end
     end
     object PairSplitterSide2: TPairSplitterSide

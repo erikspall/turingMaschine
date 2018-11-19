@@ -100,10 +100,9 @@ object Form3: TForm3
         OnClick = TreeView1Click
         Options = [tvoAutoExpand, tvoAutoItemHeight, tvoHideSelection, tvoHotTrack, tvoKeepCollapsedNodes, tvoReadOnly, tvoRightClickSelect, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
         Items.Data = {
-          F9FFFFFF020001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF020000000000
+          F9FFFFFF020001000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF010000000000
           0000010F000000547572696E672D4D61736368696E65FFFFFFFFFFFFFFFFFFFF
-          FFFFFFFFFFFF0000000000000000000600000046617262656EFFFFFFFFFFFFFF
-          FFFFFFFFFFFFFFFFFF00000000000000000008000000537072616368656E
+          FFFFFFFFFFFF0000000000000000000600000046617262656E
         }
       end
     end
@@ -160,7 +159,6 @@ object Form3: TForm3
           Caption = 'Ja'
           Checked = True
           OnChange = ToggleBox1Change
-          OnClick = ToggleBox1Click
           State = cbChecked
           TabOrder = 0
         end
@@ -274,37 +272,6 @@ object Form3: TForm3
           ButtonColorSize = 16
           ButtonColor = clBlack
           Caption = '     Band'
-        end
-      end
-      object GroupBox3: TGroupBox
-        AnchorSideLeft.Control = PairSplitterSide2
-        AnchorSideTop.Control = PairSplitterSide2
-        AnchorSideRight.Control = PairSplitterSide2
-        AnchorSideRight.Side = asrBottom
-        AnchorSideBottom.Control = PairSplitterSide2
-        AnchorSideBottom.Side = asrBottom
-        Left = 0
-        Height = 242
-        Top = 0
-        Width = 209
-        Anchors = [akTop, akLeft, akRight, akBottom]
-        Caption = 'Sprachen'
-        ClientHeight = 217
-        ClientWidth = 205
-        TabOrder = 2
-        object ComboBox1: TComboBox
-          AnchorSideLeft.Control = GroupBox3
-          AnchorSideTop.Control = GroupBox3
-          AnchorSideRight.Control = GroupBox3
-          AnchorSideRight.Side = asrBottom
-          Left = 0
-          Height = 28
-          Top = 0
-          Width = 205
-          Anchors = [akTop, akLeft, akRight]
-          ItemHeight = 20
-          TabOrder = 0
-          Text = 'ComboBox1'
         end
       end
     end
