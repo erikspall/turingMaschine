@@ -1,3 +1,5 @@
 *.tm
 backup/
 *.bat
+*.exe
+lib/
