@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, TAGraph, DividerBevel, Forms, Controls, Graphics,
   Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, IniPropStorage,
-  PairSplitter, obtlist, inputDialogforTM, Dos, settings;
+  PairSplitter, obtlist, inputDialogforTM, Dos, settings,FileAssoc;
 
 type
 
@@ -76,7 +76,7 @@ type
     procedure MenuItem6Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
     procedure einstellungenLesenUndSetzen();
-   procedure StringGrid1DblClick(Sender: TObject);
+    procedure StringGrid1DblClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure moveForward();
     procedure initBand();
@@ -86,6 +86,8 @@ type
     procedure Timer3Timer(Sender: TObject);
     procedure prepareStringGrid();
     procedure handleMove();
+    function loadTM(FileName:String):Boolean;
+    function funHatParameter: boolean;
   private
 
   public
@@ -116,7 +118,8 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  moveForward();
+  if funHatParameter then
+  loadTM(ParamStr(1));
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
@@ -445,6 +448,16 @@ begin
     end;
 end;
 
+function TForm1.funHatParameter: boolean;
+begin
+   Result := False;
+
+  // Prüft, ob es Parameter jenseits
+  // von ParamStr(0) gibt
+  if ParamCount > 0 then
+    Result := True;
+end;
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   einstellungenLesenUndSetzen;
@@ -462,9 +475,11 @@ begin
     Band[i].DoubleBuffered := True;
     bandContent.addItem(leerzeichen);
   end;
-     SetLength(Zustand2,Length(Zustand2)+1);
-     Zustand2[Length(Zustand2)]:=1;
-   end;
+  SetLength(Zustand2,Length(Zustand2)+1);
+  Zustand2[Length(Zustand2)]:=1;
+  //FileAssociation1.Execute;
+
+end;
 
 procedure TForm1.MenuItem2Click(Sender: TObject); //Speichern
 Var
@@ -492,12 +507,18 @@ begin
 end;
 
 procedure TForm1.MenuItem3Click(Sender: TObject);
-Var
-    g,h:Integer;
-
 begin
    if OpenDialog1.Execute then
     begin
+    loadTM(OpenDialog1.FileName);
+   end;
+end;
+
+function TForm1.loadTM(FileName:String):Boolean;
+Var
+    g,h:Integer;
+begin
+  try
      tmInhalt.IniFileName:=OpenDialog1.FileName;
      tmInhalt.IniSection:='edits';
      Edit1.Text:=tmInhalt.ReadString('eingabewort','');
@@ -506,7 +527,7 @@ begin
      Button4.Click;
      EditButton1.Button.Click;
      EditButton2.Button.Click;
-     for g:=tmInhalt.ReadInteger('zustände',2) downto 2 do
+     for g:=tmInhalt.ReadInteger('zustände',2)-1 downto 2 do
      begin
         MenuItem5.Click;
      end;
@@ -520,8 +541,12 @@ begin
           inc(h);
         end;
       end;
-    end;
+      result:=true;
+  except
+    result:=false;
+  end;
 end;
+
 
 procedure TForm1.MenuItem5Click(Sender: TObject);
 begin
