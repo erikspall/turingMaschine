@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, TAGraph, DividerBevel, Forms, Controls, Graphics,
   Dialogs, StdCtrls, ExtCtrls, EditBtn, Grids, Menus, IniPropStorage,
-  PairSplitter, obtlist, inputDialogforTM, Dos, settings,FileAssoc;
+  PairSplitter, obtlist, inputDialogforTM, Dos, settings;
 
 type
 
