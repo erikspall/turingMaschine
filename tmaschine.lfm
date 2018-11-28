@@ -1,16 +1,16 @@
 object Form1: TForm1
-  Left = 127
-  Height = 767
-  Top = 134
+  Left = 267
+  Height = 591
+  Top = 120
   Width = 1201
   Anchors = [akLeft]
   Caption = 'Turing Maschine'
-  ClientHeight = 742
+  ClientHeight = 566
   ClientWidth = 1201
   Color = 16773358
   Constraints.MaxHeight = 767
   Constraints.MaxWidth = 1201
-  Constraints.MinHeight = 767
+  Constraints.MinHeight = 591
   Constraints.MinWidth = 1201
   DesignTimePPI = 120
   Icon.Data = {
@@ -413,11 +413,13 @@ object Form1: TForm1
   Position = poDesktopCenter
   LCLVersion = '1.8.4.0'
   object Panel1: TPanel
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 0
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -432,11 +434,13 @@ object Form1: TForm1
   end
   object Panel2: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 100
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -451,11 +455,13 @@ object Form1: TForm1
   end
   object Panel3: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 200
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -470,11 +476,13 @@ object Form1: TForm1
   end
   object Panel4: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 300
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -489,11 +497,13 @@ object Form1: TForm1
   end
   object Panel5: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 400
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -508,11 +518,13 @@ object Form1: TForm1
   end
   object Panel6: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 500
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -527,11 +539,13 @@ object Form1: TForm1
   end
   object Panel7: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 600
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -550,8 +564,9 @@ object Form1: TForm1
     AnchorSideBottom.Side = asrBottom
     Left = 700
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -566,11 +581,13 @@ object Form1: TForm1
   end
   object Panel9: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 800
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -585,11 +602,13 @@ object Form1: TForm1
   end
   object Panel10: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 900
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -604,11 +623,13 @@ object Form1: TForm1
   end
   object Panel11: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 1000
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -623,11 +644,13 @@ object Form1: TForm1
   end
   object Panel12: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 1100
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -642,11 +665,13 @@ object Form1: TForm1
   end
   object Panel13: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 1200
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -661,11 +686,13 @@ object Form1: TForm1
   end
   object Panel14: TPanel
     AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 1300
     Height = 100
-    Top = 633
+    Top = 456
     Width = 100
+    Anchors = [akLeft, akBottom]
     BorderSpacing.Bottom = 10
     BevelOuter = bvNone
     BorderStyle = bsSingle
@@ -684,9 +711,9 @@ object Form1: TForm1
     AnchorSideBottom.Control = Panel1
     Left = 525
     Height = 50
-    Top = 581
+    Top = 406
     Width = 50
-    Anchors = [akTop]
+    Anchors = [akBottom]
     Constraints.MaxHeight = 50
     Constraints.MaxWidth = 50
     Constraints.MinHeight = 50
@@ -1429,7 +1456,7 @@ object Form1: TForm1
     AnchorSideBottom.Control = Image1
     Left = 0
     Height = 20
-    Top = 561
+    Top = 386
     Width = 1201
     Caption = 'Band'
     Anchors = [akLeft, akRight, akBottom]
@@ -1466,7 +1493,7 @@ object Form1: TForm1
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = DividerBevel1
     Left = 0
-    Height = 489
+    Height = 314
     Top = 72
     Width = 1201
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -1475,11 +1502,11 @@ object Form1: TForm1
     object PairSplitterSide1: TPairSplitterSide
       Cursor = crArrow
       Left = 0
-      Height = 489
+      Height = 314
       Top = 0
       Width = 545
       ClientWidth = 545
-      ClientHeight = 489
+      ClientHeight = 314
       object GroupBox1: TGroupBox
         AnchorSideLeft.Control = PairSplitterSide1
         AnchorSideTop.Control = PairSplitterSide1
@@ -1625,7 +1652,7 @@ object Form1: TForm1
         AnchorSideBottom.Side = asrBottom
         Left = 5
         Height = 79
-        Top = 405
+        Top = 230
         Width = 254
         Anchors = [akLeft, akRight, akBottom]
         BorderSpacing.Left = 5
@@ -1652,7 +1679,7 @@ object Form1: TForm1
         AnchorSideBottom.Side = asrBottom
         Left = 264
         Height = 79
-        Top = 405
+        Top = 230
         Width = 281
         Anchors = [akRight, akBottom]
         BorderSpacing.Left = 5
@@ -1672,11 +1699,11 @@ object Form1: TForm1
     object PairSplitterSide2: TPairSplitterSide
       Cursor = crArrow
       Left = 550
-      Height = 489
+      Height = 314
       Top = 0
       Width = 651
       ClientWidth = 651
-      ClientHeight = 489
+      ClientHeight = 314
       object GroupBox4: TGroupBox
         AnchorSideLeft.Control = PairSplitterSide2
         AnchorSideTop.Control = PairSplitterSide2
@@ -1685,7 +1712,7 @@ object Form1: TForm1
         AnchorSideBottom.Control = PairSplitterSide2
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 479
+        Height = 304
         Top = 5
         Width = 646
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -1693,7 +1720,7 @@ object Form1: TForm1
         BorderSpacing.Right = 5
         BorderSpacing.Bottom = 5
         Caption = 'Programmtabelle'
-        ClientHeight = 454
+        ClientHeight = 279
         ClientWidth = 642
         TabOrder = 0
         object StringGrid1: TStringGrid
@@ -1704,7 +1731,7 @@ object Form1: TForm1
           AnchorSideBottom.Control = GroupBox4
           AnchorSideBottom.Side = asrBottom
           Left = 0
-          Height = 454
+          Height = 279
           Top = 0
           Width = 642
           Anchors = [akTop, akLeft, akRight, akBottom]

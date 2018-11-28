@@ -31,6 +31,7 @@ type
     SpinEdit1: TSpinEdit;
     ToggleBox1: TToggleBox;
     TreeView1: TTreeView;
+    procedure FormCreate(Sender: TObject);
     procedure showGroup(Group: integer);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -68,6 +69,11 @@ begin
       Groupbox2.Show;
     end;
   end;
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+
 end;
 
 procedure TForm3.Button1Click(Sender: TObject);
@@ -121,6 +127,7 @@ begin
     ColorButton4.ButtonColor := StringToColor(tempCo);
 
   end;
+
 end;
 
 procedure TForm3.ToggleBox1Change(Sender: TObject);
