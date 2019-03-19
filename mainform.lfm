@@ -1,0 +1,270 @@
+object Form1: TForm1
+  Left = 256
+  Height = 366
+  Top = 250
+  Width = 532
+  Caption = 'Form1'
+  ClientHeight = 366
+  ClientWidth = 532
+  OnChangeBounds = FormChangeBounds
+  OnCreate = FormCreate
+  OnResize = FormResize
+  OnShow = FormShow
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 343
+    Width = 532
+    Panels = <>
+    ParentFont = False
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 532
+    Caption = 'ToolBar1'
+    ParentFont = False
+    TabOrder = 1
+  end
+  object PageControl1: TPageControl
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = ToolBar1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = StatusBar1
+    Left = 2
+    Height = 267
+    Top = 26
+    Width = 530
+    ActivePage = TabSheet1
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Left = 2
+    BorderSpacing.Bottom = 50
+    ParentFont = False
+    TabIndex = 0
+    TabOrder = 2
+    object TabSheet1: TTabSheet
+      Caption = 'TM'
+      ClientHeight = 239
+      ClientWidth = 522
+      ParentFont = False
+      object PairSplitter1: TPairSplitter
+        AnchorSideLeft.Control = TabSheet1
+        AnchorSideTop.Control = TabSheet1
+        AnchorSideRight.Control = TabSheet1
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = TabSheet1
+        AnchorSideBottom.Side = asrBottom
+        Left = 0
+        Height = 239
+        Top = 0
+        Width = 522
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        Position = 200
+        object PairSplitterSide1: TPairSplitterSide
+          Cursor = crArrow
+          Left = 0
+          Height = 239
+          Top = 0
+          Width = 200
+          ClientWidth = 200
+          ClientHeight = 239
+          object GroupBox1: TGroupBox
+            AnchorSideLeft.Control = PairSplitterSide1
+            AnchorSideTop.Control = PairSplitterSide1
+            AnchorSideRight.Control = PairSplitterSide1
+            AnchorSideRight.Side = asrBottom
+            Left = 0
+            Height = 81
+            Top = 0
+            Width = 200
+            Anchors = [akTop, akLeft, akRight]
+            Caption = 'Alphabet'
+            ClientHeight = 61
+            ClientWidth = 196
+            ParentFont = False
+            TabOrder = 0
+            object Edit1: TEdit
+              AnchorSideLeft.Control = GroupBox1
+              AnchorSideTop.Control = GroupBox1
+              AnchorSideRight.Control = GroupBox1
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 23
+              Top = 0
+              Width = 196
+              Anchors = [akTop, akLeft, akRight]
+              ParentFont = False
+              TabOrder = 0
+            end
+            object Label1: TLabel
+              AnchorSideTop.Control = Edit1
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = GroupBox1
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 15
+              Top = 23
+              Width = 196
+              Anchors = [akTop, akLeft, akRight]
+              Caption = 'Alphabet: {}'
+              ParentColor = False
+              ParentFont = False
+            end
+          end
+          object GroupBox2: TGroupBox
+            AnchorSideLeft.Control = PairSplitterSide1
+            AnchorSideTop.Control = GroupBox1
+            AnchorSideTop.Side = asrBottom
+            AnchorSideRight.Control = PairSplitterSide1
+            AnchorSideRight.Side = asrBottom
+            Left = 0
+            Height = 105
+            Top = 81
+            Width = 200
+            Anchors = [akTop, akLeft, akRight]
+            Caption = 'Eingabewort'
+            ClientHeight = 85
+            ClientWidth = 196
+            ParentFont = False
+            TabOrder = 1
+            object Edit2: TEdit
+              AnchorSideLeft.Control = GroupBox2
+              AnchorSideTop.Control = GroupBox2
+              AnchorSideRight.Control = GroupBox2
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 23
+              Top = 0
+              Width = 196
+              Anchors = [akTop, akLeft, akRight]
+              OnChange = Edit2Change
+              OnEditingDone = Edit2EditingDone
+              ParentFont = False
+              TabOrder = 0
+            end
+            object Label2: TLabel
+              AnchorSideLeft.Control = Edit2
+              AnchorSideTop.Control = Edit2
+              AnchorSideTop.Side = asrBottom
+              AnchorSideRight.Control = GroupBox2
+              AnchorSideRight.Side = asrBottom
+              Left = 0
+              Height = 1
+              Top = 23
+              Width = 196
+              Anchors = [akTop, akLeft, akRight]
+              Font.CharSet = ANSI_CHARSET
+              Font.Color = clRed
+              Font.Height = -12
+              Font.Name = 'Segoe UI'
+              Font.Pitch = fpVariable
+              Font.Quality = fqDraft
+              Font.Style = [fsBold]
+              ParentColor = False
+              ParentFont = False
+            end
+            object Label3: TLabel
+              Left = 130
+              Height = 15
+              Top = 84
+              Width = 34
+              Caption = 'Label3'
+              ParentColor = False
+            end
+          end
+          object ListBox1: TListBox
+            Left = 16
+            Height = 101
+            Top = 128
+            Width = 100
+            ItemHeight = 0
+            ParentFont = False
+            TabOrder = 2
+          end
+        end
+        object PairSplitterSide2: TPairSplitterSide
+          Cursor = crArrow
+          Left = 205
+          Height = 239
+          Top = 0
+          Width = 317
+          ClientWidth = 317
+          ClientHeight = 239
+          object GroupBox3: TGroupBox
+            AnchorSideLeft.Control = PairSplitterSide2
+            AnchorSideTop.Control = PairSplitterSide2
+            AnchorSideRight.Control = PairSplitterSide2
+            AnchorSideRight.Side = asrBottom
+            AnchorSideBottom.Control = PairSplitterSide2
+            AnchorSideBottom.Side = asrBottom
+            Left = 0
+            Height = 239
+            Top = 0
+            Width = 317
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            Caption = 'Übergangsfunktion'
+            ClientHeight = 219
+            ClientWidth = 313
+            ParentFont = False
+            TabOrder = 0
+            object StringGrid1: TStringGrid
+              AnchorSideLeft.Control = PairSplitterSide2
+              AnchorSideTop.Control = PairSplitterSide2
+              AnchorSideRight.Control = PairSplitterSide2
+              AnchorSideRight.Side = asrBottom
+              AnchorSideBottom.Control = PairSplitterSide2
+              AnchorSideBottom.Side = asrBottom
+              Left = 0
+              Height = 373
+              Top = 0
+              Width = 332
+              Anchors = [akTop, akLeft, akRight, akBottom]
+              AutoFillColumns = True
+              FixedCols = 0
+              ParentFont = False
+              TabOrder = 0
+              OnChangeBounds = StringGrid1ChangeBounds
+              ColWidths = (
+                65
+                65
+                65
+                65
+                68
+              )
+              Cells = (
+                1
+                0
+                0
+                '#'
+              )
+            end
+          end
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Einstellugen'
+      ParentFont = False
+    end
+  end
+  object Button1: TButton
+    Left = 128
+    Height = 25
+    Top = 256
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = Timer1Timer
+    left = 16
+    top = 296
+  end
+end
