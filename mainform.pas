@@ -117,12 +117,14 @@ end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
-  for i:=0 to band.Count()-1 do
+  Inc(pointer);
+  if pointer+(band.Count() div 2)>bandContent.Count then
   begin
-    band.getItem(i).Left:=band.getItem(i).Left-4;
+    bandContent.Add('#');
+    bandContent.insertItem('#',0);
+    Inc(Pointer);
   end;
-  Repaint();
-   if band.getItem(0).Left = -50 then Timer1.Enabled:=false;
+  FillPanelsWithContent();
 end;
 
 procedure TForm1.addPanelResize();
@@ -207,9 +209,11 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  ShowMessage('Band: ' + band.Count.toString + ' Content: ' + bandContent.Count().toString);
+  with Timer1 do
+begin
+    if enabled then enabled:=false else enabled:=true;
 end;
-
+end;
 procedure TForm1.ControlBar1Click(Sender: TObject);
 begin
 
