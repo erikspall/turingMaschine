@@ -49,6 +49,7 @@ type
     procedure addPanel();
     procedure insertPanel();
     procedure removePanel();
+    procedure FillPanelsWithContent();
   private
 
   public
@@ -95,7 +96,7 @@ begin
     end;
 
     band.getItem(((band.count-1)div 2)-1).Color:=clDefault;
-    pointer:=((band.count)div 2);
+    pointer:=((band.count-1)div 2);
     band.getItem((band.count-1) div 2).Color:=Graphics.clHighlight;
 end;
 
@@ -143,7 +144,8 @@ begin
          begin
            band.getItem(i).Left:=band.getItem(i).Left+50;
          end;
-
+         if pointer-(band.Count() div 2)>=0 then
+         ttPanel.Caption:=bandContent.getItem(pointer-(band.Count() div 2));
          ttPanel.Left:=0;
          band.insertItem(ttPanel,0);
 
@@ -159,6 +161,8 @@ begin
 
 
         ttPanel.Left:=band.count*50;
+        if pointer+(band.Count() div 2)<bandContent.Count then
+        ttPanel.Caption:=bandContent.getItem(pointer+(band.Count() div 2));
         band.Add(ttPanel);
         if bandContent.Count < band.Count then
         bandContent.Add('#');
@@ -182,6 +186,25 @@ begin
 
 end;
 
+procedure TForm1.FillPanelsWithContent();
+Var j:Integer;
+begin
+        if (frac(band.Count()/2)=0) then
+      begin
+        for i:=0 to band.Count()-1 do
+        begin
+             band.getItem(i).Caption:=bandContent.getItem(i+(pointer-(band.Count() div 2)+1));
+         end;
+         end else begin
+           for i:=0 to band.Count()-1 do
+        begin
+             band.getItem(i).Caption:=bandContent.getItem(i+(pointer-(band.Count() div 2)));
+         end;
+         end;
+
+
+end;
+
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   ShowMessage('Band: ' + band.Count.toString + ' Content: ' + bandContent.Count().toString);
@@ -202,8 +225,12 @@ var i:Integer;
 begin
    for i:=1 to Length(Edit2.Text) do
    begin
-     band.getItem(i+(band.Count div 2)-1).Caption:=Edit2.Text[i];
-     bandContent.replaceItem(i+pointer,Edit2.text[i]);
+     if i+pointer-1>=bandContent.Count then begin
+       bandContent.Add(Edit2.Text[i]);
+       bandContent.insertItem('#',0);
+       inc(pointer); //not sure about this
+       end else
+     bandContent.replaceItem(i+pointer-1,Edit2.text[i]);
    end;
 end;
 
@@ -223,7 +250,7 @@ begin
           band.getItem(i).Left:=band.getItem(i).Left-50;
         end;
         band.getItem(0).Destroy;
-          //Dec(pointer);
+
           Label1.Caption:=pointer.toString;
         band.deleteItemAt(0);
       end
@@ -249,7 +276,7 @@ begin
         ListBox1.Items.Add(bandContent.getItem(i));
      end;
 
-
+    FillPanelsWithContent();
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

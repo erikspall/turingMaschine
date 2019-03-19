@@ -1,28 +1,29 @@
 object Form1: TForm1
   Left = 256
-  Height = 366
+  Height = 549
   Top = 250
-  Width = 532
+  Width = 798
   Caption = 'Form1'
-  ClientHeight = 366
-  ClientWidth = 532
+  ClientHeight = 549
+  ClientWidth = 798
+  DesignTimePPI = 144
   OnChangeBounds = FormChangeBounds
   OnCreate = FormCreate
   OnResize = FormResize
   OnShow = FormShow
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 23
-    Top = 343
-    Width = 532
+    Height = 36
+    Top = 513
+    Width = 798
     Panels = <>
     ParentFont = False
   end
   object ToolBar1: TToolBar
     Left = 0
-    Height = 26
+    Height = 39
     Top = 0
-    Width = 532
+    Width = 798
     Caption = 'ToolBar1'
     ParentFont = False
     TabOrder = 1
@@ -34,21 +35,21 @@ object Form1: TForm1
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = StatusBar1
-    Left = 2
-    Height = 267
-    Top = 26
-    Width = 530
+    Left = 3
+    Height = 399
+    Top = 39
+    Width = 795
     ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
-    BorderSpacing.Left = 2
-    BorderSpacing.Bottom = 50
+    BorderSpacing.Left = 3
+    BorderSpacing.Bottom = 75
     ParentFont = False
     TabIndex = 0
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'TM'
-      ClientHeight = 239
-      ClientWidth = 522
+      ClientHeight = 361
+      ClientWidth = 787
       ParentFont = False
       object PairSplitter1: TPairSplitter
         AnchorSideLeft.Control = TabSheet1
@@ -58,31 +59,31 @@ object Form1: TForm1
         AnchorSideBottom.Control = TabSheet1
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 239
+        Height = 361
         Top = 0
-        Width = 522
+        Width = 787
         Anchors = [akTop, akLeft, akRight, akBottom]
         Position = 200
         object PairSplitterSide1: TPairSplitterSide
           Cursor = crArrow
           Left = 0
-          Height = 239
+          Height = 361
           Top = 0
           Width = 200
           ClientWidth = 200
-          ClientHeight = 239
+          ClientHeight = 361
           object GroupBox1: TGroupBox
             AnchorSideLeft.Control = PairSplitterSide1
             AnchorSideTop.Control = PairSplitterSide1
             AnchorSideRight.Control = PairSplitterSide1
             AnchorSideRight.Side = asrBottom
             Left = 0
-            Height = 81
+            Height = 122
             Top = 0
             Width = 200
             Anchors = [akTop, akLeft, akRight]
             Caption = 'Alphabet'
-            ClientHeight = 61
+            ClientHeight = 92
             ClientWidth = 196
             ParentFont = False
             TabOrder = 0
@@ -92,7 +93,7 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox1
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 23
+              Height = 33
               Top = 0
               Width = 196
               Anchors = [akTop, akLeft, akRight]
@@ -105,8 +106,8 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox1
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 15
-              Top = 23
+              Height = 25
+              Top = 33
               Width = 196
               Anchors = [akTop, akLeft, akRight]
               Caption = 'Alphabet: {}'
@@ -121,12 +122,12 @@ object Form1: TForm1
             AnchorSideRight.Control = PairSplitterSide1
             AnchorSideRight.Side = asrBottom
             Left = 0
-            Height = 105
-            Top = 81
+            Height = 158
+            Top = 122
             Width = 200
             Anchors = [akTop, akLeft, akRight]
             Caption = 'Eingabewort'
-            ClientHeight = 85
+            ClientHeight = 128
             ClientWidth = 196
             ParentFont = False
             TabOrder = 1
@@ -136,7 +137,7 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox2
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 23
+              Height = 33
               Top = 0
               Width = 196
               Anchors = [akTop, akLeft, akRight]
@@ -153,12 +154,12 @@ object Form1: TForm1
               AnchorSideRight.Side = asrBottom
               Left = 0
               Height = 1
-              Top = 23
+              Top = 33
               Width = 196
               Anchors = [akTop, akLeft, akRight]
               Font.CharSet = ANSI_CHARSET
               Font.Color = clRed
-              Font.Height = -12
+              Font.Height = -18
               Font.Name = 'Segoe UI'
               Font.Pitch = fpVariable
               Font.Quality = fqDraft
@@ -167,19 +168,20 @@ object Form1: TForm1
               ParentFont = False
             end
             object Label3: TLabel
-              Left = 130
-              Height = 15
-              Top = 84
-              Width = 34
+              Left = 195
+              Height = 25
+              Top = 126
+              Width = 51
               Caption = 'Label3'
               ParentColor = False
+              ParentFont = False
             end
           end
           object ListBox1: TListBox
-            Left = 16
-            Height = 101
-            Top = 128
-            Width = 100
+            Left = 24
+            Height = 152
+            Top = 192
+            Width = 150
             ItemHeight = 0
             ParentFont = False
             TabOrder = 2
@@ -188,11 +190,11 @@ object Form1: TForm1
         object PairSplitterSide2: TPairSplitterSide
           Cursor = crArrow
           Left = 205
-          Height = 239
+          Height = 361
           Top = 0
-          Width = 317
-          ClientWidth = 317
-          ClientHeight = 239
+          Width = 582
+          ClientWidth = 582
+          ClientHeight = 361
           object GroupBox3: TGroupBox
             AnchorSideLeft.Control = PairSplitterSide2
             AnchorSideTop.Control = PairSplitterSide2
@@ -201,13 +203,13 @@ object Form1: TForm1
             AnchorSideBottom.Control = PairSplitterSide2
             AnchorSideBottom.Side = asrBottom
             Left = 0
-            Height = 239
+            Height = 361
             Top = 0
-            Width = 317
+            Width = 582
             Anchors = [akTop, akLeft, akRight, akBottom]
             Caption = 'Übergangsfunktion'
-            ClientHeight = 219
-            ClientWidth = 313
+            ClientHeight = 331
+            ClientWidth = 578
             ParentFont = False
             TabOrder = 0
             object StringGrid1: TStringGrid
@@ -218,9 +220,9 @@ object Form1: TForm1
               AnchorSideBottom.Control = PairSplitterSide2
               AnchorSideBottom.Side = asrBottom
               Left = 0
-              Height = 373
+              Height = 485
               Top = 0
-              Width = 332
+              Width = 597
               Anchors = [akTop, akLeft, akRight, akBottom]
               AutoFillColumns = True
               FixedCols = 0
@@ -228,11 +230,11 @@ object Form1: TForm1
               TabOrder = 0
               OnChangeBounds = StringGrid1ChangeBounds
               ColWidths = (
-                65
-                65
-                65
-                65
-                68
+                118
+                118
+                118
+                118
+                121
               )
               Cells = (
                 1
@@ -251,10 +253,10 @@ object Form1: TForm1
     end
   end
   object Button1: TButton
-    Left = 128
-    Height = 25
-    Top = 256
-    Width = 75
+    Left = 192
+    Height = 38
+    Top = 384
+    Width = 112
     Caption = 'Button1'
     OnClick = Button1Click
     ParentFont = False
@@ -264,7 +266,7 @@ object Form1: TForm1
     Enabled = False
     Interval = 50
     OnTimer = Timer1Timer
-    left = 16
-    top = 296
+    left = 24
+    top = 444
   end
 end
