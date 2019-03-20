@@ -9,7 +9,6 @@ object Form1: TForm1
   DesignTimePPI = 144
   OnChangeBounds = FormChangeBounds
   OnCreate = FormCreate
-  OnResize = FormResize
   OnShow = FormShow
   LCLVersion = '2.0.0.4'
   object StatusBar1: TStatusBar
@@ -99,6 +98,7 @@ object Form1: TForm1
               Top = 0
               Width = 196
               Anchors = [akTop, akLeft, akRight]
+              OnEditingDone = Edit1EditingDone
               ParentFont = False
               TabOrder = 0
             end
@@ -227,23 +227,33 @@ object Form1: TForm1
               Width = 597
               Anchors = [akTop, akLeft, akRight, akBottom]
               AutoFillColumns = True
-              FixedCols = 0
+              ColCount = 2
               ParentFont = False
+              RowCount = 2
               TabOrder = 0
               OnChangeBounds = StringGrid1ChangeBounds
               ColWidths = (
-                119
-                119
-                119
-                119
-                121
+                118
+                479
               )
               Cells = (
-                1
+                2
                 0
+                1
+                'Z1'
+                1
                 0
                 '#'
               )
+            end
+            object Button2: TButton
+              Left = 96
+              Height = 38
+              Top = 280
+              Width = 113
+              Caption = 'Button2'
+              OnClick = Button2Click
+              TabOrder = 1
             end
           end
         end
@@ -268,6 +278,12 @@ object Form1: TForm1
     Enabled = False
     OnTimer = Timer1Timer
     left = 24
+    top = 444
+  end
+  object Timer2: TTimer
+    Enabled = False
+    OnTimer = Timer2Timer
+    left = 88
     top = 444
   end
 end

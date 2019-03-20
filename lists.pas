@@ -149,7 +149,21 @@ end;
 
 function TList.getItem(Index: integer): T;
 begin
+  if Index >= count then
+  begin
+    raise MyException.Create('Out of bounds: Length: ' +
+      Length(items).toString + ' Index: ' + Index.toString);
+
+  end
+  else if Index < 0 then
+  begin
+    raise MyException.Create('Index < 0 !');
+  end
+  else
+  begin
   Result := items[Index];
+
+  end;
 end;
 
 function TList.isEmpty(): boolean;
