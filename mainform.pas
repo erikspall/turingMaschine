@@ -23,7 +23,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    ListBox1: TListBox;
     PageControl1: TPageControl;
     PairSplitter1: TPairSplitter;
     PairSplitterSide1: TPairSplitterSide;
@@ -33,11 +32,12 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     Timer1: TTimer;
-    Timer2: TTimer;
     ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure ControlBar1Click(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
     procedure Edit1EditingDone(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
     procedure Edit2EditingDone(Sender: TObject);
@@ -45,16 +45,19 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure StringGrid1ChangeBounds(Sender: TObject);
+    procedure StringGrid1DblClick(Sender: TObject);
     procedure TabControl1Change(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
-    procedure toggleMoveForward();
-    procedure toggleMoveBackward();
+    procedure MoveForward();
+    procedure MoveBackward();
     procedure Timer1Timer(Sender: TObject);
     procedure addPanelResize();
     procedure addPanel();
     procedure insertPanel();
     procedure removePanel();
     procedure FillPanelsWithContent();
+    procedure handleMove();
+    procedure prepareStringGrid();
   private
 
   public
@@ -107,6 +110,30 @@ begin
   Refresh();
 end;
 
+procedure TForm1.StringGrid1DblClick(Sender: TObject);
+Var wohin:Char;
+begin
+   if (StringGrid1.Col<>0) and (StringGrid1.Row<>0) then
+   begin
+     if Form2.Execute then
+     begin
+       if Form2.EndZustand then
+       begin
+         StringGrid1.Cells[StringGrid1.Col,StringGrid1.Row]:='~Ende~';
+       end else
+       begin
+         case Form2.WhereToGo of
+         -1:Wohin:='L';
+         0:Wohin:='0';
+         1:Wohin:='R';
+         end;
+         StringGrid1.Cells[StringGrid1.Col,StringGrid1.Row]:=Wohin+';'+Form2.WhatToWrite+';Z'+Form2.Zustand.toString;
+       end;
+     end;
+   end;
+
+end;
+
 procedure TForm1.TabControl1Change(Sender: TObject);
 begin
 
@@ -124,31 +151,9 @@ begin
   FillPanelsWithContent();
 end;
 
-procedure TForm1.toggleMoveForward();
+procedure TForm1.MoveForward();
 begin
-  with Timer1 do
-  begin
-    if Enabled then
-      Enabled := False
-    else
-      Enabled := True;
-  end;
-end;
-
-procedure TForm1.toggleMoveBackward();
-begin
-  with Timer2 do
-  begin
-    if Enabled then
-      Enabled := False
-    else
-      Enabled := True;
-  end;
-end;
-
-procedure TForm1.Timer1Timer(Sender: TObject);
-begin
-  Inc(pointer);
+    Inc(pointer);
   if pointer + (band.Count() - 1 div 2) > bandContent.Count then
   begin
     bandContent.Add('#');
@@ -157,6 +162,29 @@ begin
   end;
   FillPanelsWithContent();
 end;
+
+procedure TForm1.MoveBackward();
+begin
+      Dec(pointer);
+  if pointer - (band.Count() div 2) < 0 then
+  begin
+    bandContent.Add('#');
+    bandContent.insertItem('#', 0);
+    Inc(Pointer);
+  end;
+  FillPanelsWithContent();
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+  handleMove();
+end;
+
+
+
+
+
+
 
 procedure TForm1.addPanelResize();
 var
@@ -243,18 +271,69 @@ begin
 
 end;
 
+procedure TForm1.handleMove();
+Var read:Char;
+  X,Y:Integer;
+  writeS:String;
+  GridRect:TGridRect;
+  currentZ:Integer=1;
+begin
+   read:=bandContent.getItem(pointer);
+   for i:=1 to StringGrid1.ColCount-1 do
+   begin
+     if StringGrid1.Cells[i,0] = read then
+     begin
+       X:=i;
+       break;
+     end;
+   end;
+
+   for i:=1 to StringGrid1.RowCount-1 do
+   begin
+     if StrToInt(StringGrid1.Cells[0,i].Chars[1]) = currentZ then
+     begin
+       Y:=i;
+       break;
+     end;
+   end;
+   GridRect.Top:=Y;
+   GridRect.Left:=X;
+   GridRect.Right:=X;
+   GridRect.Bottom:=Y;
+   StringGrid1.Selection := GridRect;
+
+   if not StringGrid1.Cells[X,Y].contains('~Ende~') then
+   begin
+     if StringGrid1.Cells[X,Y].Chars[0] = 'L' then moveBackward();
+     if StringGrid1.Cells[X,Y].Chars[0] = 'R' then moveForward();
+     writeS:=StringGrid1.Cells[X,Y].Chars[2];
+     currentZ:=StrToInt(StringGrid1.Cells[X,Y].SubString(5));
+     bandContent.replaceItem(pointer-1,writeS[1]);
+     FillPanelsWithContent();
+   end else
+   begin
+     Timer1.Enabled:=false;
+     ShowMessage('Ende');
+   end;
+end;
+
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  ShowMessage(Form2.ShowDialog());
+  if Timer1.Enabled then Timer1.Enabled:=false else Timer1.Enabled:=true;
 
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-  toggleMoveForward();
+  //moveForward();
 end;
 
 procedure TForm1.ControlBar1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Edit1Change(Sender: TObject);
 begin
 
 end;
@@ -263,46 +342,28 @@ procedure TForm1.Edit1EditingDone(Sender: TObject); //Alphabet wurde eingegeben
 var
   j: integer;
   t:String;
+  idk:boolean=false;
 begin
-  Edit1.Text := AnsiUpperCase(Edit1.Text);
+ { Edit1.Text := AnsiUpperCase(Edit1.Text);
    t:=Edit1.Text;
-  if Length(Edit1.Text) > StringGrid1.ColCount then
+
+   StringGrid1.ColCount:=2;
+
+   for i:=1 to Length(t) do
+   begin
+     if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?ß+-/'.Contains(t[i]) then
+     begin
+       Delete(t,i,1);
+     end;
+   end;
+
+  for i:=1 to Length(t) do
   begin
-    //Wenn die Länge Größer als Platz ist
-   // ShowMessage(t);
-    for i := 2 to StringGrid1.ColCount - 1 do
-    begin
+    StringGrid1.ColCount:=StringGrid1.ColCount+1;
+    StringGrid1.Cells[i+1,0]:=t[i];
+  end;   }
+  prepareStringGrid();
 
-      for j := 1 to Length(Edit1.Text) do
-      begin
-      //  ShowMessage(t[j] + ' = ' + StringGrid1.Cols[i][0]);
-        if t[j] = StringGrid1.Cols[i][0] then
-        begin
-          //ShowMessage('Das ist Korrekt');
-          Delete(t, j, 1);
-
-        end;
-      end;
-    end;
-    //ShowMessage('Danach: ' + t);
-    for i := 1 to Length(t) do
-    begin
-      if t[i] <> ',' then
-      begin
-        StringGrid1.ColCount := StringGrid1.ColCount + 1;
-        StringGrid1.Cells[StringGrid1.ColCount - 1, 0] := t[i];
-
-
-        end;
-
-      end;
-
-
-  end
-  else if
-  begin
-  //...
-  end;
 end;
 
 procedure TForm1.Edit2Change(Sender: TObject);
@@ -313,9 +374,15 @@ end;
 procedure TForm1.Edit2EditingDone(Sender: TObject);
 var
   i: integer;
+  t:String;
 begin
+   t:=Edit1.Text;
+   Edit2.Text:=AnsiUpperCase(edit2.Text);
   for i := 1 to Length(Edit2.Text) do
   begin
+    if t.Contains(Edit2.Text[i]) then
+    begin
+      Label2.Caption:='';
     if i + pointer - 1 >= bandContent.Count then
     begin
       bandContent.Add(Edit2.Text[i]);
@@ -324,12 +391,19 @@ begin
     end
     else
       bandContent.replaceItem(i + pointer - 1, Edit2.Text[i]);
-  end;
-  FillPanelsWithContent();
+
+       FillPanelsWithContent();
+
+    end
+    else
+    begin
+         Label2.Caption:='Ungültige Eingabe';
+    end;
+end;
+
 end;
 
 procedure TForm1.FormChangeBounds(Sender: TObject);
-
 begin
   while (Form1.Width / 50) > band.Count() do
   begin
@@ -345,7 +419,7 @@ begin
       end;
       band.getItem(0).Destroy;
 
-      Label1.Caption := pointer.toString;
+
       band.deleteItemAt(0);
     end
     else
@@ -359,14 +433,11 @@ begin
 
 
 
-  ListBox1.Clear;
 
 
 
-  for i := 0 to bandContent.Count - 1 do
-  begin
-    ListBox1.Items.Add(bandContent.getItem(i));
-  end;
+
+
 
   FillPanelsWithContent();
 end;
@@ -378,5 +449,73 @@ begin
 
 end;
 
-
+procedure TForm1.prepareStringGrid();
+Var rawA:String;
+  Col:Integer;
+  j:Integer;
+  isIn:Boolean;
+begin
+   rawA:=Edit1.Text;
+   SetLength(Zustand2,0);
+    SetLength(Zustand2,Length(Zustand2)+1);
+     Zustand2[Length(Zustand2)]:=1;
+   isIn:=false;
+   StringGrid1.ColCount:=2;
+   StringGrid1.Cells[1,0]:='#';
+   for j:=1 to Length(rawA) do    //Durchlaufe Eingabe
+   begin
+     isIn:=false;
+        for Col:=1 to StringGrid1.ColCount-1 do   //Durchlaufe Cols
+        begin
+          if rawA[j] = StringGrid1.Cells[Col,0] then  //Wenn Char in Cols isIn True
+          begin
+            isIn:=true;
+          end;
+        end;
+        if not isIn then                 //Wenn Char nicht in Col = Hinzufügen
+        begin
+          StringGrid1.ColCount:=StringGrid1.ColCount+1;
+          StringGrid1.Cells[Col+1,0]:=rawA[j];
+           Inc(Col);
+           isIn:=false;
+        end;
+   end;
+   isIn:=false;
+   if (Length(Edit2.Text)<>0) and (Edit2.Text <> ',') and (Edit2.Text <> '') then
+   begin
+     for i:=1 to Length(Edit2.Text) do
+     begin
+       if Edit2.text[i] <> ',' then
+       begin
+          for Col:=1 to StringGrid1.ColCount-1 do
+          begin
+            if Edit2.Text[i] = StringGrid1.Cells[Col,0] then
+            begin
+              isIn:=true;
+            end;
+          end;
+          if not isIn then
+          begin
+            StringGrid1.ColCount:=StringGrid1.ColCount+1;
+            StringGrid1.Cells[Col+1,0]:=Edit2.Text[i];
+            Inc(Col);
+          end;
+          isIn:=false;
+       end
+       else if Edit2.Text[i] = ',' then
+       begin
+         //Do Nothing
+       end
+       else
+       begin
+         //Do Nothing
+       end;
+     end;
+   end;
+   StringGrid1.RowCount:=Length(Zustand2)+1;
+   for i:=1 to StringGrid1.RowCount-1 do
+   begin
+     StringGrid1.Cells[0,i]:='Z'+Zustand2[i].toString;
+   end;
+end;
 end.
