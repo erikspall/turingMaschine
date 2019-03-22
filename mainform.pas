@@ -13,13 +13,12 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
+    ImageList1: TImageList;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -34,6 +33,9 @@ type
     Timer1: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure ControlBar1Click(Sender: TObject);
@@ -58,6 +60,9 @@ type
     procedure FillPanelsWithContent();
     procedure handleMove();
     procedure prepareStringGrid();
+    procedure ToolButton1Click(Sender: TObject);
+    procedure ToolButton3Click(Sender: TObject);
+    procedure ToolButton4Click(Sender: TObject);
   private
 
   public
@@ -70,7 +75,8 @@ var
   bandContent: TListofChar;
   i, pointer: integer;
   input: TForm2;
-
+  Zustand2:Array of Integer;
+  currentZ:Integer=1;
 implementation
 
 {$R *.lfm}
@@ -276,7 +282,7 @@ Var read:Char;
   X,Y:Integer;
   writeS:String;
   GridRect:TGridRect;
-  currentZ:Integer=1;
+
 begin
    read:=bandContent.getItem(pointer);
    for i:=1 to StringGrid1.ColCount-1 do
@@ -344,9 +350,9 @@ var
   t:String;
   idk:boolean=false;
 begin
- { Edit1.Text := AnsiUpperCase(Edit1.Text);
+  Edit1.Text := AnsiUpperCase(Edit1.Text);
    t:=Edit1.Text;
-
+ {
    StringGrid1.ColCount:=2;
 
    for i:=1 to Length(t) do
@@ -446,7 +452,8 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   band := TListOfPanel.Create;
   bandContent := TListOfChar.Create;
-
+  SetLength(Zustand2,1);
+  Zustand2[0]:=1;
 end;
 
 procedure TForm1.prepareStringGrid();
@@ -454,6 +461,7 @@ Var rawA:String;
   Col:Integer;
   j:Integer;
   isIn:Boolean;
+
 begin
    rawA:=Edit1.Text;
    SetLength(Zustand2,0);
@@ -518,4 +526,33 @@ begin
      StringGrid1.Cells[0,i]:='Z'+Zustand2[i].toString;
    end;
 end;
+
+procedure TForm1.ToolButton1Click(Sender: TObject);
+begin
+  if ToolButton1.Down then Timer1.Enabled:=true else Timer1.Enabled:=false;
+end;
+
+procedure TForm1.ToolButton3Click(Sender: TObject);
+begin
+  SetLength(Zustand2,Length(Zustand2)+1);
+  Zustand2[Length(Zustand2)-1]:=Length(Zustand2);
+  with StringGrid1 do
+  begin
+    RowCount:=RowCount+1;
+    Cells[0,RowCount-1]:='Z'+Zustand2[Length(Zustand2)-1].toString;
+  end;
+end;
+
+procedure TForm1.ToolButton4Click(Sender: TObject);
+begin
+  if Length(Zustand2)>1 then
+  begin
+    SetLength(Zustand2,Length(Zustand2)-1);
+    with StringGrid1 do
+    begin
+      RowCount:=RowCount-1;
+    end;
+  end;
+end;
+
 end.
