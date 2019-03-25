@@ -8,14 +8,21 @@ object Form1: TForm1
   ClientWidth = 532
   OnChangeBounds = FormChangeBounds
   OnCreate = FormCreate
+  OnResize = FormResize
   OnShow = FormShow
+  Position = poScreenCenter
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
     Top = 343
     Width = 532
-    Panels = <>
+    Panels = <    
+      item
+        Text = 'Ready'
+        Width = 50
+      end>
     ParentFont = False
+    SimplePanel = False
   end
   object ToolBar1: TToolBar
     Left = 0
@@ -45,12 +52,14 @@ object Form1: TForm1
       Left = 38
       Top = 2
       Caption = 'Zustand hinzufügen'
+      Enabled = False
       OnClick = ToolButton3Click
     end
     object ToolButton4: TToolButton
       Left = 152
       Top = 2
       Caption = 'Zustand entfernen'
+      Enabled = False
       OnClick = ToolButton4Click
     end
   end
@@ -170,6 +179,7 @@ object Form1: TForm1
               Top = 0
               Width = 196
               Anchors = [akTop, akLeft, akRight]
+              Enabled = False
               OnChange = Edit2Change
               OnEditingDone = Edit2EditingDone
               ParentFont = False
@@ -246,6 +256,7 @@ object Form1: TForm1
               Anchors = [akTop, akLeft, akRight, akBottom]
               AutoFillColumns = True
               ColCount = 2
+              Enabled = False
               ParentFont = False
               RowCount = 2
               TabOrder = 0

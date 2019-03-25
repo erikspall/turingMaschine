@@ -45,6 +45,7 @@ type
     procedure Edit2EditingDone(Sender: TObject);
     procedure FormChangeBounds(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure StringGrid1ChangeBounds(Sender: TObject);
     procedure StringGrid1DblClick(Sender: TObject);
@@ -59,6 +60,7 @@ type
     procedure removePanel();
     procedure FillPanelsWithContent();
     procedure handleMove();
+    procedure setMode(mode:Integer);
     procedure prepareStringGrid();
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
@@ -77,6 +79,7 @@ var
   input: TForm2;
   Zustand2:Array of Integer;
   currentZ:Integer=1;
+  lastRawA:String;
 implementation
 
 {$R *.lfm}
@@ -109,6 +112,8 @@ begin
   band.getItem(((band.Count - 1) div 2) - 1).Color := clDefault;
   pointer := ((band.Count - 1) div 2);
   band.getItem((band.Count - 1) div 2).Color := Graphics.clHighlight;
+  StatusBar1.Panels.Items[0].Text:='band Count: ' + band.Count.toString + '         bandContent Count: ' + bandContent.Count.toString;
+  setMode(0);
 end;
 
 procedure TForm1.StringGrid1ChangeBounds(Sender: TObject);
@@ -184,6 +189,7 @@ end;
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
   handleMove();
+  StatusBar1.Panels.Items[0].Text:='band Count: ' + band.Count.toString + '         bandContent Count: ' + bandContent.Count.toString;
 end;
 
 
@@ -196,7 +202,8 @@ procedure TForm1.addPanelResize();
 var
   ttPanel: TPanel;
 begin
-
+  if band.Count <> 0 then
+  begin
   ttPanel := TPanel.Create(Form1);
   ttPanel.Parent := Form1;
   ttPanel.Top := 296 - StatusBar1.Height;
@@ -212,12 +219,16 @@ begin
     begin
       band.getItem(i).Left := band.getItem(i).Left + 50;
     end;
-    if pointer - (band.Count() div 2) >= 0 then
+    if (pointer - (band.Count() div 2)) >= 0 then
+    begin
+
       ttPanel.Caption := bandContent.getItem(pointer - (band.Count() div 2));
+
+    end;
     ttPanel.Left := 0;
     band.insertItem(ttPanel, 0);
 
-    Label1.Caption := pointer.toString;
+
     if bandContent.Count < band.Count then
     begin
       bandContent.insertItem('#', 0);
@@ -229,11 +240,16 @@ begin
 
     ttPanel.Left := band.Count * 50;
     if pointer + (band.Count() div 2) < bandContent.Count then
+    begin
       ttPanel.Caption := bandContent.getItem(pointer + (band.Count() div 2));
+
+    end;
     band.Add(ttPanel);
     if bandContent.Count < band.Count then
       bandContent.Add('#');
   end;
+
+end;
 
 end;
 
@@ -262,21 +278,29 @@ begin
   begin
     for i := 0 to band.Count() - 1 do
     begin
+      if not (i + (pointer - (band.Count() div 2) + 1))>=bandContent.Count then
+      begin
       band.getItem(i).Caption :=
         bandContent.getItem(i + (pointer - (band.Count() div 2) + 1));
+
+      end
+
     end;
   end
   else
   begin
     for i := 0 to band.Count() - 1 do
     begin
+      if not (i + (pointer - (band.Count() div 2)))<0 then
+      begin
       band.getItem(i).Caption :=
         bandContent.getItem(i + (pointer - (band.Count() div 2)));
-    end;
+        end
+
   end;
 
 end;
-
+end;
 procedure TForm1.handleMove();
 Var read:Char;
   X,Y:Integer;
@@ -323,6 +347,27 @@ begin
    end;
 end;
 
+procedure TForm1.setMode(mode: Integer);
+begin
+   case mode of
+   0:begin //anfangsmodus
+     Edit1.Enabled:=true;
+     Edit2.Enabled:=false;
+     StringGrid1.Enabled:=false;
+     ToolButton1.Enabled:=false;
+     Toolbutton3.Enabled:=false;
+     Toolbutton4.Enabled:=false;
+   end;
+   1:begin //Alphabet eingegeben Modus
+     Edit1.Enabled:=true;
+     Edit2.Enabled:=true;
+     StringGrid1.Enabled:=true;
+     ToolButton1.Enabled:=true;
+     Toolbutton3.Enabled:=true;
+     Toolbutton4.Enabled:=true;
+   end;
+end;
+end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   if Timer1.Enabled then Timer1.Enabled:=false else Timer1.Enabled:=true;
@@ -348,28 +393,27 @@ procedure TForm1.Edit1EditingDone(Sender: TObject); //Alphabet wurde eingegeben
 var
   j: integer;
   t:String;
-  idk:boolean=false;
 begin
-  Edit1.Text := AnsiUpperCase(Edit1.Text);
-   t:=Edit1.Text;
- {
-   StringGrid1.ColCount:=2;
-
-   for i:=1 to Length(t) do
-   begin
-     if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?ß+-/'.Contains(t[i]) then
-     begin
-       Delete(t,i,1);
-     end;
-   end;
-
-  for i:=1 to Length(t) do
+  if not lastRawA.Equals(Edit1.Text) then
   begin
-    StringGrid1.ColCount:=StringGrid1.ColCount+1;
-    StringGrid1.Cells[i+1,0]:=t[i];
-  end;   }
-  prepareStringGrid();
+   // if lastRawA.Equals('') then ShowMessage('Jo'); //Wenn erste eingabe
+  lastRawA:= AnsiUpperCase(Edit1.Text);
+  Edit1.Text := lastRawA;
 
+  prepareStringGrid();
+  if StringGrid1.ColCount > 2 then setMode(1);
+  Label1.Caption:='Alphabet: {';
+  for i:=2 to StringGrid1.ColCount-1 do
+  begin
+      Label1.Caption:=Label1.Caption+StringGrid1.Cells[i,0];
+      if i <> StringGrid1.ColCount-1 then Label1.Caption:=Label1.Caption+', ' else Label1.Caption:=Label1.Caption+'}';
+  end;
+
+  end
+  else
+  begin
+    //Wenn eingabe gleiche wie vorher
+  end;
 end;
 
 procedure TForm1.Edit2Change(Sender: TObject);
@@ -404,6 +448,7 @@ begin
     else
     begin
          Label2.Caption:='Ungültige Eingabe';
+         Edit2.Clear;
     end;
 end;
 
@@ -411,9 +456,27 @@ end;
 
 procedure TForm1.FormChangeBounds(Sender: TObject);
 begin
-  while (Form1.Width / 50) > band.Count() do
+
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  band := TListOfPanel.Create;
+  bandContent := TListOfChar.Create;
+  SetLength(Zustand2,1);
+  Zustand2[0]:=1;
+
+end;
+
+procedure TForm1.FormResize(Sender: TObject);
+begin
+  if band.Count <> 0 then
+  begin
+    while (Form1.Width / 50) > band.Count() do
+
   begin
     addPanelResize();
+  //  FillPanelsWithContent();
   end;
   while ((Form1.Width / 50) + 1) < band.Count() do
   begin
@@ -434,26 +497,14 @@ begin
 
       band.deleteItemAt(band.Count - 1);
     end;
+
   end;
 
 
 
+  end;
 
-
-
-
-
-
-
-  FillPanelsWithContent();
-end;
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-  band := TListOfPanel.Create;
-  bandContent := TListOfChar.Create;
-  SetLength(Zustand2,1);
-  Zustand2[0]:=1;
+  StatusBar1.Panels.Items[0].Text:='band Count: ' + band.Count.toString + '         bandContent Count: ' + bandContent.Count.toString;
 end;
 
 procedure TForm1.prepareStringGrid();
@@ -464,6 +515,14 @@ Var rawA:String;
 
 begin
    rawA:=Edit1.Text;
+   for i:=1 to Length(rawA) do
+   begin
+     if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?ß+-/'.Contains(rawA[i]) then
+     begin
+       Delete(rawA,i,1);
+     end;
+   end;
+
    SetLength(Zustand2,0);
     SetLength(Zustand2,Length(Zustand2)+1);
      Zustand2[Length(Zustand2)]:=1;
@@ -489,7 +548,7 @@ begin
         end;
    end;
    isIn:=false;
-   if (Length(Edit2.Text)<>0) and (Edit2.Text <> ',') and (Edit2.Text <> '') then
+  { if (Length(Edit2.Text)<>0) and (Edit2.Text <> ',') and (Edit2.Text <> '') then
    begin
      for i:=1 to Length(Edit2.Text) do
      begin
@@ -519,7 +578,7 @@ begin
          //Do Nothing
        end;
      end;
-   end;
+   end;  }
    StringGrid1.RowCount:=Length(Zustand2)+1;
    for i:=1 to StringGrid1.RowCount-1 do
    begin
