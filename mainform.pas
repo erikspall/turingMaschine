@@ -18,6 +18,7 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
+    Image1: TImage;
     ImageList1: TImageList;
     Label1: TLabel;
     Label2: TLabel;
@@ -31,6 +32,7 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     Timer1: TTimer;
+    Timer2: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -79,6 +81,8 @@ var
   input: TForm2;
   Zustand2:Array of Integer;
   currentZ:Integer=1;
+  finished:Boolean=true;
+  hasMoved:Boolean=true;
   lastRawA:String;
 implementation
 
@@ -91,6 +95,7 @@ implementation
 procedure TForm1.FormShow(Sender: TObject);
 var
   ttPanel: TPanel;
+  ttImage: TImage;
 begin
   while (Form1.Width / 50) > band.Count() do
   begin
@@ -98,7 +103,7 @@ begin
     ttPanel.Parent := Form1;
     ttPanel.AnchorParallel(akBottom, StatusBar1.Height, StatusBar1);
     ttPanel.Anchors := ttPanel.Anchors - [akTop];
-    ttPanel.Top := 296 - StatusBar1.Height;
+    ttPanel.Top := Toolbar1.Height+PairSplitter1.Height+50;
     ttPanel.Height := 50;
     ttPanel.Width := 50;
     ttPanel.Left := band.Count() * 50;
@@ -109,9 +114,12 @@ begin
     bandContent.Add('#');
   end;
 
-  band.getItem(((band.Count - 1) div 2) - 1).Color := clDefault;
-  pointer := ((band.Count - 1) div 2);
-  band.getItem((band.Count - 1) div 2).Color := Graphics.clHighlight;
+  //band.getItem(((band.Count - 1) div 2) - 1).Color := clDefault;
+  pointer := ((band.Count{-1}) div 2);
+   Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
+
+
+  // band.getItem((band.Count - 1) div 2).Color := Graphics.clHighlight;
   StatusBar1.Panels.Items[0].Text:='band Count: ' + band.Count.toString + '         bandContent Count: ' + bandContent.Count.toString;
   setMode(0);
 end;
@@ -151,15 +159,39 @@ begin
 end;
 
 procedure TForm1.Timer2Timer(Sender: TObject);
+Var tempP: TPanel;
 begin
-  Dec(pointer);
-  if pointer - (band.Count() div 2) < 0 then
-  begin
-    bandContent.Add('#');
-    bandContent.insertItem('#', 0);
-    Inc(Pointer);
-  end;
-  FillPanelsWithContent();
+  { if true then   //Wenn Animation aktiviert
+   begin
+      for i := 0 to Band.Count -1 do
+      begin
+        Band.getItem(i).Left :=Band.getItem(i).Left - 1;
+
+      end;
+   end else           //Wenn Animation deaktiviert
+   begin
+      for i := 0 to Band.Count - 1 do
+      begin
+        Band.getItem(i).Left := Band.getItem(i).Left - 50;
+      end;
+   end;
+
+   if Band.getItem(0).Left = temp - 50 then
+   begin
+     if bandContent.count-1 >= (zeiger + (band.count div 2) then //zeiger + ?????
+     begin
+       band.getItem(0).Caption:=bandContent.getItem(zeiger+(band.count div 2)); //same
+     end
+     else
+     begin
+       band.getItem(0).Caption:='#';
+       bandContent.addItem('#');
+     end;
+     hasMoved:=true;
+     timer1.Enabled := false;
+
+
+   end;  }
 end;
 
 procedure TForm1.MoveForward();
@@ -170,6 +202,7 @@ begin
     bandContent.Add('#');
     bandContent.insertItem('#', 0);
     Inc(Pointer);
+    // Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
   end;
   FillPanelsWithContent();
 end;
@@ -182,6 +215,7 @@ begin
     bandContent.Add('#');
     bandContent.insertItem('#', 0);
     Inc(Pointer);
+   //  Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
   end;
   FillPanelsWithContent();
 end;
@@ -227,12 +261,13 @@ begin
     end;
     ttPanel.Left := 0;
     band.insertItem(ttPanel, 0);
-
+      Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
 
     if bandContent.Count < band.Count then
     begin
       bandContent.insertItem('#', 0);
       Inc(pointer);
+       Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
     end;
   end
   else
@@ -245,6 +280,7 @@ begin
 
     end;
     band.Add(ttPanel);
+     Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
     if bandContent.Count < band.Count then
       bandContent.Add('#');
   end;
@@ -476,6 +512,7 @@ begin
 
   begin
     addPanelResize();
+
   //  FillPanelsWithContent();
   end;
   while ((Form1.Width / 50) + 1) < band.Count() do
@@ -487,21 +524,19 @@ begin
         band.getItem(i).Left := band.getItem(i).Left - 50;
       end;
       band.getItem(0).Destroy;
-
+       Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
 
       band.deleteItemAt(0);
+       Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;  ;
     end
     else
     begin
       band.getItem(band.Count() - 1).Destroy;
 
       band.deleteItemAt(band.Count - 1);
+       Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
     end;
-
   end;
-
-
-
   end;
 
   StatusBar1.Panels.Items[0].Text:='band Count: ' + band.Count.toString + '         bandContent Count: ' + bandContent.Count.toString;
@@ -548,37 +583,6 @@ begin
         end;
    end;
    isIn:=false;
-  { if (Length(Edit2.Text)<>0) and (Edit2.Text <> ',') and (Edit2.Text <> '') then
-   begin
-     for i:=1 to Length(Edit2.Text) do
-     begin
-       if Edit2.text[i] <> ',' then
-       begin
-          for Col:=1 to StringGrid1.ColCount-1 do
-          begin
-            if Edit2.Text[i] = StringGrid1.Cells[Col,0] then
-            begin
-              isIn:=true;
-            end;
-          end;
-          if not isIn then
-          begin
-            StringGrid1.ColCount:=StringGrid1.ColCount+1;
-            StringGrid1.Cells[Col+1,0]:=Edit2.Text[i];
-            Inc(Col);
-          end;
-          isIn:=false;
-       end
-       else if Edit2.Text[i] = ',' then
-       begin
-         //Do Nothing
-       end
-       else
-       begin
-         //Do Nothing
-       end;
-     end;
-   end;  }
    StringGrid1.RowCount:=Length(Zustand2)+1;
    for i:=1 to StringGrid1.RowCount-1 do
    begin
