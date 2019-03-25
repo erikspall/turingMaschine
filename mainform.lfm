@@ -216,6 +216,15 @@ object Form1: TForm1
               ParentFont = False
             end
           end
+          object Button1: TButton
+            Left = 20
+            Height = 25
+            Top = 315
+            Width = 75
+            Caption = 'Button1'
+            OnClick = Button1Click
+            TabOrder = 2
+          end
         end
         object PairSplitterSide2: TPairSplitterSide
           Cursor = crArrow
@@ -1357,7 +1366,11 @@ object Form1: TForm1
     }
   end
   object Timer2: TTimer
+    Enabled = False
+    Interval = 1
     OnTimer = Timer2Timer
+    OnStartTimer = Timer2StartTimer
+    OnStopTimer = Timer2StopTimer
     left = 56
     top = 296
   end

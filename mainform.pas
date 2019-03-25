@@ -13,6 +13,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Button1: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
     GroupBox1: TGroupBox;
@@ -52,6 +53,8 @@ type
     procedure StringGrid1ChangeBounds(Sender: TObject);
     procedure StringGrid1DblClick(Sender: TObject);
     procedure TabControl1Change(Sender: TObject);
+    procedure Timer2StartTimer(Sender: TObject);
+    procedure Timer2StopTimer(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure MoveForward();
     procedure MoveBackward();
@@ -84,6 +87,7 @@ var
   finished:Boolean=true;
   hasMoved:Boolean=true;
   lastRawA:String;
+  tempLeftValue:Integer;
 implementation
 
 {$R *.lfm}
@@ -113,6 +117,36 @@ begin
     band.Add(ttPanel);
     bandContent.Add('#');
   end;
+  // add for animation
+    ttPanel := TPanel.Create(Form1);
+    ttPanel.Parent := Form1;
+    ttPanel.AnchorParallel(akBottom, StatusBar1.Height, StatusBar1);
+    ttPanel.Anchors := ttPanel.Anchors - [akTop];
+    ttPanel.Top := Toolbar1.Height+PairSplitter1.Height+50;
+    ttPanel.Height := 50;
+    ttPanel.Width := 50;
+    ttPanel.Left := band.Count() * 50;
+    ttPanel.Caption := '#';
+
+
+    band.Add(ttPanel);
+    bandContent.Add('#');
+
+
+    ttPanel := TPanel.Create(Form1);
+    ttPanel.Parent := Form1;
+    ttPanel.AnchorParallel(akBottom, StatusBar1.Height, StatusBar1);
+    ttPanel.Anchors := ttPanel.Anchors - [akTop];
+    ttPanel.Top := Toolbar1.Height+PairSplitter1.Height+50;
+    ttPanel.Height := 50;
+    ttPanel.Width := 50;
+    ttPanel.Left := -50;
+    ttPanel.Caption := '#';
+
+
+    band.insertItem(ttPanel,0);
+    bandContent.insertItem('#',0);
+
 
   //band.getItem(((band.Count - 1) div 2) - 1).Color := clDefault;
   pointer := ((band.Count{-1}) div 2);
@@ -158,6 +192,33 @@ begin
 
 end;
 
+procedure TForm1.Timer2StartTimer(Sender: TObject);
+begin
+  //tempLeftValue:=band.getItem(0).Left;
+end;
+
+procedure TForm1.Timer2StopTimer(Sender: TObject);
+Var ttPanel:TPanel;
+begin
+  band.getItem(0).Destroy;
+    band.deleteItemAt(0);
+      ttPanel := TPanel.Create(Form1);
+    ttPanel.Parent := Form1;
+    ttPanel.AnchorParallel(akBottom, StatusBar1.Height, StatusBar1);
+    ttPanel.Anchors := ttPanel.Anchors - [akTop];
+    ttPanel.Top := Toolbar1.Height+PairSplitter1.Height+50;
+    ttPanel.Height := 50;
+    ttPanel.Width := 50;
+    ttPanel.Left := band.getItem(band.Count-1).Left+50;
+    ttPanel.Caption := '#';
+
+
+    band.Add(ttPanel);
+    bandContent.Add('#');
+
+
+end;
+
 procedure TForm1.Timer2Timer(Sender: TObject);
 Var tempP: TPanel;
 begin
@@ -189,14 +250,17 @@ begin
      end;
      hasMoved:=true;
      timer1.Enabled := false;
-
-
-   end;  }
+     }
+     for i:=0 to band.Count-1 do
+     begin
+      band.getItem(i).Left:=band.getItem(i).Left-1;
+     end;
+     if band.getItem(1).Left=-50 then Timer2.Enabled:=false;
 end;
 
 procedure TForm1.MoveForward();
 begin
-    Inc(pointer);
+ {   Inc(pointer);
   if pointer + (band.Count() - 1 div 2) > bandContent.Count then
   begin
     bandContent.Add('#');
@@ -204,7 +268,9 @@ begin
     Inc(Pointer);
     // Image1.BorderSpacing.Left:=band.getItem(((band.Count{-1}) div 2)).Left+12;
   end;
-  FillPanelsWithContent();
+  FillPanelsWithContent();    }
+
+
 end;
 
 procedure TForm1.MoveBackward();
@@ -406,7 +472,7 @@ end;
 end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  if Timer1.Enabled then Timer1.Enabled:=false else Timer1.Enabled:=true;
+  if Timer2.Enabled then Timer2.Enabled:=false else Timer2.Enabled:=true;
 
 end;
 
