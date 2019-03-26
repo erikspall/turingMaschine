@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  PairSplitter, Grids, StdCtrls,lists,inputDialogforTM;
+  PairSplitter, Grids, StdCtrls, IniPropStorage,lists,inputDialogforTM;
 
 type
 
@@ -20,6 +20,8 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     Image1: TImage;
+    OpenDialog1: TOpenDialog;
+    tmInhalt: TIniPropStorage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -39,6 +41,7 @@ type
     Panel7: TPanel;
     Panel8: TPanel;
     Panel9: TPanel;
+    SaveDialog1: TSaveDialog;
     StatusBar1: TStatusBar;
     StringGrid1: TStringGrid;
     Timer1: TTimer;
@@ -49,6 +52,10 @@ type
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
+    ToolButton8: TToolButton;
     procedure Edit1EditingDone(Sender: TObject);
     procedure Edit2EditingDone(Sender: TObject);
     procedure Edit3EditingDone(Sender: TObject);
@@ -69,6 +76,10 @@ type
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
+    procedure setViewMode(mode:Integer);
+    procedure ToolButton7Click(Sender: TObject);
+    procedure ToolButton8Click(Sender: TObject);
+
   private
 
   public
@@ -127,6 +138,9 @@ Var changed2:boolean;
   prev:Char;
 begin
   prev:=leerzeichen;
+  if not String(Edit1.Text).Contains(Edit3.Text) then
+  begin
+  Label3.Caption:='';
   if leerzeichen = Edit3.Text[1] then changed2:=false
   else changed2:=true;
   leerzeichen:=Edit3.TExt[1];
@@ -139,6 +153,14 @@ begin
     initBand;
   end;
   Form1.StringGrid1.Cells[1,0]:=leerzeichen;
+
+  end
+  else
+  begin
+    Label3.Caption:='Ungültige Eingabe';
+    Edit3.Text:=prev;
+
+  end;
 end;
 
 procedure TForm1.Edit1EditingDone(Sender: TObject);
@@ -318,7 +340,38 @@ begin
 end;
 
 function TForm1.loadTM(FileName: String): Boolean;
+Var
+    g,h:Integer;
 begin
+  try
+     tmInhalt.IniFileName:=OpenDialog1.FileName;
+     tmInhalt.IniSection:='edits';
+     Edit2.Text:=tmInhalt.ReadString('eingabewort','');
+     Edit3.Text:=tmInhalt.ReadString('leerzeichen','#');
+     Edit1.Text:=tmInhalt.ReadString('alphabet','');
+     Edit1.EditingDone;
+     edit2.EditingDone;
+     edit3.EditingDone;
+
+
+     for g:=tmInhalt.ReadInteger('zustände',2)-1 downto 2 do
+     begin
+        ToolButton3.Click;
+     end;
+     tmInhalt.IniSection:='grid';
+     h:=1;
+      for g:=1 to StringGrid1.RowCount-1 do
+      begin
+        for i:=1 to StringGrid1.ColCount-1 do
+        begin
+          StringGrid1.Cells[i,g]:=tmInhalt.ReadString('I'+h.toString,'');
+          inc(h);
+        end;
+      end;
+      result:=true;
+  except
+    result:=false;
+  end;
 
 end;
 
@@ -428,12 +481,11 @@ end;
 
 procedure TForm1.ToolButton1Click(Sender: TObject);
 begin
-  if ToolButton1.Down then
-  begin
+
    if finished then finished:=false;
    schritte:=1;
    Timer3.Enabled:=true;
-  end;
+   //setMode diable
 end;
 
 procedure TForm1.ToolButton3Click(Sender: TObject);
@@ -458,6 +510,45 @@ begin
 
 end;
 
+procedure TForm1.setViewMode(mode: Integer);
+begin
+
+end;
+
+procedure TForm1.ToolButton7Click(Sender: TObject);
+Var
+   g,h:Integer;
+begin
+    if SaveDialog1.Execute then
+    begin
+    tmInhalt.IniFileName:=SaveDialog1.FileName;
+    tmInhalt.IniSection:='edits';
+    tmInhalt.WriteString('eingabewort',Edit2.Text);
+    tmInhalt.WriteString('leerzeichen',Edit3.Text);
+    tmInhalt.WriteString('alphabet',Edit1.Text);
+    tmInhalt.WriteInteger('zustände',StringGrid1.RowCount);
+    tmInhalt.IniSection:='grid';
+    h:=1;
+    for g:=1 to StringGrid1.RowCount-1 do
+    begin
+       for i:=1 to StringGrid1.ColCount-1 do
+       begin
+         tmInhalt.WriteString('I'+h.toString,StringGrid1.Cells[i,g]);
+         Inc(h);
+       end;
+    end;
+    end;
+
+end;
+
+procedure TForm1.ToolButton8Click(Sender: TObject);
+begin
+  if OpenDialog1.Execute then
+  begin
+       loadTM(OpenDialog1.FileName);
+  end;
+end;
+
 procedure TForm1.prepareStringGrid();
 Var rawA:String;
   Col:Integer;
@@ -470,7 +561,7 @@ begin
 
    for i:=1 to Length(rawA) do
    begin
-      if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+-/0123456789'.Contains(rawA[i]) then
+      if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+-/0123456789'.Contains(rawA[i]) and (rawA[i]<>leerzeichen) then
       begin
         Delete(rawA,i,1);
       end;
