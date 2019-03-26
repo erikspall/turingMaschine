@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  PairSplitter, Grids, StdCtrls,lists;
+  PairSplitter, Grids, StdCtrls,lists,inputDialogforTM;
 
 type
 
@@ -62,6 +62,11 @@ type
     procedure prepareStringGrid();
     procedure handleMove();
     function loadTM(FileName:String):Boolean;
+    procedure Timer1Timer(Sender: TObject);
+    procedure Timer2Timer(Sender: TObject);
+    procedure Timer3StartTimer(Sender: TObject);
+    procedure Timer3Timer(Sender: TObject);
+    procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
   private
@@ -77,7 +82,7 @@ type
    leerzeichen:Char;
    MaschineAl:TListofString;
    Zustand2:TListOfInt;
-   animation:Boolean;
+
    delay:Integer;
   end;
 
@@ -86,6 +91,9 @@ var
   i:Integer;
   finished:Boolean;
   schritte:Integer;
+  animation:Boolean=true;
+  lastInputAl:String='';
+  lastInputEin:String='';
 implementation
 
 {$R *.lfm}
@@ -103,7 +111,7 @@ begin
    MaschineAl:=TListOfString.Create;
    Self.DoubleBuffered:=true;
    leerzeichen:='#';
-   zeiger := 5;
+   zeiger := 6;
    for i:=1 to 13 do
    begin
      Band.Add(TPanel(Form1.FindComponent('Panel'+i.toString)));
@@ -135,24 +143,58 @@ end;
 
 procedure TForm1.Edit1EditingDone(Sender: TObject);
 begin
-     Edit1.Text:=AnsiUpperCase(Edit1.Text);
+  if not lastInputAl.Equals(AnsiUpperCase(Edit1.Text)) then
+  begin
+    lastInputAl:=AnsiUpperCase(Edit1.Text);
+     Edit1.Text:=lastInputAl;
      PrepareStringGrid;
+  end;
 end;
 
 procedure TForm1.Edit2EditingDone(Sender: TObject);
 begin
-    Edit2.Text:=AnsiUpperCase(Edit2.Text);
+  if not lastInputEin.Equals(AnsiUpperCase(Edit2.Text)) then
+  begin
+    lastInputEin:=AnsiUpperCase(Edit2.Text);
+    Edit2.Text:=lastInputEin;
     prepareBand();
+  end;
 end;
 
 procedure TForm1.StringGrid1DblClick(Sender: TObject);
+Var wohin:Char;
 begin
+    if not ((StringGrid1.Col = 0) or (StringGrid1.Row = 0)) then
+    begin
+      if Form2.Execute then
+      begin
+         if Form2.EndZustand then
+         begin
+            StringGrid1.Cells[StringGrid1.Col,StringGrid1.Row]:='~Ende~';
+         end else
+         begin
+           case Form2.WhereToGo  of
+           -1:Wohin:='L';
+           0:Wohin:='0';
+           1:Wohin:='R';
+           end;
+           StringGrid1.Cells[StringGrid1.Col,StringGrid1.Row]:=Wohin+';'+Form2.WhatToWrite+';Z'+Form2.Zustand.toString;
+         end;
+      end;
+    end;
 
 end;
 
 procedure TForm1.moveForward();
 begin
-
+   if hasMoved then begin
+  hasMoved:=false;
+  temp := band.getItem(0).Left;
+  Form1.Timer1.Enabled := True;
+  end
+else
+  begin
+  end;
 end;
 
 procedure TForm1.initBand();
@@ -215,18 +257,183 @@ end;
 
 procedure TForm1.moveBackward();
 begin
-
+  if hasMoved then begin
+  hasMoved:=false;
+  temp := Band.getItem(0).Left;
+  hasErw := False;
+  Form1.Timer2.Enabled := True;
+  end;
 end;
 
 
 procedure TForm1.handleMove();
+var read:Char;
+  X,Y:Integer;
+  writeS:String;
+  GridRect: TGridRect;
 begin
+    read:=bandContent.getItem(zeiger)[1];
+   // ShowMessage('Read: ' + read);
+    for i:=1 to StringGrid1.ColCount-1 do
+    begin
+      if StringGrid1.Cells[i,0] = read then
+      begin
+        X:=i;
+        break;
+      end;
+    end;
+    for i:=1 to StringGrid1.RowCount-1 do
+    begin
+      if StrToInt(StringGrid1.Cells[0,i].Chars[1]) = currentZ then
+      begin
+        Y:=i;
+        break;
+      end;
+    end;
+    with GridRect do
+     begin
+  Top := Y;
+  Left := X;
+  Right := X;
+  Bottom := Y;
+
+     end;
+  StringGrid1.Selection := GridRect;
+    if StringGrid1.Cells[X,Y] <> '~Ende~'then
+    begin
+      if StringGrid1.Cells[X,Y].Chars[0] = 'L' then moveBackward();
+      if StringGrid1.Cells[X,Y].Chars[0] = 'R' then moveForward();
+      writeS:=StringGrid1.Cells[X,Y].Chars[2];
+      currentZ:=StrToInt(StringGrid1.Cells[X,Y].Substring(5));
+      bandContent.replaceItem(zeiger,writeS);
+      band.getItem(6).Caption:=writeS;
+    end else
+    begin
+      finished:=true;
+      ToolButton1.Down:=false;
+      Timer3.Enabled:=false;
+      ShowMessage('Ende');
+    end;
 
 end;
 
 function TForm1.loadTM(FileName: String): Boolean;
 begin
 
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+var
+  tempP: TPanel;
+begin
+  if animation then
+  begin
+       for i := 0 to band.Count - 1 do
+        begin
+          Band.getItem(i).Left := Band.getItem(i).Left - 1;
+        end;
+  end else
+  begin
+     for i := 0 to band.Count - 1 do
+  begin
+    Band.getItem(i).Left := Band.getItem(i).Left - 40;
+  end;
+  end;
+  if Band.getItem(0).Left = temp - 40 then
+  begin
+    if bandContent.count-1 >= (zeiger+7) then   //war 9
+    begin
+      band.getItem(0).Caption:=bandContent.getItem(zeiger+7);
+    end
+    else
+    begin
+      band.getItem(0).Caption:=leerzeichen;
+      bandContent.add(leerzeichen);
+    end;
+    hasMoved:=true;
+    timer1.Enabled := False;
+    Inc(zeiger);
+    tempP := Band.getItem(0);
+    Band.getItem(0).Left := Band.getItem(0).Left + 520;
+    for i := 0 to band.Count - 2 do
+    begin
+      band.replaceItem(i,Band.getItem(i + 1));
+    end;
+    Band.replaceItem(band.count - 1,tempP);
+  end;
+
+end;
+
+procedure TForm1.Timer2Timer(Sender: TObject);
+var
+  tempP: TPanel;
+begin
+  if not hasErw then
+  begin
+    hasErw := True;
+    tempP := Band.getItem(Band.Count-1);
+    if zeiger-7 >= 0 then
+    begin
+      band.getItem(band.count-1).Caption:=bandContent.getItem(zeiger-7);   //war 6
+    end
+    else
+    begin
+      band.getItem(band.count-1).Caption:=leerzeichen;
+      bandContent.insertItem(leerzeichen,0);
+      Inc(Zeiger);
+    end;
+    Band.getItem(band.count-1).Left := Band.getItem(band.count-1).Left - 520; //hmmmm
+    for i := band.count - 1 downto 1 do
+    begin
+      band.replaceItem(i,band.getItem(i-1));
+    end;
+    Band.replaceItem(0,tempP);
+  end;
+  if animation then
+  begin
+  for i := 0 to band.Count-1 do
+  begin
+    Band.getItem(i).Left := Band.getItem(i).Left + 1;
+  end;
+   end else
+   begin
+     for i := 0 to band.Count-1 do
+  begin
+    Band.getItem(i).Left := Band.getItem(i).Left + 40;
+  end;
+   end;
+  if Band.getItem(1).Left = temp + 40 then
+  begin
+    timer2.Enabled := False;
+    hasMoved:=true;
+    Dec(Zeiger);
+  end;
+
+end;
+
+procedure TForm1.Timer3StartTimer(Sender: TObject);
+begin
+  handleMove();
+  if finished then Timer3.Enabled:=false;
+end;
+
+procedure TForm1.Timer3Timer(Sender: TObject);
+begin
+   while (not finished) and (hasMoved) do
+begin
+  handleMove();
+  if finished then Timer3.Enabled:=false;
+end;
+end;
+
+procedure TForm1.ToolButton1Click(Sender: TObject);
+begin
+  if ToolButton1.Down then
+  begin
+   if finished then finished:=false;
+   schritte:=1;
+   Timer3.Enabled:=true;
+  end;
 end;
 
 procedure TForm1.ToolButton3Click(Sender: TObject);
@@ -263,7 +470,7 @@ begin
 
    for i:=1 to Length(rawA) do
    begin
-      if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+-/'.Contains(rawA[i]) then
+      if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+-/0123456789'.Contains(rawA[i]) then
       begin
         Delete(rawA,i,1);
       end;

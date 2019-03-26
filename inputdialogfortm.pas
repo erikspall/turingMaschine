@@ -44,7 +44,7 @@ var
 
 implementation
 
-uses tMaschine;
+uses mainTM;
 
 {$R *.lfm}
 
