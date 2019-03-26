@@ -63,6 +63,7 @@ type
     procedure handleMove();
     function loadTM(FileName:String):Boolean;
     procedure ToolButton3Click(Sender: TObject);
+    procedure ToolButton4Click(Sender: TObject);
   private
 
   public
@@ -230,6 +231,23 @@ end;
 
 procedure TForm1.ToolButton3Click(Sender: TObject);
 begin
+  Zustand2.add(Zustand2.Count+1);
+  with StringGrid1 do
+begin
+   RowCount:=RowCount+1;
+   Cells[0,RowCount-1]:='Z'+Zustand2.getItem(Zustand2.Count-1).toString;
+   end;
+
+end;
+
+procedure TForm1.ToolButton4Click(Sender: TObject);
+begin
+  if StringGrid1.RowCount > 2 then
+  begin
+  Zustand2.deleteItemAt(Zustand2.Count-1);
+  with StringGrid1 do
+   RowCount:=RowCount-1;
+ end;
 
 end;
 
