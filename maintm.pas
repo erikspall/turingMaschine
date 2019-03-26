@@ -20,6 +20,7 @@ type
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
     Image1: TImage;
+    ImageList1: TImageList;
     OpenDialog1: TOpenDialog;
     tmInhalt: TIniPropStorage;
     Label1: TLabel;
@@ -131,6 +132,7 @@ begin
    end;
    Zustand2:=TListOFInt.Create;
    Zustand2.Add(1);
+   setViewMode(0);
 end;
 
 procedure TForm1.Edit3EditingDone(Sender: TObject);
@@ -170,6 +172,7 @@ begin
     lastInputAl:=AnsiUpperCase(Edit1.Text);
      Edit1.Text:=lastInputAl;
      PrepareStringGrid;
+     setViewMode(1);
   end;
 end;
 
@@ -334,6 +337,7 @@ begin
       finished:=true;
       ToolButton1.Down:=false;
       Timer3.Enabled:=false;
+      setViewMode(3);
       ShowMessage('Ende');
     end;
 
@@ -485,7 +489,7 @@ begin
    if finished then finished:=false;
    schritte:=1;
    Timer3.Enabled:=true;
-   //setMode diable
+   setViewMode(2);
 end;
 
 procedure TForm1.ToolButton3Click(Sender: TObject);
@@ -512,6 +516,78 @@ end;
 
 procedure TForm1.setViewMode(mode: Integer);
 begin
+   case mode of
+   0:begin //Nach Start, wenn nichts eingetragen
+     GroupBox1.Enabled:=true;
+     GroupBox2.Enabled:=false;
+     GroupBox3.Enabled:=false;
+     StringGrid1.enabled:=false;
+     Toolbutton1.Enabled:=false;
+     Toolbutton2.Enabled:=true;
+     Toolbutton3.Enabled:=false;
+     Toolbutton4.Enabled:=false;
+     Toolbutton5.Enabled:=false;
+     Toolbutton6.Enabled:=true;
+     Toolbutton7.Enabled:=false;
+     Toolbutton8.Enabled:=true;
+   end;
+   1:begin     //Das Alphabet wurde eingegeben
+     GroupBox1.Enabled:=true;
+     GroupBox2.Enabled:=true;
+     GroupBox3.Enabled:=true;
+     StringGrid1.enabled:=true;
+     Toolbutton1.Enabled:=true;
+     Toolbutton2.Enabled:=true;
+     Toolbutton3.Enabled:=true;
+     Toolbutton4.Enabled:=true;
+     Toolbutton5.Enabled:=false;
+     Toolbutton6.Enabled:=true;
+     Toolbutton7.Enabled:=true;
+     Toolbutton8.Enabled:=true;
+   end;
+   2:begin //tm läuft aktuell
+     GroupBox1.Enabled:=false;
+     GroupBox2.Enabled:=false;
+     GroupBox3.Enabled:=false;
+     StringGrid1.enabled:=false;
+     Toolbutton1.Enabled:=false;
+     Toolbutton2.Enabled:=true;
+     Toolbutton3.Enabled:=false;
+     Toolbutton4.Enabled:=false;
+     Toolbutton5.Enabled:=true;
+     Toolbutton6.Enabled:=true;
+     Toolbutton7.Enabled:=false;
+     Toolbutton8.Enabled:=false;
+   end;
+   3:begin //tm ist fertig
+     GroupBox1.Enabled:=true;
+     GroupBox2.Enabled:=true;
+     GroupBox3.Enabled:=true;
+     StringGrid1.enabled:=true;
+     Toolbutton1.Enabled:=true;
+     Toolbutton2.Enabled:=true;
+     Toolbutton3.Enabled:=true;
+     Toolbutton4.Enabled:=true;
+     Toolbutton5.Enabled:=true;
+     Toolbutton6.Enabled:=true;
+     Toolbutton7.Enabled:=true;
+     Toolbutton8.Enabled:=true;
+   end;
+   4:begin //wurde resettet
+     GroupBox1.Enabled:=true;
+     GroupBox2.Enabled:=true;
+     GroupBox3.Enabled:=true;
+     StringGrid1.enabled:=true;
+     Toolbutton1.Enabled:=true;
+     Toolbutton2.Enabled:=true;
+     Toolbutton3.Enabled:=true;
+     Toolbutton4.Enabled:=true;
+     Toolbutton5.Enabled:=false;
+     Toolbutton6.Enabled:=true;
+     Toolbutton7.Enabled:=true;
+     Toolbutton8.Enabled:=true;
+   end;
+end;
 
 end;
 
