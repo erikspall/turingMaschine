@@ -19,9 +19,16 @@ type
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
     GroupBox3: TGroupBox;
+    GroupBox4: TGroupBox;
     Image1: TImage;
     ImageList1: TImageList;
+    LabeledEdit2: TLabeledEdit;
+    LabeledEdit3: TLabeledEdit;
+    LabeledEdit4: TLabeledEdit;
     OpenDialog1: TOpenDialog;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
     tmInhalt: TIniPropStorage;
     Label1: TLabel;
     Label2: TLabel;
@@ -51,6 +58,7 @@ type
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
+    ToolButton11: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -638,6 +646,7 @@ begin
      Toolbutton8.Enabled:=true;
      ToolButton9.Enabled:=false;
      ToolButton10.Enabled:=false;
+     ToolButton11.Enabled:=false;
    end;
    1:begin     //Das Alphabet wurde eingegeben
      GroupBox1.Enabled:=true;
@@ -654,6 +663,7 @@ begin
      Toolbutton8.Enabled:=true;
      ToolButton9.Enabled:=false;
      ToolButton10.Enabled:=false;
+      ToolButton11.Enabled:=false;
    end;
    2:begin //tm läuft aktuell
      GroupBox1.Enabled:=false;
@@ -670,6 +680,7 @@ begin
      Toolbutton8.Enabled:=false;
      ToolButton9.Enabled:=false;
      ToolButton10.Enabled:=false;
+     ToolButton11.Enabled:=false;
    end;
    3:begin //tm ist fertig
      GroupBox1.Enabled:=true;
@@ -686,6 +697,7 @@ begin
      Toolbutton8.Enabled:=true;
      ToolButton9.Enabled:=true;
      ToolButton10.Enabled:=true;
+     ToolButton11.Enabled:=true;
    end;
    4:begin //wurde resettet / startbereit
      GroupBox1.Enabled:=true;
@@ -702,6 +714,7 @@ begin
      Toolbutton8.Enabled:=true;
      ToolButton9.Enabled:=true;
      ToolButton10.Enabled:=true;
+     ToolButton11.Enabled:=true;
    end;
 end;
 
