@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="32"/>
       </Unit0>
       <Unit1>
         <Filename Value="maintm.pas"/>
@@ -22,9 +22,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="mainTM"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="551"/>
-        <CursorPos X="28" Y="576"/>
-        <UsageCount Value="28"/>
+        <TopLine Value="472"/>
+        <CursorPos X="10" Y="476"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -36,141 +36,141 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="inputDialogforTM"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="66"/>
-        <CursorPos X="52" Y="59"/>
-        <UsageCount Value="26"/>
+        <TopLine Value="50"/>
+        <CursorPos X="84" Y="58"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="lists.pas"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="92"/>
-        <CursorPos Y="112"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="134"/>
+        <CursorPos Y="154"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit3>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="maintm.pas"/>
-        <Caret Line="289" Column="30" TopLine="161"/>
+        <Caret Line="63" Column="36" TopLine="42"/>
       </Position1>
       <Position2>
         <Filename Value="maintm.pas"/>
-        <Caret Line="85" Column="26" TopLine="61"/>
+        <Caret Line="111" Column="24" TopLine="97"/>
       </Position2>
       <Position3>
         <Filename Value="maintm.pas"/>
-        <Caret Line="463" Column="54" TopLine="453"/>
+        <Caret Line="503" Column="71" TopLine="465"/>
       </Position3>
       <Position4>
         <Filename Value="maintm.pas"/>
-        <Caret Line="159" Column="29" TopLine="124"/>
+        <Caret Line="248" Column="9" TopLine="212"/>
       </Position4>
       <Position5>
         <Filename Value="maintm.pas"/>
-        <Caret Line="72" Column="41" TopLine="53"/>
+        <Caret Line="429" Column="33" TopLine="418"/>
       </Position5>
       <Position6>
         <Filename Value="maintm.pas"/>
-        <Caret Line="464" Column="3" TopLine="431"/>
+        <Caret Line="247" Column="9" TopLine="225"/>
       </Position6>
       <Position7>
         <Filename Value="maintm.pas"/>
-        <Caret Line="465" Column="3" TopLine="432"/>
+        <Caret Line="246" Column="9" TopLine="224"/>
       </Position7>
       <Position8>
         <Filename Value="maintm.pas"/>
-        <Caret Line="151" Column="17" TopLine="118"/>
+        <Caret Line="247" Column="9" TopLine="225"/>
       </Position8>
       <Position9>
         <Filename Value="maintm.pas"/>
-        <Caret Line="132" Column="29" TopLine="110"/>
+        <Caret Line="248" Column="9" TopLine="226"/>
       </Position9>
       <Position10>
         <Filename Value="maintm.pas"/>
-        <Caret Line="489" Column="79" TopLine="488"/>
+        <Caret Line="646" Column="8" TopLine="316"/>
       </Position10>
       <Position11>
         <Filename Value="maintm.pas"/>
-        <Caret Line="134" Column="22" TopLine="120"/>
+        <Caret Line="668" Column="31" TopLine="630"/>
       </Position11>
       <Position12>
         <Filename Value="maintm.pas"/>
-        <Caret Line="135" Column="22" TopLine="121"/>
+        <Caret Line="198" Column="20" TopLine="190"/>
       </Position12>
       <Position13>
         <Filename Value="maintm.pas"/>
-        <Caret Line="136" Column="22" TopLine="122"/>
+        <Caret Line="719" Column="18" TopLine="717"/>
       </Position13>
       <Position14>
         <Filename Value="maintm.pas"/>
-        <Caret Line="138" Column="22" TopLine="124"/>
+        <Caret Line="562" Column="17" TopLine="560"/>
       </Position14>
       <Position15>
         <Filename Value="maintm.pas"/>
-        <Caret Line="485" Column="3" TopLine="450"/>
+        <Caret Line="721" Column="18" TopLine="715"/>
       </Position15>
       <Position16>
         <Filename Value="maintm.pas"/>
-        <Caret Line="506" Column="9" TopLine="471"/>
+        <Caret Line="723" Column="4" TopLine="701"/>
       </Position16>
       <Position17>
         <Filename Value="maintm.pas"/>
-        <Caret Line="80" Column="46" TopLine="44"/>
+        <Caret Line="314" Column="9" TopLine="297"/>
       </Position17>
       <Position18>
         <Filename Value="maintm.pas"/>
-        <Caret Line="370" Column="7" TopLine="329"/>
+        <Caret Line="502" Column="18" TopLine="500"/>
       </Position18>
       <Position19>
         <Filename Value="maintm.pas"/>
-        <Caret Line="351" Column="19" TopLine="327"/>
+        <Caret Line="560" Column="18" TopLine="131"/>
       </Position19>
       <Position20>
         <Filename Value="maintm.pas"/>
-        <Caret Line="481" Column="3" TopLine="479"/>
+        <Caret Line="9" Column="71" TopLine="190"/>
       </Position20>
       <Position21>
         <Filename Value="maintm.pas"/>
-        <Caret Line="370" Column="10" TopLine="328"/>
+        <Caret Line="733" Column="3" TopLine="691"/>
       </Position21>
       <Position22>
         <Filename Value="maintm.pas"/>
-        <Caret Line="523" Column="5" TopLine="519"/>
+        <Caret Line="508" Column="3" TopLine="506"/>
       </Position22>
       <Position23>
         <Filename Value="maintm.pas"/>
-        <Caret Line="549" Column="37" TopLine="525"/>
+        <Caret Line="412" Column="18" TopLine="373"/>
       </Position23>
       <Position24>
         <Filename Value="maintm.pas"/>
-        <Caret Line="539" Column="32" TopLine="511"/>
+        <Caret Line="503" Column="10" TopLine="483"/>
       </Position24>
       <Position25>
         <Filename Value="maintm.pas"/>
-        <Caret Line="134" Column="19" TopLine="105"/>
+        <Caret Line="555" Column="11" TopLine="526"/>
       </Position25>
       <Position26>
         <Filename Value="maintm.pas"/>
-        <Caret Line="574" TopLine="542"/>
+        <Caret Line="473" Column="11" TopLine="466"/>
       </Position26>
       <Position27>
         <Filename Value="maintm.pas"/>
-        <Caret Line="174" Column="21" TopLine="151"/>
+        <Caret Line="517" Column="11" TopLine="527"/>
       </Position27>
       <Position28>
         <Filename Value="maintm.pas"/>
-        <Caret Line="339" Column="22" TopLine="305"/>
+        <Caret Line="547" Column="11" TopLine="490"/>
       </Position28>
       <Position29>
         <Filename Value="maintm.pas"/>
-        <Caret Line="340" Column="22" TopLine="306"/>
+        <Caret Line="573" Column="18" TopLine="730"/>
       </Position29>
       <Position30>
         <Filename Value="maintm.pas"/>
-        <Caret Line="339" Column="22" TopLine="305"/>
+        <Caret Line="548" Column="5" TopLine="521"/>
       </Position30>
     </JumpHistory>
     <RunParams>

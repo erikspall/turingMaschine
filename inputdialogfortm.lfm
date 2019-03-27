@@ -1,28 +1,29 @@
 object Form2: TForm2
   Left = 752
-  Height = 205
+  Height = 256
   Top = 605
-  Width = 268
+  Width = 335
   BorderStyle = bsDialog
   Caption = 'Eingabe'
-  ClientHeight = 205
-  ClientWidth = 268
-  Constraints.MinHeight = 180
-  Constraints.MinWidth = 268
+  ClientHeight = 256
+  ClientWidth = 335
+  Constraints.MinHeight = 225
+  Constraints.MinWidth = 335
+  DesignTimePPI = 120
   OnCreate = FormCreate
   Position = poMainFormCenter
   LCLVersion = '2.0.0.4'
   object GroupBox1: TGroupBox
     Left = 5
-    Height = 60
+    Height = 75
     Top = 5
     Width = 325
     Align = alTop
-    BorderSpacing.Left = 4
-    BorderSpacing.Top = 4
-    BorderSpacing.Right = 4
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
     Caption = 'Richtung'
-    ClientHeight = 35
+    ClientHeight = 50
     ClientWidth = 321
     ParentFont = False
     TabOrder = 0
@@ -32,7 +33,7 @@ object Form2: TForm2
       Top = 0
       Width = 31
       Align = alLeft
-      BorderSpacing.Left = 40
+      BorderSpacing.Left = 50
       Caption = 'L'
       ParentFont = False
       TabOrder = 0
@@ -42,9 +43,9 @@ object Form2: TForm2
       AnchorSideLeft.Side = asrCenter
       AnchorSideTop.Control = GroupBox1
       AnchorSideTop.Side = asrCenter
-      Left = 115
+      Left = 144
       Height = 24
-      Top = 10
+      Top = 12
       Width = 32
       Caption = '0'
       Checked = True
@@ -58,7 +59,7 @@ object Form2: TForm2
       Top = 0
       Width = 33
       Align = alRight
-      BorderSpacing.Right = 40
+      BorderSpacing.Right = 50
       Caption = 'R'
       ParentFont = False
       TabOrder = 1
@@ -66,13 +67,13 @@ object Form2: TForm2
   end
   object GroupBox2: TGroupBox
     Left = 0
-    Height = 60
+    Height = 75
     Top = 85
     Width = 335
     Align = alTop
-    BorderSpacing.Top = 4
+    BorderSpacing.Top = 5
     Caption = 'Zeichen und Zustand'
-    ClientHeight = 35
+    ClientHeight = 50
     ClientWidth = 331
     ParentFont = False
     TabOrder = 1
@@ -84,20 +85,20 @@ object Form2: TForm2
       Width = 148
       Align = alLeft
       Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 8
-      BorderSpacing.Right = 8
+      BorderSpacing.Left = 10
+      BorderSpacing.Right = 10
       ItemHeight = 20
       ParentFont = False
       TabOrder = 0
       Text = 'ComboBox1'
     end
     object ComboBox2: TComboBox
-      Left = 199
+      Left = 169
       Height = 28
       Top = 0
-      Width = 122
+      Width = 152
       Align = alRight
-      BorderSpacing.Right = 8
+      BorderSpacing.Right = 10
       ItemHeight = 20
       ParentFont = False
       TabOrder = 1
@@ -106,8 +107,8 @@ object Form2: TForm2
   end
   object btnOk: TButton
     Left = 0
-    Height = 25
-    Top = 200
+    Height = 31
+    Top = 194
     Width = 335
     Align = alBottom
     Caption = 'Ok'
@@ -117,8 +118,8 @@ object Form2: TForm2
   end
   object btnCancel: TButton
     Left = 0
-    Height = 25
-    Top = 231
+    Height = 31
+    Top = 225
     Width = 335
     Align = alBottom
     Caption = 'Schließen'
@@ -132,15 +133,15 @@ object Form2: TForm2
     AnchorSideTop.Control = GroupBox2
     AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = btnOk
-    Left = 95
+    Left = 119
     Height = 24
-    Top = 132
+    Top = 165
     Width = 96
     Anchors = [akTop, akLeft, akBottom]
-    BorderSpacing.Left = 8
-    BorderSpacing.Top = 4
-    BorderSpacing.Right = 8
-    BorderSpacing.Bottom = 4
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 5
     Caption = 'Endzustand'
     ParentFont = False
     TabOrder = 4

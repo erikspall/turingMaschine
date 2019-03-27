@@ -50,6 +50,7 @@ type
     Timer3: TTimer;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    ToolButton10: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -57,6 +58,8 @@ type
     ToolButton6: TToolButton;
     ToolButton7: TToolButton;
     ToolButton8: TToolButton;
+    ToolButton9: TToolButton;
+    procedure Button1Click(Sender: TObject);
     procedure Edit1EditingDone(Sender: TObject);
     procedure Edit2EditingDone(Sender: TObject);
     procedure Edit3EditingDone(Sender: TObject);
@@ -70,16 +73,22 @@ type
     procedure prepareStringGrid();
     procedure handleMove();
     function loadTM(FileName:String):Boolean;
+    procedure Timer1StopTimer(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
+    procedure Timer2StopTimer(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure Timer3StartTimer(Sender: TObject);
+    procedure Timer3StopTimer(Sender: TObject);
     procedure Timer3Timer(Sender: TObject);
+    procedure ToolButton10Click(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
     procedure setViewMode(mode:Integer);
+    procedure ToolButton5Click(Sender: TObject);
     procedure ToolButton7Click(Sender: TObject);
     procedure ToolButton8Click(Sender: TObject);
+    procedure ToolButton9Click(Sender: TObject);
 
   private
 
@@ -106,6 +115,7 @@ var
   animation:Boolean=true;
   lastInputAl:String='';
   lastInputEin:String='';
+  breite:Integer;
 implementation
 
 {$R *.lfm}
@@ -115,6 +125,7 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
    //einstellungenLesenUndSetzen
+  breite:=Panel7.Width;
    finished:=true;
    hasMoved:=true;
    currentZ:=1;
@@ -176,6 +187,11 @@ begin
   end;
 end;
 
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  ShowMessage(zeiger.ToString);
+end;
+
 procedure TForm1.Edit2EditingDone(Sender: TObject);
 begin
   if not lastInputEin.Equals(AnsiUpperCase(Edit2.Text)) then
@@ -183,6 +199,7 @@ begin
     lastInputEin:=AnsiUpperCase(Edit2.Text);
     Edit2.Text:=lastInputEin;
     prepareBand();
+    setViewMode(4);
   end;
 end;
 
@@ -223,10 +240,19 @@ else
 end;
 
 procedure TForm1.initBand();
+var d:Integer;
 begin
+
+   {for d:=0 to bandContent.Count() -1 do
+   begin
+      ShowMessage(d.ToString + bandContent.getItem(d));
+   end;}
+
    for i:=0 to band.Count()-1 do
    begin
-      //ShowMessage(bandContent.getItem(i));
+      //ShowMessage(i.ToString + bandContent.getItem(i));
+      //Panel7.Font.Color:=clGreen;
+      //Band.getItem(zeiger).Font.Color:=clRed;
       if i >= zeiger then
       Band.getItem(i).Caption:=bandContent.getItem(i)
       else Band.getItem(i).Caption:=leerzeichen;
@@ -275,7 +301,7 @@ end;
           end;
        end;
        initBand();
-       prepareStringGrid();
+       //prepareStringGrid();
    end;
 
 end;
@@ -289,6 +315,8 @@ begin
   Form1.Timer2.Enabled := True;
   end;
 end;
+
+
 
 
 procedure TForm1.handleMove();
@@ -379,24 +407,81 @@ begin
 
 end;
 
+procedure TForm1.Timer1StopTimer(Sender: TObject);
+begin
+  setViewMode(3);
+end;
+
+
+procedure TForm1.ToolButton5Click(Sender: TObject);
+begin
+   Timer1.enabled:=false;
+  Timer2.enabled:=false;
+  Timer3.enabled:=false;
+  finished:=true;
+  hasMoved:=true;
+  currentZ:=1;
+  bandContent.Clear;
+  band.Clear;
+  MaschineAl.Clear;
+  Self.DoubleBuffered := True;
+  if Edit3.Text <> '' then
+  begin
+  leerzeichen:=Edit3.Text[1];
+  end
+  else
+  begin
+    leerzeichen:='#';
+  end;
+  zeiger := 6;
+  for i := 1 to 13 do
+  begin
+    Band.Add(TPanel(Form1.FindComponent('Panel' + (i).ToString)));
+    Band.getitem(i-1).DoubleBuffered := True;
+    Band.getItem(i-1).Left:=(i-2)*breite;
+    bandContent.add(leerzeichen);
+  end;
+  //ShowMessage(band.Count.toString);
+     Zustand2.Add(Zustand2.Count+1); //??
+     Edit1.text:=AnsiUpperCase(edit1.Text);
+  {for i:=0 to Length(Edit1.Text)-1 do
+  begin
+     if i+zeiger-1 < bandContent.count-1 then
+     begin
+       bandContent.replaceItem(i+6,Edit1.Text[i+1]);
+     end
+     else
+     begin
+       bandContent.add(Edit2.Text[i+1]);
+     end;
+  end; }
+  //initBand();
+  prepareBand();
+  setViewMode(4);
+end;
+
+
 procedure TForm1.Timer1Timer(Sender: TObject);
 var
   tempP: TPanel;
 begin
+
   if animation then
   begin
        for i := 0 to band.Count - 1 do
         begin
           Band.getItem(i).Left := Band.getItem(i).Left - 1;
+       //   Band.getItem(i).Update;
         end;
+       //Update;
   end else
   begin
      for i := 0 to band.Count - 1 do
   begin
-    Band.getItem(i).Left := Band.getItem(i).Left - 40;
+    Band.getItem(i).Left := Band.getItem(i).Left - breite;
   end;
   end;
-  if Band.getItem(0).Left = temp - 40 then
+  if Band.getItem(0).Left = temp - breite then
   begin
     if bandContent.count-1 >= (zeiger+7) then   //war 9
     begin
@@ -411,7 +496,7 @@ begin
     timer1.Enabled := False;
     Inc(zeiger);
     tempP := Band.getItem(0);
-    Band.getItem(0).Left := Band.getItem(0).Left + 520;
+    Band.getItem(0).Left := Band.getItem(0).Left + breite*13;
     for i := 0 to band.Count - 2 do
     begin
       band.replaceItem(i,Band.getItem(i + 1));
@@ -419,12 +504,19 @@ begin
     Band.replaceItem(band.count - 1,tempP);
   end;
 
+
+end;
+
+procedure TForm1.Timer2StopTimer(Sender: TObject);
+begin
+  setViewMode(3);
 end;
 
 procedure TForm1.Timer2Timer(Sender: TObject);
 var
   tempP: TPanel;
 begin
+
   if not hasErw then
   begin
     hasErw := True;
@@ -439,7 +531,7 @@ begin
       bandContent.insertItem(leerzeichen,0);
       Inc(Zeiger);
     end;
-    Band.getItem(band.count-1).Left := Band.getItem(band.count-1).Left - 520; //hmmmm
+    Band.getItem(band.count-1).Left := Band.getItem(band.count-1).Left - breite*13; //hmmmm
     for i := band.count - 1 downto 1 do
     begin
       band.replaceItem(i,band.getItem(i-1));
@@ -451,15 +543,17 @@ begin
   for i := 0 to band.Count-1 do
   begin
     Band.getItem(i).Left := Band.getItem(i).Left + 1;
+   // Band.getItem(i).Update;
   end;
+  // Update;
    end else
    begin
      for i := 0 to band.Count-1 do
   begin
-    Band.getItem(i).Left := Band.getItem(i).Left + 40;
+    Band.getItem(i).Left := Band.getItem(i).Left + breite;
   end;
    end;
-  if Band.getItem(1).Left = temp + 40 then
+  if Band.getItem(1).Left = temp + breite then
   begin
     timer2.Enabled := False;
     hasMoved:=true;
@@ -474,6 +568,11 @@ begin
   if finished then Timer3.Enabled:=false;
 end;
 
+procedure TForm1.Timer3StopTimer(Sender: TObject);
+begin
+  setViewMode(3);
+end;
+
 procedure TForm1.Timer3Timer(Sender: TObject);
 begin
    while (not finished) and (hasMoved) do
@@ -481,6 +580,13 @@ begin
   handleMove();
   if finished then Timer3.Enabled:=false;
 end;
+end;
+
+procedure TForm1.ToolButton10Click(Sender: TObject);
+begin
+  setViewMode(2);
+  moveForward();
+ // setViewMode(3);
 end;
 
 procedure TForm1.ToolButton1Click(Sender: TObject);
@@ -530,6 +636,8 @@ begin
      Toolbutton6.Enabled:=true;
      Toolbutton7.Enabled:=false;
      Toolbutton8.Enabled:=true;
+     ToolButton9.Enabled:=false;
+     ToolButton10.Enabled:=false;
    end;
    1:begin     //Das Alphabet wurde eingegeben
      GroupBox1.Enabled:=true;
@@ -544,6 +652,8 @@ begin
      Toolbutton6.Enabled:=true;
      Toolbutton7.Enabled:=true;
      Toolbutton8.Enabled:=true;
+     ToolButton9.Enabled:=false;
+     ToolButton10.Enabled:=false;
    end;
    2:begin //tm läuft aktuell
      GroupBox1.Enabled:=false;
@@ -558,6 +668,8 @@ begin
      Toolbutton6.Enabled:=true;
      Toolbutton7.Enabled:=false;
      Toolbutton8.Enabled:=false;
+     ToolButton9.Enabled:=false;
+     ToolButton10.Enabled:=false;
    end;
    3:begin //tm ist fertig
      GroupBox1.Enabled:=true;
@@ -572,8 +684,10 @@ begin
      Toolbutton6.Enabled:=true;
      Toolbutton7.Enabled:=true;
      Toolbutton8.Enabled:=true;
+     ToolButton9.Enabled:=true;
+     ToolButton10.Enabled:=true;
    end;
-   4:begin //wurde resettet
+   4:begin //wurde resettet / startbereit
      GroupBox1.Enabled:=true;
      GroupBox2.Enabled:=true;
      GroupBox3.Enabled:=true;
@@ -586,6 +700,8 @@ begin
      Toolbutton6.Enabled:=true;
      Toolbutton7.Enabled:=true;
      Toolbutton8.Enabled:=true;
+     ToolButton9.Enabled:=true;
+     ToolButton10.Enabled:=true;
    end;
 end;
 
@@ -623,6 +739,13 @@ begin
   begin
        loadTM(OpenDialog1.FileName);
   end;
+end;
+
+procedure TForm1.ToolButton9Click(Sender: TObject);
+begin
+  setViewMode(2);
+  moveBackward();
+ // setViewMOde(3);
 end;
 
 procedure TForm1.prepareStringGrid();
@@ -666,37 +789,6 @@ begin
         end;
    end;
    isIn:=false;
-   {if (Length(EditButton2.Text)<>0) and (EditButton2.Text <> ',') and (EditButton2.Text <> '') then
-   begin
-     for i:=1 to Length(EditButton2.Text) do
-     begin
-       if EditButton2.text[i] <> ',' then
-       begin
-          for Col:=1 to StringGrid1.ColCount-1 do
-          begin
-            if EditButton2.Text[i] = StringGrid1.Cells[Col,0] then
-            begin
-              isIn:=true;
-            end;
-          end;
-          if not isIn then
-          begin
-            StringGrid1.ColCount:=StringGrid1.ColCount+1;
-            StringGrid1.Cells[Col+1,0]:=EditButton2.Text[i];
-            Inc(Col);
-          end;
-          isIn:=false;
-       end
-       else if EditButton2.Text[i] = ',' then
-       begin
-         //Do Nothing
-       end
-       else
-       begin
-         //Do Nothing
-       end;
-     end;
-   end;                                    }
    StringGrid1.RowCount:=Zustand2.Count+1;
    for i:=1 to StringGrid1.RowCount-1 do
    begin

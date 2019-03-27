@@ -55,7 +55,7 @@ Var i:Integer;
 begin
   ComboBox1.Items.Clear;
   ComboBox2.Items.Clear;
-  if Form1.StringGrid1.Cells[Form1.StringGrid1.Col,Form1.StringGrid1.Row] = '- Ende -' then
+  if Form1.StringGrid1.Cells[Form1.StringGrid1.Col,Form1.StringGrid1.Row] = '~Ende~' then
   begin
     Endzustand:=true;
     CheckBoxThemed1.Checked:=true;
