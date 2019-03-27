@@ -157,7 +157,7 @@ begin
         showGroup(1);
       end;
 
-      if Text = 'Farben' then
+      if Text = 'Farbn' then
       begin
         GroupBox2.Caption := Text;
         showGroup(2);
