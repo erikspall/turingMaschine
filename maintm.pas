@@ -140,6 +140,7 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   //einstellungenLesenUndSetzen
   breite := Panel7.Width;
+  //ShowMessage(Panel7.Width.toString);
   finished := True;
   hasMoved := True;
   currentZ := 1;
@@ -230,7 +231,7 @@ begin
     lastInputEin := AnsiUpperCase(Edit2.Text);
     Edit2.Text := lastInputEin;
     ToolButton5.Click;
-    // prepareBand();
+
     setViewMode(4);
   end;
 end;
@@ -319,7 +320,7 @@ begin
       Label2.Caption := 'Ungültige Eingabe';
       Edit2.Clear;
       isInvalid := True;
-
+      break;
     end;
   end;
   if not isInvalid then
@@ -392,6 +393,16 @@ begin
     Bottom := Y;
 
   end;
+  if StringGrid1.Cells[X,Y] = '' then
+  begin
+     finished := True;
+    ToolButton1.Down := False;
+    Timer3.Enabled := False;
+    setViewMode(3);
+    ShowMessage('Keine Anweisung Vorhanden für: Column: ' + X.toString + ' Zustand: ' + Y.toString);
+  end
+  else
+  begin
   StringGrid1.Selection := GridRect;
   if StringGrid1.Cells[X, Y] <> '~Ende~' then
   begin
@@ -412,6 +423,8 @@ begin
     Timer3.Enabled := False;
     setViewMode(3);
     ShowMessage('Ende');
+  end;
+
   end;
 
 end;
@@ -493,6 +506,7 @@ begin
     Band.Add(TPanel(Form1.FindComponent('Panel' + (i).ToString)));
     Band.getitem(i - 1).DoubleBuffered := True;
     Band.getItem(i - 1).Left := (i - 2) * breite;
+    //ShowMessage(((i - 2) * breite).ToString);
     bandContent.add(leerzeichen);
   end;
   //ShowMessage(band.Count.toString);

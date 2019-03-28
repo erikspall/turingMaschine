@@ -1,12 +1,13 @@
 object Form1: TForm1
   Left = 350
-  Height = 393
+  Height = 491
   Top = 32
-  Width = 440
+  Width = 550
   BorderStyle = bsSingle
   Caption = 'Turingmaschine'
-  ClientHeight = 393
-  ClientWidth = 440
+  ClientHeight = 491
+  ClientWidth = 550
+  DesignTimePPI = 120
   Icon.Data = {
     3E08010000000100010080800000010020002808010016000000280000008000
     0000000100000100200000000000000001006400000064000000000000000000
@@ -2126,12 +2127,13 @@ object Form1: TForm1
   }
   OnCreate = FormCreate
   Position = poScreenCenter
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = -40
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = -50
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2139,10 +2141,11 @@ object Form1: TForm1
   end
   object ToolBar1: TToolBar
     Left = 0
+    Height = 40
     Top = 0
-    Width = 440
-    ButtonHeight = 32
-    ButtonWidth = 32
+    Width = 550
+    ButtonHeight = 40
+    ButtonWidth = 40
     Caption = 'ToolBar1'
     Images = ImageList1
     ParentFont = False
@@ -2156,14 +2159,14 @@ object Form1: TForm1
       OnClick = ToolButton1Click
     end
     object ToolButton2: TToolButton
-      Left = 181
-      Height = 32
+      Left = 201
+      Height = 8
       Top = 2
       Caption = 'ToolButton2'
       Style = tbsSeparator
     end
     object ToolButton3: TToolButton
-      Left = 269
+      Left = 301
       Hint = 'Zustand hinzufügen'
       Top = 2
       Caption = 'Add Z'
@@ -2171,7 +2174,7 @@ object Form1: TForm1
       OnClick = ToolButton3Click
     end
     object ToolButton4: TToolButton
-      Left = 305
+      Left = 341
       Hint = 'Zustand entfernen'
       Top = 2
       Caption = 'Remove Z'
@@ -2179,7 +2182,7 @@ object Form1: TForm1
       OnClick = ToolButton4Click
     end
     object ToolButton5: TToolButton
-      Left = 73
+      Left = 81
       Hint = 'Setzte Maschine zurück'
       Top = 2
       Caption = 'Reset'
@@ -2187,14 +2190,14 @@ object Form1: TForm1
       OnClick = ToolButton5Click
     end
     object ToolButton6: TToolButton
-      Left = 261
-      Height = 32
+      Left = 291
+      Height = 8
       Top = 2
       Caption = 'ToolButton6'
       Style = tbsSeparator
     end
     object ToolButton7: TToolButton
-      Left = 189
+      Left = 211
       Hint = 'Speicher...'
       Top = 2
       Caption = 'Speichern'
@@ -2202,7 +2205,7 @@ object Form1: TForm1
       OnClick = ToolButton7Click
     end
     object ToolButton8: TToolButton
-      Left = 225
+      Left = 251
       Hint = 'Lade...'
       Top = 2
       Caption = 'Laden'
@@ -2210,7 +2213,7 @@ object Form1: TForm1
       OnClick = ToolButton8Click
     end
     object ToolButton9: TToolButton
-      Left = 109
+      Left = 121
       Hint = 'Bewege Zeiger rückwärts'
       Top = 2
       Caption = 'ToolButton9'
@@ -2218,7 +2221,7 @@ object Form1: TForm1
       OnClick = ToolButton9Click
     end
     object ToolButton10: TToolButton
-      Left = 145
+      Left = 161
       Hint = 'Bewege Zeiger vorwärts'
       Top = 2
       Caption = 'ToolButton10'
@@ -2226,7 +2229,7 @@ object Form1: TForm1
       OnClick = ToolButton10Click
     end
     object ToolButton11: TToolButton
-      Left = 37
+      Left = 41
       Hint = 'Schrittausführung'
       Top = 2
       Caption = 'ToolButton11'
@@ -2236,17 +2239,17 @@ object Form1: TForm1
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 23
-    Top = 370
-    Width = 440
+    Height = 29
+    Top = 462
+    Width = 550
     Panels = <    
       item
         Text = 'Schritte: 0'
-        Width = 100
+        Width = 125
       end    
       item
         Text = 'Zustand: 0'
-        Width = 100
+        Width = 125
       end>
     ParentFont = False
     SimplePanel = False
@@ -2254,9 +2257,9 @@ object Form1: TForm1
   object Panel2: TPanel
     AnchorSideBottom.Control = StatusBar1
     Left = 0
-    Height = 40
-    Top = 330
-    Width = 40
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2264,10 +2267,10 @@ object Form1: TForm1
   end
   object Panel3: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 40
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 50
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2275,10 +2278,10 @@ object Form1: TForm1
   end
   object Panel4: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 80
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 100
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2286,10 +2289,10 @@ object Form1: TForm1
   end
   object Panel5: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 120
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 150
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2297,10 +2300,10 @@ object Form1: TForm1
   end
   object Panel6: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 160
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 200
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2308,10 +2311,10 @@ object Form1: TForm1
   end
   object Panel7: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 200
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 250
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2319,10 +2322,10 @@ object Form1: TForm1
   end
   object Panel8: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 240
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 300
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2330,10 +2333,10 @@ object Form1: TForm1
   end
   object Panel9: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 280
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 350
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2341,10 +2344,10 @@ object Form1: TForm1
   end
   object Panel10: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 320
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 400
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2352,10 +2355,10 @@ object Form1: TForm1
   end
   object Panel11: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 360
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 450
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2363,10 +2366,10 @@ object Form1: TForm1
   end
   object Panel12: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 400
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 500
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2374,10 +2377,10 @@ object Form1: TForm1
   end
   object Panel13: TPanel
     AnchorSideBottom.Control = StatusBar1
-    Left = 440
-    Height = 40
-    Top = 330
-    Width = 40
+    Left = 550
+    Height = 50
+    Top = 412
+    Width = 50
     Anchors = [akLeft, akBottom]
     Caption = '#'
     ParentFont = False
@@ -2388,12 +2391,12 @@ object Form1: TForm1
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = StatusBar1
     AnchorSideBottom.Side = asrBottom
-    Left = 210
-    Height = 20
-    Top = 309
-    Width = 20
+    Left = 263
+    Height = 25
+    Top = 386
+    Width = 25
     Anchors = [akLeft, akBottom]
-    BorderSpacing.Bottom = 64
+    BorderSpacing.Bottom = 80
     Picture.Data = {
       1754506F727461626C654E6574776F726B47726170686963AB5A000089504E47
       0D0A1A0A0000000D49484452000002580000021F0806000000AC3BA208000020
@@ -3133,9 +3136,9 @@ object Form1: TForm1
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Image1
     Left = 0
-    Height = 277
-    Top = 32
-    Width = 440
+    Height = 346
+    Top = 40
+    Width = 550
     ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
@@ -3143,8 +3146,8 @@ object Form1: TForm1
     TabOrder = 15
     object TabSheet1: TTabSheet
       Caption = 'Turingmaschine'
-      ClientHeight = 249
-      ClientWidth = 432
+      ClientHeight = 313
+      ClientWidth = 542
       ParentFont = False
       object PairSplitter1: TPairSplitter
         AnchorSideLeft.Control = TabSheet1
@@ -3153,38 +3156,39 @@ object Form1: TForm1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = TabSheet1
         AnchorSideBottom.Side = asrBottom
+        Cursor = crDefault
         Left = 0
-        Height = 249
+        Height = 313
         Top = 0
-        Width = 432
+        Width = 542
         Anchors = [akTop, akLeft, akRight, akBottom]
-        Position = 250
+        Position = 270
         object PairSplitterSide1: TPairSplitterSide
           Cursor = crArrow
           Left = 0
-          Height = 249
+          Height = 313
           Top = 0
-          Width = 250
+          Width = 270
           ChildSizing.ControlsPerLine = 1
-          ClientWidth = 250
-          ClientHeight = 249
+          ClientWidth = 270
+          ClientHeight = 313
           object GroupBox1: TGroupBox
             AnchorSideLeft.Control = PairSplitterSide1
             AnchorSideTop.Control = PairSplitterSide1
             AnchorSideRight.Control = PairSplitterSide1
             AnchorSideRight.Side = asrBottom
             Left = 0
-            Height = 83
+            Height = 104
             Top = 0
-            Width = 250
+            Width = 270
             Anchors = [akTop, akLeft, akRight]
             Caption = 'Alphabet'
             ChildSizing.EnlargeHorizontal = crsHomogenousSpaceResize
             ChildSizing.EnlargeVertical = crsHomogenousSpaceResize
             ChildSizing.ShrinkHorizontal = crsHomogenousSpaceResize
             ChildSizing.ShrinkVertical = crsHomogenousSpaceResize
-            ClientHeight = 63
-            ClientWidth = 246
+            ClientHeight = 79
+            ClientWidth = 266
             ParentFont = False
             TabOrder = 0
             object Label1: TLabel
@@ -3194,9 +3198,9 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox1
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 16
-              Top = 23
-              Width = 246
+              Height = 20
+              Top = 28
+              Width = 266
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Caption = 'Alphabet: {}'
@@ -3209,9 +3213,9 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox1
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 23
+              Height = 28
               Top = 0
-              Width = 246
+              Width = 266
               Anchors = [akTop, akLeft, akRight]
               OnEditingDone = Edit1EditingDone
               ParentFont = False
@@ -3225,13 +3229,13 @@ object Form1: TForm1
             AnchorSideRight.Control = PairSplitterSide1
             AnchorSideRight.Side = asrBottom
             Left = 0
-            Height = 83
-            Top = 83
-            Width = 250
+            Height = 104
+            Top = 104
+            Width = 270
             Anchors = [akTop, akLeft, akRight]
             Caption = 'Eingabewort'
-            ClientHeight = 63
-            ClientWidth = 246
+            ClientHeight = 79
+            ClientWidth = 266
             ParentFont = False
             TabOrder = 1
             object Edit2: TEdit
@@ -3240,9 +3244,9 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox2
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 23
+              Height = 28
               Top = 0
-              Width = 246
+              Width = 266
               Anchors = [akTop, akLeft, akRight]
               OnEditingDone = Edit2EditingDone
               ParentFont = False
@@ -3255,14 +3259,14 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox2
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 16
-              Top = 23
-              Width = 246
+              Height = 20
+              Top = 28
+              Width = 266
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Font.CharSet = ANSI_CHARSET
               Font.Color = clRed
-              Font.Height = -12
+              Font.Height = -15
               Font.Name = 'Segoe UI'
               Font.Pitch = fpVariable
               Font.Quality = fqDraft
@@ -3278,13 +3282,13 @@ object Form1: TForm1
             AnchorSideRight.Control = PairSplitterSide1
             AnchorSideRight.Side = asrBottom
             Left = 0
-            Height = 83
-            Top = 166
-            Width = 250
+            Height = 104
+            Top = 208
+            Width = 270
             Anchors = [akTop, akLeft, akRight]
             Caption = 'Leerzeichen'
-            ClientHeight = 63
-            ClientWidth = 246
+            ClientHeight = 79
+            ClientWidth = 266
             ParentFont = False
             TabOrder = 2
             object Edit3: TEdit
@@ -3293,9 +3297,9 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox3
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 23
+              Height = 28
               Top = 0
-              Width = 246
+              Width = 266
               Anchors = [akTop, akLeft, akRight]
               MaxLength = 1
               OnEditingDone = Edit3EditingDone
@@ -3310,14 +3314,14 @@ object Form1: TForm1
               AnchorSideRight.Control = GroupBox3
               AnchorSideRight.Side = asrBottom
               Left = 0
-              Height = 16
-              Top = 23
-              Width = 246
+              Height = 20
+              Top = 28
+              Width = 266
               Anchors = [akTop, akLeft, akRight]
               AutoSize = False
               Font.CharSet = ANSI_CHARSET
               Font.Color = clRed
-              Font.Height = -12
+              Font.Height = -15
               Font.Name = 'Segoe UI'
               Font.Pitch = fpVariable
               Font.Quality = fqDraft
@@ -3329,17 +3333,17 @@ object Form1: TForm1
         end
         object PairSplitterSide2: TPairSplitterSide
           Cursor = crArrow
-          Left = 255
-          Height = 249
+          Left = 275
+          Height = 313
           Top = 0
-          Width = 177
-          ClientWidth = 177
-          ClientHeight = 249
+          Width = 267
+          ClientWidth = 267
+          ClientHeight = 313
           object StringGrid1: TStringGrid
             Left = 1
-            Height = 247
+            Height = 311
             Top = 1
-            Width = 175
+            Width = 265
             Align = alClient
             AutoEdit = False
             AutoFillColumns = True
@@ -3350,8 +3354,8 @@ object Form1: TForm1
             TabOrder = 0
             OnDblClick = StringGrid1DblClick
             ColWidths = (
-              64
-              107
+              80
+              185
             )
             Cells = (
               2
@@ -3368,8 +3372,8 @@ object Form1: TForm1
     end
     object TabSheet2: TTabSheet
       Caption = 'Info'
-      ClientHeight = 249
-      ClientWidth = 432
+      ClientHeight = 313
+      ClientWidth = 542
       ParentFont = False
       object GroupBox4: TGroupBox
         AnchorSideLeft.Control = TabSheet2
@@ -3377,13 +3381,13 @@ object Form1: TForm1
         AnchorSideRight.Control = TabSheet2
         AnchorSideRight.Side = asrBottom
         Left = 0
-        Height = 168
+        Height = 210
         Top = 0
-        Width = 432
+        Width = 542
         Anchors = [akTop, akLeft, akRight]
         Caption = 'Projektinfo'
-        ClientHeight = 148
-        ClientWidth = 428
+        ClientHeight = 185
+        ClientWidth = 538
         ParentFont = False
         TabOrder = 0
         object LabeledEdit2: TLabeledEdit
@@ -3392,12 +3396,12 @@ object Form1: TForm1
           AnchorSideRight.Control = GroupBox4
           AnchorSideRight.Side = asrBottom
           Left = 0
-          Height = 23
-          Top = 18
-          Width = 428
+          Height = 28
+          Top = 28
+          Width = 538
           Anchors = [akLeft, akRight]
-          EditLabel.Height = 15
-          EditLabel.Width = 428
+          EditLabel.Height = 20
+          EditLabel.Width = 538
           EditLabel.Caption = 'Programmname:'
           EditLabel.ParentColor = False
           EditLabel.ParentFont = False
@@ -3410,12 +3414,12 @@ object Form1: TForm1
           AnchorSideRight.Control = GroupBox4
           AnchorSideRight.Side = asrBottom
           Left = 0
-          Height = 23
-          Top = 66
-          Width = 428
+          Height = 28
+          Top = 88
+          Width = 538
           Anchors = [akLeft, akRight]
-          EditLabel.Height = 15
-          EditLabel.Width = 428
+          EditLabel.Height = 20
+          EditLabel.Width = 538
           EditLabel.Caption = 'Autor:'
           EditLabel.ParentColor = False
           EditLabel.ParentFont = False
@@ -3428,12 +3432,12 @@ object Form1: TForm1
           AnchorSideRight.Control = GroupBox4
           AnchorSideRight.Side = asrBottom
           Left = 0
-          Height = 23
-          Top = 114
-          Width = 428
+          Height = 28
+          Top = 148
+          Width = 538
           Anchors = [akLeft, akRight]
-          EditLabel.Height = 15
-          EditLabel.Width = 428
+          EditLabel.Height = 20
+          EditLabel.Width = 538
           EditLabel.Caption = 'Kurzbeschreibung:'
           EditLabel.ParentColor = False
           EditLabel.ParentFont = False
@@ -3446,12 +3450,13 @@ object Form1: TForm1
         AnchorSideBottom.Control = TabSheet2
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 15
-        Top = 234
-        Width = 93
+        Height = 20
+        Top = 293
+        Width = 120
         Anchors = [akLeft, akBottom]
         Caption = '©2019 - Erik Spall'
         ParentColor = False
+        ParentFont = False
       end
       object StaticText1: TStaticText
         AnchorSideRight.Control = TabSheet2
@@ -3459,17 +3464,17 @@ object Form1: TForm1
         AnchorSideBottom.Control = TabSheet2
         AnchorSideBottom.Side = asrBottom
         Cursor = crHandPoint
-        Left = 367
-        Height = 17
-        Top = 232
-        Width = 65
+        Left = 461
+        Height = 21
+        Top = 292
+        Width = 81
         Alignment = taCenter
         Anchors = [akRight, akBottom]
         Caption = 'GitHub'
         Color = clNone
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlue
-        Font.Height = -12
+        Font.Height = -15
         Font.Name = 'Segoe UI'
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -3484,12 +3489,13 @@ object Form1: TForm1
         AnchorSideLeft.Control = TabSheet2
         AnchorSideBottom.Control = StaticText1
         Left = 0
-        Height = 15
-        Top = 217
-        Width = 68
+        Height = 20
+        Top = 272
+        Width = 85
         Anchors = [akLeft, akBottom]
         Caption = 'Version: 1.0.0'
         ParentColor = False
+        ParentFont = False
       end
     end
   end
@@ -3498,47 +3504,47 @@ object Form1: TForm1
     Interval = 1
     OnTimer = Timer1Timer
     OnStopTimer = Timer1StopTimer
-    left = 13
-    top = 313
+    left = 16
+    top = 391
   end
   object Timer2: TTimer
     Enabled = False
     Interval = 1
     OnTimer = Timer2Timer
     OnStopTimer = Timer2StopTimer
-    left = 51
-    top = 313
+    left = 64
+    top = 391
   end
   object Timer3: TTimer
     Enabled = False
     OnTimer = Timer3Timer
     OnStartTimer = Timer3StartTimer
-    left = 90
-    top = 313
+    left = 113
+    top = 391
   end
   object SaveDialog1: TSaveDialog
     Title = 'Programm speichern unter...'
     DefaultExt = '.tm'
     Filter = 'Turingmaschine|*.tm'
-    left = 134
-    top = 313
+    left = 168
+    top = 391
   end
   object tmInhalt: TIniPropStorage
     StoredValues = <>
-    left = 173
-    top = 313
+    left = 216
+    top = 391
   end
   object OpenDialog1: TOpenDialog
     DefaultExt = '.tm'
     Filter = 'Turingmaschine|*.tm'
-    left = 250
-    top = 313
+    left = 313
+    top = 391
   end
   object ImageList1: TImageList
     Height = 32
     Width = 32
-    left = 301
-    top = 313
+    left = 376
+    top = 391
     Bitmap = {
       4C69090000002000000020000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
