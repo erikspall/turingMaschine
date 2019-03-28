@@ -2126,6 +2126,7 @@ object Form1: TForm1
     FFFF
   }
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '2.0.0.4'
   object Panel1: TPanel

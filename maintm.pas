@@ -75,6 +75,7 @@ type
     procedure Edit2EditingDone(Sender: TObject);
     procedure Edit3EditingDone(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure StaticText1Click(Sender: TObject);
     procedure StringGrid1DblClick(Sender: TObject);
     //procedure einstellungenLesenUndSetzen();
@@ -139,7 +140,7 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   //einstellungenLesenUndSetzen
-  breite := Panel7.Width;
+
   //ShowMessage(Panel7.Width.toString);
   finished := True;
   hasMoved := True;
@@ -159,6 +160,11 @@ begin
   Zustand2 := TListOFInt.Create;
   Zustand2.Add(1);
   setViewMode(0);
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  breite := Panel7.Width;
 end;
 
 procedure TForm1.StaticText1Click(Sender: TObject);
