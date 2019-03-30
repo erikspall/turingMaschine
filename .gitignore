@@ -4,3 +4,4 @@ backup/
 *.exe
 lib/
 *.rar
+*.ini
