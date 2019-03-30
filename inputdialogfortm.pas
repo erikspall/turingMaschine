@@ -25,7 +25,8 @@ type
     RadioButton3: TRadioButton;
 
 
-    procedure FormCreate(Sender: TObject);
+    procedure CheckBoxThemed1Change(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
   private
 
@@ -75,22 +76,67 @@ begin
   end;
   ComboBox1.ItemIndex:=Form1.StringGrid1.Col-1;
   ComboBox2.ItemIndex:=Form1.StringGrid1.Row-1;
+  with Form1.StringGrid1 do
+  begin
+    if not Cells[Col,Row].Equals('') and not Cells[Col,Row].Equals('~Ende~') then
+    begin
+
+    if Cells[Col, Row].Chars[0] = 'L' then
+       RadioButton1.Checked:=true
+    else
+    if Cells[col, row].Chars[0] = 'R' then
+      RadioButton3.Checked:=true
+    else if Cells[Col,row].Chars[0] = '0' then
+    begin
+      RadioButton2.Checked:=true;
+    end;
+
+    ComboBox1.Caption := Cells[Col, row].Chars[2];
+    ComboBox2.Caption := Cells[Col, row].Substring(4,2);
+    end;
+
+
+
+
+
   //ComboBox1.SelText:=ComboBox1.Items.Text[Form1.Strin];
-  RadioButton2.Checked:=true;
+  //RadioButton2.Checked:=true;
   Result := (ShowModal = mrOk);
   EndZustand:=CheckBoxThemed1.Checked;
-
+  if not EndZustand then
+  begin
   Zustand:=StrToInt(ComboBox2.Items[ComboBox2.ItemIndex][2]);
   WhatToWrite:=ComboBox1.Items[ComboBox1.ItemIndex][1];
   if RadioButton1.Checked then wheretogo:=-1;
   if RadioButton2.checked then wheretogo:=0;
   if RadioButton3.checked then wheretoGo:=1;
 
+  end;
+
 end;
 
-procedure TForm2.FormCreate(Sender: TObject);
+end;
+
+procedure TForm2.FormShow(Sender: TObject);
 begin
 
+end;
+
+procedure TForm2.CheckBoxThemed1Change(Sender: TObject);
+begin
+  with CheckboxThemed1 do
+  begin
+       if Checked then
+       begin
+       GroupBox1.Enabled:=false;
+       GroupBox2.Enabled:=false;
+       end
+       else
+       begin
+        GroupBox1.Enabled:=true;
+       GroupBox2.Enabled:=true;
+       end;
+  end;
 end;
 
 procedure TForm2.jaMoin;

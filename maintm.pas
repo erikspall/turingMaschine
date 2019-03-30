@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  PairSplitter, Grids, StdCtrls, IniPropStorage, lists, inputDialogforTM,lclintf;
+  PairSplitter, Grids, StdCtrls, IniPropStorage, lists, inputDialogforTM,lclintf,LCLType;
 
 type
 
@@ -62,6 +62,7 @@ type
     ToolButton1: TToolButton;
     ToolButton10: TToolButton;
     ToolButton11: TToolButton;
+    ToolButton12: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -95,6 +96,7 @@ type
     procedure Timer3Timer(Sender: TObject);
     procedure ToolButton10Click(Sender: TObject);
     procedure ToolButton11Click(Sender: TObject);
+    procedure ToolButton12Click(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
@@ -177,7 +179,11 @@ var
   changed2: boolean;
   prev: char;
 begin
+
   prev := leerzeichen;
+  if not string(Edit3.Text).Contains(prev) then
+  begin
+  ToolButton5.Click;
   if not string(Edit1.Text).Contains(Edit3.Text) then
   begin
     Label3.Caption := '';
@@ -203,6 +209,10 @@ begin
     Label3.Caption := 'Ungültige Eingabe';
     Edit3.Text := prev;
 
+
+
+  end;
+
   end;
 end;
 
@@ -210,8 +220,12 @@ procedure TForm1.Edit1EditingDone(Sender: TObject);
 begin
   if not lastInputAl.Equals(AnsiUpperCase(Edit1.Text)) then
   begin
+  if not lastInputAl.Equals('') then
+  begin
+    if IDYES=Application.MessageBox('Die Änderung des Alphabets führt zum Verlust von Einträgen in der Tabelle. Fortfahren?','Achtung!',MB_ICONWARNING+MB_YESNO) then
+    begin
     lastInputAl := AnsiUpperCase(Edit1.Text);
-    Edit1.Text := lastInputAl;
+    //Edit1.Text := lastInputAl;
     Label1.Caption := 'Alphabet: {';
     PrepareStringGrid;
     for i := 2 to StringGrid1.ColCount - 2 do
@@ -221,8 +235,24 @@ begin
     Label1.Caption := Label1.Caption + StringGrid1.Cells[StringGrid1.ColCount - 1, 0] + '}';
     setViewMode(1);
   end;
-end;
 
+  end
+  else
+  begin
+     lastInputAl := AnsiUpperCase(Edit1.Text);
+    //Edit1.Text := lastInputAl;
+    Label1.Caption := 'Alphabet: {';
+    PrepareStringGrid;
+    for i := 2 to StringGrid1.ColCount - 2 do
+    begin
+      Label1.Caption := Label1.Caption + StringGrid1.Cells[i, 0] + ',';
+    end;
+    Label1.Caption := Label1.Caption + StringGrid1.Cells[StringGrid1.ColCount - 1, 0] + '}';
+    setViewMode(1);
+
+  end;
+end;
+end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   ShowMessage(zeiger.ToString);
@@ -413,9 +443,15 @@ begin
   if StringGrid1.Cells[X, Y] <> '~Ende~' then
   begin
     if StringGrid1.Cells[X, Y].Chars[0] = 'L' then
-      moveBackward();
+      moveBackward()
+    else
     if StringGrid1.Cells[X, Y].Chars[0] = 'R' then
-      moveForward();
+      moveForward()
+    else if StringGrid1.Cells[X,Y].Chars[0] = '0' then
+    begin
+      if finished then setViewMode(3);
+    end;
+
     writeS := StringGrid1.Cells[X, Y].Chars[2];
     currentZ := StrToInt(StringGrid1.Cells[X, Y].Substring(5));
     StatusBar1.Panels.items[1].Text := 'Zustand: ' + currentZ.toString;
@@ -485,6 +521,7 @@ end;
 
 procedure TForm1.ToolButton5Click(Sender: TObject);
 begin
+  StringGrid1.ClearSelections;
   Timer1.Enabled := False;
   Timer2.Enabled := False;
   Timer3.Enabled := False;
@@ -676,14 +713,28 @@ begin
 
 end;
 
+procedure TForm1.ToolButton12Click(Sender: TObject);
+begin
+
+  Edit1.Clear;
+  Edit2.Clear;
+  Edit3.Clear;
+  ToolButton5.Click;
+  setViewMode(0);
+  StringGrid1.ColCount:=2;
+  StringGRID1.RowCount:=2;
+  StringGRID1.Cells[1,1]:='';
+  end;
+
 procedure TForm1.ToolButton1Click(Sender: TObject);
 begin
 
   if finished then
     finished := False;
   schritte := 0;
-  Timer3.Enabled := True;
   setViewMode(2);
+  Timer3.Enabled := True;
+
 end;
 
 procedure TForm1.ToolButton3Click(Sender: TObject);
@@ -728,6 +779,7 @@ begin
       ToolButton9.Enabled := False;
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
+      ToolButton12.enabled:=false;
     end;
     1:
     begin     //Das Alphabet wurde eingegeben
@@ -746,6 +798,7 @@ begin
       ToolButton9.Enabled := False;
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
+      ToolButton12.enabled:=true;
     end;
     2:
     begin //tm läuft aktuell
@@ -764,6 +817,7 @@ begin
       ToolButton9.Enabled := False;
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
+      ToolButton12.enabled:=false;
     end;
     3:
     begin //tm ist fertig
@@ -782,6 +836,7 @@ begin
       ToolButton9.Enabled := True;
       ToolButton10.Enabled := True;
       ToolButton11.Enabled := True;
+      ToolButton12.enabled:=true;
     end;
     4:
     begin //wurde resettet / startbereit
@@ -800,6 +855,7 @@ begin
       ToolButton9.Enabled := True;
       ToolButton10.Enabled := True;
       ToolButton11.Enabled := True;
+      ToolButton12.enabled:=true;
     end;
     5:
     begin     //Das Eingabewort wurde eingegeben
@@ -818,6 +874,7 @@ begin
       ToolButton9.Enabled := False;
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := True;
+      ToolButton12.enabled:=true;
     end;
   end;
 
@@ -874,20 +931,28 @@ var
   Col: integer;
   j: integer;
   isIn: boolean;
+  doneDeleting:boolean;
 begin
   rawA := Edit1.Text;
   Zustand2.Clear;
   Zustand2.Add(1);
 
+  repeat
+  doneDeleting:=false;
   for i := 1 to Length(rawA) do
   begin
-    if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+-/0123456789'.Contains(rawA[i]) and
-      (rawA[i] <> leerzeichen) then
+    if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+-/0123456789'.Contains(rawA[i]) or
+      (rawA[i]=leerzeichen) then
     begin
       Delete(rawA, i, 1);
+     // Edit1.text:=rawA;
     end;
   end;
+  if (i>Length(rawA)) and (Length(rawA)<>0) then doneDeleting:=false else doneDeleting:=true;
 
+  until doneDeleting;
+  if Length(rawA)<>0 then
+  begin
 
   isIn := False;
   StringGrid1.ColCount := 2;
@@ -919,6 +984,7 @@ begin
 
 end;
 
+end;
 
 
 end.
