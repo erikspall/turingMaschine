@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, CheckBoxThemed, Forms, Controls, Graphics,
-  Dialogs, StdCtrls, Buttons;
+  Dialogs, StdCtrls, Buttons,Math;
 
 type
 
@@ -94,7 +94,7 @@ begin
     else  RadioButton2.Checked:=true;
 
     ComboBox1.Caption := Cells[Col, row].Chars[2];
-    ComboBox2.Caption := Cells[Col, row].Substring(4,2);
+    ComboBox2.Caption := Cells[Col, row].Substring(4);
     end
     else RadioButton2.Checked:=true;
 
@@ -108,7 +108,7 @@ begin
   EndZustand:=CheckBoxThemed1.Checked;
   if not EndZustand then
   begin
-  Zustand:=StrToInt(ComboBox2.Items[ComboBox2.ItemIndex][2]);
+  Zustand:=StrToInt(ComboBox2.Items[ComboBox2.ItemIndex].Substring(1));
   WhatToWrite:=ComboBox1.Items[ComboBox1.ItemIndex][1];
   if RadioButton1.Checked then wheretogo:=-1;
   if RadioButton2.checked then wheretogo:=0;

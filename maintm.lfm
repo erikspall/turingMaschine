@@ -102,6 +102,7 @@ object Form1: TForm1
   end
   object ToolBar1: TToolBar
     Left = 0
+    Hint = 'aha'
     Top = 0
     Width = 440
     ButtonHeight = 32
@@ -117,6 +118,8 @@ object Form1: TForm1
       Caption = 'Start'
       ImageIndex = 4
       OnClick = ToolButton1Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton2: TToolButton
       Left = 181
@@ -126,20 +129,24 @@ object Form1: TForm1
       Style = tbsSeparator
     end
     object ToolButton3: TToolButton
-      Left = 337
+      Left = 341
       Hint = 'Zustand hinzufügen'
       Top = 2
       Caption = 'Add Z'
       ImageIndex = 0
       OnClick = ToolButton3Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton4: TToolButton
-      Left = 373
+      Left = 377
       Hint = 'Zustand entfernen'
       Top = 2
       Caption = 'Remove Z'
       ImageIndex = 5
       OnClick = ToolButton4Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton5: TToolButton
       Left = 73
@@ -148,45 +155,55 @@ object Form1: TForm1
       Caption = 'Reset'
       ImageIndex = 2
       OnClick = ToolButton5Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton6: TToolButton
-      Left = 331
+      Left = 333
       Height = 32
       Top = 2
       Caption = 'ToolButton6'
       Style = tbsSeparator
     end
     object ToolButton7: TToolButton
-      Left = 223
-      Hint = 'Speicher...'
+      Left = 225
+      Hint = 'Speichern unter...'
       Top = 2
       Caption = 'Speichern'
       ImageIndex = 11
       OnClick = ToolButton7Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton8: TToolButton
-      Left = 295
-      Hint = 'Lade...'
+      Left = 297
+      Hint = 'Programm öffnen...'
       Top = 2
       Caption = 'Laden'
       ImageIndex = 8
       OnClick = ToolButton8Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton9: TToolButton
       Left = 109
-      Hint = 'Bewege Zeiger rückwärts'
+      Hint = 'Bewege Band nach Links'
       Top = 2
       Caption = 'ToolButton9'
       ImageIndex = 3
       OnClick = ToolButton9Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton10: TToolButton
       Left = 145
-      Hint = 'Bewege Zeiger vorwärts'
+      Hint = 'Bewege Band nach rechts'
       Top = 2
       Caption = 'ToolButton10'
       ImageIndex = 1
       OnClick = ToolButton10Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton11: TToolButton
       Left = 37
@@ -195,21 +212,29 @@ object Form1: TForm1
       Caption = 'ToolButton11'
       ImageIndex = 6
       OnClick = ToolButton11Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton12: TToolButton
-      Left = 187
+      Left = 189
+      Hint = 'Neues Programm'
       Top = 2
       Caption = 'ToolButton12'
       ImageIndex = 9
       OnClick = ToolButton12Click
+      ParentShowHint = False
+      ShowHint = True
     end
     object ToolButton13: TToolButton
-      Left = 259
+      Left = 261
+      Hint = 'Aktuelles Programm speichern'
       Top = 2
       Caption = 'ToolButton13'
       Enabled = False
       ImageIndex = 7
       OnClick = ToolButton13Click
+      ParentShowHint = False
+      ShowHint = True
     end
   end
   object StatusBar1: TStatusBar
@@ -1174,6 +1199,7 @@ object Form1: TForm1
               AnchorSideRight.Side = asrBottom
               Left = 0
               Height = 16
+              Hint = 'Zeigt das aktuelle Alphabet an'
               Top = 23
               Width = 121
               Anchors = [akTop, akLeft, akRight]
@@ -1189,11 +1215,14 @@ object Form1: TForm1
               AnchorSideRight.Side = asrBottom
               Left = 0
               Height = 23
+              Hint = 'Hier wird das Alphabet eingetragen. Es ist egal ob mit oder ohne Kommatrennung'
               Top = 0
               Width = 121
               Anchors = [akTop, akLeft, akRight]
               OnEditingDone = Edit1EditingDone
               ParentFont = False
+              ParentShowHint = False
+              ShowHint = True
               TabOrder = 0
             end
           end
@@ -1220,11 +1249,14 @@ object Form1: TForm1
               AnchorSideRight.Side = asrBottom
               Left = 0
               Height = 23
+              Hint = 'Hier wird das Wort eingetragen was aufs Band geschrieben werden soll'
               Top = 0
               Width = 121
               Anchors = [akTop, akLeft, akRight]
               OnEditingDone = Edit2EditingDone
               ParentFont = False
+              ParentShowHint = False
+              ShowHint = True
               TabOrder = 0
             end
             object Label2: TLabel
@@ -1273,12 +1305,15 @@ object Form1: TForm1
               AnchorSideRight.Side = asrBottom
               Left = 0
               Height = 23
+              Hint = 'Das Leerzeichen auf dem Band'
               Top = 0
               Width = 121
               Anchors = [akTop, akLeft, akRight]
               MaxLength = 1
               OnEditingDone = Edit3EditingDone
               ParentFont = False
+              ParentShowHint = False
+              ShowHint = True
               TabOrder = 0
               Text = '#'
             end
@@ -1317,6 +1352,7 @@ object Form1: TForm1
           object StringGrid1: TStringGrid
             Left = 1
             Height = 247
+            Hint = 'Hier wird die Übergangsfunktion programmiert, mit der die TM weiß wie sie sich verhalten muss'
             Top = 1
             Width = 300
             Align = alClient
@@ -1327,7 +1363,9 @@ object Form1: TForm1
             DefaultColWidth = 75
             Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goSmoothScroll, goScrollKeepVisible]
             ParentFont = False
+            ParentShowHint = False
             RowCount = 2
+            ShowHint = True
             TabOrder = 0
             OnDblClick = StringGrid1DblClick
             ColWidths = (
@@ -1446,6 +1484,7 @@ object Form1: TForm1
         Cursor = crHandPoint
         Left = 367
         Height = 17
+        Hint = 'Öffnet GitHub (Kompletter Quelltext)'
         Top = 232
         Width = 65
         Alignment = taCenter
@@ -1463,6 +1502,8 @@ object Form1: TForm1
         ParentBidiMode = False
         ParentFont = False
         ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 1
       end
       object Label5: TLabel
@@ -1485,6 +1526,7 @@ object Form1: TForm1
       object CheckGroup1: TCheckGroup
         Left = 0
         Height = 56
+        Hint = 'Legt fest ob die Spalten sich automatisch an die verfügbare Fläche anpassen sollen'
         Top = 0
         Width = 432
         Align = alTop
@@ -1504,6 +1546,8 @@ object Form1: TForm1
           'AutoSize Spalten'
         )
         OnClick = CheckGroup1Click
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
         Data = {
           0100000003
@@ -1511,7 +1555,8 @@ object Form1: TForm1
       end
       object CheckGroup2: TCheckGroup
         Left = 0
-        Height = 48
+        Height = 128
+        Hint = 'Animation fürs Band aktivieren / deaktiviern'
         Top = 56
         Width = 432
         Align = alTop
@@ -1525,16 +1570,71 @@ object Form1: TForm1
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 28
+        ClientHeight = 108
         ClientWidth = 428
         Items.Strings = (
           'Animation'
         )
         OnClick = CheckGroup2Click
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 1
         Data = {
           0100000003
         }
+        object Label6: TLabel
+          Left = 6
+          Height = 15
+          Top = 25
+          Width = 416
+          Caption = 'Delay:'
+          ParentColor = False
+        end
+        object SpinEdit1: TSpinEdit
+          Left = 6
+          Height = 23
+          Hint = 'Wieviele Millisekunden zwischen den Zügen gewartet werden soll'
+          Top = 40
+          Width = 416
+          Increment = 50
+          MaxValue = 99999
+          MinValue = 1
+          OnEditingDone = SpinEdit1EditingDone
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 1
+          Value = 500
+        end
+        object RadioGroup1: TRadioGroup
+          Left = 6
+          Height = 39
+          Hint = 'Refresh, Repaint, Update sind verschiedene Methoden um das Flickern zu verhindern / minimieren'
+          Top = 63
+          Width = 416
+          AutoFill = True
+          Caption = 'Bei jeder Verschiebung tue:'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclTopToBottomThenLeftToRight
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 19
+          ClientWidth = 412
+          Columns = 5
+          ItemIndex = 0
+          Items.Strings = (
+            'Nichts (am Schnellsten)'
+            'Refresh'
+            'Repaint'
+            'Update'
+          )
+          OnClick = RadioGroup1Click
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 2
+        end
       end
     end
   end
@@ -1556,6 +1656,7 @@ object Form1: TForm1
   end
   object Timer3: TTimer
     Enabled = False
+    Interval = 100
     OnTimer = Timer3Timer
     OnStartTimer = Timer3StartTimer
     left = 90

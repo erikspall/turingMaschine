@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
-  PairSplitter, Grids, StdCtrls, IniPropStorage, lists, inputDialogforTM,lclintf,LCLType;
+  PairSplitter, Grids, StdCtrls, IniPropStorage, lists, inputDialogforTM,
+  lclintf, LCLType, Spin;
 
 type
 
@@ -24,6 +25,8 @@ type
     GroupBox4: TGroupBox;
     Image1: TImage;
     ImageList1: TImageList;
+    Label6: TLabel;
+    RadioGroup1: TRadioGroup;
     settings: TIniPropStorage;
     Label4: TLabel;
     Label5: TLabel;
@@ -32,6 +35,7 @@ type
     LabeledEdit4: TLabeledEdit;
     OpenDialog1: TOpenDialog;
     PageControl1: TPageControl;
+    SpinEdit1: TSpinEdit;
     StaticText1: TStaticText;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -90,7 +94,9 @@ type
     procedure LabeledEdit4EditingDone(Sender: TObject);
     procedure OpenDialog1Close(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
     procedure SaveDialog1Close(Sender: TObject);
+    procedure SpinEdit1EditingDone(Sender: TObject);
     procedure StaticText1Click(Sender: TObject);
     procedure StringGrid1DblClick(Sender: TObject);
     procedure einstellungenLesenUndSetzen();
@@ -229,17 +235,25 @@ begin
     StringGrid1.AutoFillColumns:=CheckGroup1.Checked[0];
 
 
-   animation:=CheckGroup2.Checked[0];
+    animation:=CheckGroup2.Checked[0];
+
+
 
     settings.IniSection:='settings';
     settings.WriteBoolean('DoAutoSizeCols',CheckGroup1.Checked[0]);
     settings.WriteBoolean('DoAnimation',CheckGroup2.Checked[0]);
-
+    settings.WriteInteger('Delay',SpinEdit1.Value);
+    settings.WriteInteger('DoEveryMove',RadioGroup1.ItemIndex);
     //***
 
 
 
 
+
+end;
+
+procedure TForm1.RadioGroup1Click(Sender: TObject);
+begin
 
 end;
 
@@ -250,6 +264,11 @@ begin
          Form1.Caption:='Turingmaschine - ' + ExtractFileName(SaveDialog1.FileName);
          CurrentWorkDir:=SaveDialog1.FileName;
     end;
+end;
+
+procedure TForm1.SpinEdit1EditingDone(Sender: TObject);
+begin
+  Timer3.Interval:=SpinEdit1.Value;
 end;
 
 procedure TForm1.StaticText1Click(Sender: TObject);
@@ -439,6 +458,9 @@ begin
   settings.iniSection:='settings';
   CheckGroup1.Checked[0]:=settings.ReadBoolean('DoAutoSizeCols',True);
   CheckGroup2.Checked[0]:=settings.ReadBoolean('DoAnimation',True);
+  SpinEdit1.Value:=settings.ReadInteger('Delay',100);
+  Timer3.Interval:=SpinEdit1.Value;
+  RadioGroup1.ItemIndex:=settings.ReadInteger('DoEveryMove',0);
 end;
 
 procedure TForm1.moveForward();
@@ -488,7 +510,7 @@ begin
   isInvalid := False;
   for i := 1 to Length(Edit2.Text) do
   begin
-    if t.Contains(Edit2.Text[i]) then
+    if t.Contains(Edit2.Text[i]) or (Edit2.Text[i] = leerzeichen) then
     begin
       Label2.Caption := '';
 
@@ -547,6 +569,7 @@ var
 begin
   Read := bandContent.getItem(zeiger)[1];
   // ShowMessage('Read: ' + read);
+
   for i := 1 to StringGrid1.ColCount - 1 do
   begin
     if StringGrid1.Cells[i, 0] = Read then
@@ -557,7 +580,7 @@ begin
   end;
   for i := 1 to StringGrid1.RowCount - 1 do
   begin
-    if StrToInt(StringGrid1.Cells[0, i].Chars[1]) = currentZ then
+    if StrToInt(StringGrid1.Cells[0, i].SubString(1)) = currentZ then
     begin
       Y := i;
       break;
@@ -596,7 +619,9 @@ begin
     end;
 
     writeS := StringGrid1.Cells[X, Y].Chars[2];
-    currentZ := StrToInt(StringGrid1.Cells[X, Y].Substring(5));
+    // ShowMessage('Länge: ' + Length(StringGrid1.Cells[X, Y].Substring(5,2) ).toString+ ' Substring: '+StringGrid1.Cells[X, Y].Substring(5));
+    currentZ := StringGrid1.Cells[X, Y].Substring(5).ToInt64;
+
     StatusBar1.Panels.items[1].Text := 'Zustand: ' + currentZ.toString;
     bandContent.replaceItem(zeiger, writeS);
     band.getItem(6).Caption := writeS;
@@ -619,6 +644,8 @@ var
   g, h: integer;
 begin
   try
+     Zustand2.Clear;
+  Zustand2.Add(1);
     tmInhalt.IniFileName := OpenDialog1.FileName;
     tmInhalt.IniSection := 'edits';
     Edit2.Text := tmInhalt.ReadString('eingabewort', '');
@@ -647,8 +674,10 @@ begin
     LabeledEdit2.Text := tmInhalt.ReadString('programmname', '');
     LabeledEdit3.Text := tmInhalt.ReadString('autor', '');
     LabeledEdit4.Text := tmInhalt.ReadString('kurzbeschreibung', '');
+    Form1.Caption:='Turingmaschine - ' + ExtractFileName(OpenDialog1.FileName);
 
     Result := True;
+
   except
     Result := False;
   end;
@@ -728,7 +757,11 @@ begin
       Band.getItem(i).Left := Band.getItem(i).Left - 1;
       //   Band.getItem(i).Update;
     end;
-    //Update;
+   case RadioGroup1.ItemIndex of
+     1:Refresh;
+     2:Repaint;
+     3:Update;
+   end;
   end
   else
   begin
@@ -810,6 +843,11 @@ begin
     begin
       Band.getItem(i).Left := Band.getItem(i).Left + breite;
     end;
+     case RadioGroup1.ItemIndex of
+     1:Refresh;
+     2:Repaint;
+     3:Update;
+   end;
   end;
   if Band.getItem(1).Left = temp + breite then
   begin
@@ -835,7 +873,7 @@ end;
 
 procedure TForm1.Timer3Timer(Sender: TObject);
 begin
-  while (not finished) and (hasMoved) do
+  if (not finished) and (hasMoved) Then
   begin
     handleMove();
     if finished then
@@ -859,14 +897,24 @@ end;
 
 procedure TForm1.ToolButton12Click(Sender: TObject);
 begin
+   Zustand2.Clear;
+  Zustand2.Add(1);
   Form1.Caption:='Turingmaschine';
   Label1.Caption:='Alphabet: {}';
+
+  currentWorkDir:='';
+
   Label2.Caption:='';
   Label3.Caption:='';
   Edit1.Clear;
   Edit2.Clear;
+  LabeledEdit2.Clear;
+  LabeledEdit3.Clear;
+  LabeledEdit4.Clear;
  // Edit3.Clear;
   ToolButton5.Click;
+  lastInputAl:='';
+  lastInputEin:='';
   setViewMode(0);
   StringGrid1.ColCount:=2;
   StringGRID1.RowCount:=2;
@@ -971,6 +1019,8 @@ begin
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
       ToolButton12.enabled:=false;
+      CheckGroup1.Enabled:=true;
+      CheckGroup2.Enabled:=true;
       //ToolButton13.Enabled:=false;
     end;
     1:
@@ -991,6 +1041,8 @@ begin
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
       ToolButton12.enabled:=true;
+      CheckGroup1.Enabled:=true;
+      CheckGroup2.Enabled:=true;
       //  ToolButton13.Enabled:=false;
     end;
     2:
@@ -1011,6 +1063,8 @@ begin
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
       ToolButton12.enabled:=false;
+      CheckGroup1.Enabled:=false;
+      CheckGroup2.Enabled:=false;
       // ToolButton13.Enabled:=false;
     end;
     3:
@@ -1031,6 +1085,8 @@ begin
       ToolButton10.Enabled := True;
       ToolButton11.Enabled := True;
       ToolButton12.enabled:=true;
+      CheckGroup1.Enabled:=true;
+      CheckGroup2.Enabled:=true;
       // ToolButton13.Enabled:=false;
     end;
     4:
@@ -1051,6 +1107,8 @@ begin
       ToolButton10.Enabled := True;
       ToolButton11.Enabled := True;
       ToolButton12.enabled:=true;
+      CheckGroup1.Enabled:=true;
+      CheckGroup2.Enabled:=true;
       // ToolButton13.Enabled:=false;
     end;
     5:
@@ -1071,6 +1129,8 @@ begin
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := True;
       ToolButton12.enabled:=true;
+      CheckGroup1.Enabled:=true;
+      CheckGroup2.Enabled:=true;
     end;
   end;
 
@@ -1110,6 +1170,7 @@ procedure TForm1.ToolButton8Click(Sender: TObject);
 begin
   if OpenDialog1.Execute then
   begin
+
     loadTM(OpenDialog1.FileName);
   end;
 end;
@@ -1130,8 +1191,8 @@ var
   doneDeleting:boolean;
 begin
   rawA := Edit1.Text;
-  Zustand2.Clear;
-  Zustand2.Add(1);
+  //Zustand2.Clear;
+ // Zustand2.Add(1);
 
   repeat
   doneDeleting:=false;
