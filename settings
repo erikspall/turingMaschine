@@ -2,4 +2,4 @@
 DoAutoSizeCols=1
 DoAnimation=1
 Delay=500
-DoEveryMove=3
+DoEveryMove=0
