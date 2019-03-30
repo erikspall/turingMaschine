@@ -26,6 +26,7 @@ type
 
 
     procedure CheckBoxThemed1Change(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormShow(Sender: TObject);
 
   private
@@ -89,11 +90,13 @@ begin
     else if Cells[Col,row].Chars[0] = '0' then
     begin
       RadioButton2.Checked:=true;
-    end;
+    end
+    else  RadioButton2.Checked:=true;
 
     ComboBox1.Caption := Cells[Col, row].Chars[2];
     ComboBox2.Caption := Cells[Col, row].Substring(4,2);
-    end;
+    end
+    else RadioButton2.Checked:=true;
 
 
 
@@ -137,6 +140,11 @@ begin
        GroupBox2.Enabled:=true;
        end;
   end;
+end;
+
+procedure TForm2.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+
 end;
 
 procedure TForm2.jaMoin;

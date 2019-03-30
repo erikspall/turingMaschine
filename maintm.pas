@@ -13,6 +13,8 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    CheckGroup1: TCheckGroup;
+    CheckGroup2: TCheckGroup;
     Edit1: TEdit;
     Edit2: TEdit;
     Edit3: TEdit;
@@ -22,6 +24,7 @@ type
     GroupBox4: TGroupBox;
     Image1: TImage;
     ImageList1: TImageList;
+    settings: TIniPropStorage;
     Label4: TLabel;
     Label5: TLabel;
     LabeledEdit2: TLabeledEdit;
@@ -32,6 +35,7 @@ type
     StaticText1: TStaticText;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
     tmInhalt: TIniPropStorage;
     Label1: TLabel;
     Label2: TLabel;
@@ -63,6 +67,7 @@ type
     ToolButton10: TToolButton;
     ToolButton11: TToolButton;
     ToolButton12: TToolButton;
+    ToolButton13: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -72,14 +77,23 @@ type
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     procedure Button1Click(Sender: TObject);
+    procedure CheckGroup1Click(Sender: TObject);
+    procedure CheckGroup2Click(Sender: TObject);
     procedure Edit1EditingDone(Sender: TObject);
     procedure Edit2EditingDone(Sender: TObject);
     procedure Edit3EditingDone(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure LabeledEdit2EditingDone(Sender: TObject);
+    procedure LabeledEdit3EditingDone(Sender: TObject);
+    procedure LabeledEdit4EditingDone(Sender: TObject);
+    procedure OpenDialog1Close(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
+    procedure SaveDialog1Close(Sender: TObject);
     procedure StaticText1Click(Sender: TObject);
     procedure StringGrid1DblClick(Sender: TObject);
-    //procedure einstellungenLesenUndSetzen();
+    procedure einstellungenLesenUndSetzen();
     procedure moveForward();
     procedure initBand();
     procedure prepareBand();
@@ -97,6 +111,7 @@ type
     procedure ToolButton10Click(Sender: TObject);
     procedure ToolButton11Click(Sender: TObject);
     procedure ToolButton12Click(Sender: TObject);
+    procedure ToolButton13Click(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
     procedure ToolButton4Click(Sender: TObject);
@@ -119,7 +134,7 @@ type
     leerzeichen: char;
     MaschineAl: TListofString;
     Zustand2: TListOfInt;
-
+    currentWorkDir:String;
     delay: integer;
   end;
 
@@ -141,7 +156,7 @@ implementation
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  //einstellungenLesenUndSetzen
+  einstellungenLesenUndSetzen;
 
   //ShowMessage(Panel7.Width.toString);
   finished := True;
@@ -169,6 +184,74 @@ begin
   breite := Panel7.Width;
 end;
 
+procedure TForm1.LabeledEdit2EditingDone(Sender: TObject);
+begin
+  if Length(Form1.Caption)>Length('Turingmaschine') then
+  begin
+       tmInhalt.IniFileName:=ExtractFileName(currentWorkDir);
+       tmInhalt.IniSection:='info';
+      if not string(LabeledEdit2.Text).Equals(tmInhalt.ReadString('programmname','')) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+  end;
+
+end;
+
+procedure TForm1.LabeledEdit3EditingDone(Sender: TObject);
+begin
+  if Length(Form1.Caption)>Length('Turingmaschine') then
+  begin
+       tmInhalt.IniFileName:=ExtractFileName(currentWorkDir);
+       tmInhalt.IniSection:='info';
+      if not string(LabeledEdit3.Text).Equals(tmInhalt.ReadString('autor','')) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+  end;
+end;
+
+procedure TForm1.LabeledEdit4EditingDone(Sender: TObject);
+begin
+  if Length(Form1.Caption)>Length('Turingmaschine') then
+  begin
+       tmInhalt.IniFileName:=ExtractFileName(currentWorkDir);
+       tmInhalt.IniSection:='info';
+      if not string(LabeledEdit4.Text).Equals(tmInhalt.ReadString('kurzbeschreibung','')) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+  end;
+end;
+
+procedure TForm1.OpenDialog1Close(Sender: TObject);
+begin
+  if not OpenDialog1.FileName.Equals('') and OpenDialog1.FileName.EndsWith('.tm') then
+    begin
+         Form1.Caption:='Turingmaschine - ' + ExtractFileName(OpenDialog1.FileName);
+         CurrentWorkDir:=OpenDialog1.FileName;
+    end;
+end;
+
+procedure TForm1.PageControl1Change(Sender: TObject);
+begin
+    StringGrid1.AutoFillColumns:=CheckGroup1.Checked[0];
+
+
+   animation:=CheckGroup2.Checked[0];
+
+    settings.IniSection:='settings';
+    settings.WriteBoolean('DoAutoSizeCols',CheckGroup1.Checked[0]);
+    settings.WriteBoolean('DoAnimation',CheckGroup2.Checked[0]);
+
+    //***
+
+
+
+
+
+end;
+
+procedure TForm1.SaveDialog1Close(Sender: TObject);
+begin
+  if not SaveDialog1.FileName.Equals('') and SaveDialog1.FileName.EndsWith('.tm') then
+    begin
+         Form1.Caption:='Turingmaschine - ' + ExtractFileName(SaveDialog1.FileName);
+         CurrentWorkDir:=SaveDialog1.FileName;
+    end;
+end;
+
 procedure TForm1.StaticText1Click(Sender: TObject);
 begin
   OpenURL('https://github.com/erikspall/turingMaschine');
@@ -186,6 +269,14 @@ begin
   ToolButton5.Click;
   if not string(Edit1.Text).Contains(Edit3.Text) then
   begin
+
+  if Length(Form1.Caption)>Length('Turingmaschine') then
+  begin
+       tmInhalt.IniFileName:=ExtractFileName(currentWorkDir);
+       tmInhalt.IniSection:='edits';
+      if not string(Edit3.Text).Equals(tmInhalt.ReadString('leerzeichen','')) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+  end;
+
     Label3.Caption := '';
     if leerzeichen = Edit3.Text[1] then
       changed2 := False
@@ -216,33 +307,55 @@ begin
   end;
 end;
 
+procedure TForm1.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+var h,g:Integer;
+begin
+  if string(Form1.Caption).Contains('*') then
+  begin
+    if Application.MessageBox('Geänderte Werte speichern?','Änderungen!',MB_ICONQUESTION+MB_YESNO) = IDYES
+    then
+    begin
+    tmInhalt.IniFileName := currentWorkDir;
+    tmInhalt.IniSection := 'edits';
+    tmInhalt.WriteString('eingabewort', Edit2.Text);
+    tmInhalt.WriteString('leerzeichen', Edit3.Text);
+    tmInhalt.WriteString('alphabet', Edit1.Text);
+    tmInhalt.WriteInteger('zustände', StringGrid1.RowCount);
+    tmInhalt.IniSection := 'grid';
+    h := 1;
+    for g := 1 to StringGrid1.RowCount - 1 do
+    begin
+      for i := 1 to StringGrid1.ColCount - 1 do
+      begin
+        tmInhalt.WriteString('I' + h.toString, StringGrid1.Cells[i, g]);
+        Inc(h);
+      end;
+    end;
+    tmInhalt.IniSection := 'info';
+    tmInhalt.WriteString('programmname', LabeledEdit2.Text);
+    tmInhalt.WriteString('autor', LabeledEdit3.Text);
+    tmInhalt.WriteString('kurzbeschreibung', LabeledEdit4.Text);
+    end;
+  end;
+end;
+
 procedure TForm1.Edit1EditingDone(Sender: TObject);
 begin
   if not lastInputAl.Equals(AnsiUpperCase(Edit1.Text)) then
   begin
-  if not lastInputAl.Equals('') then
+
+    if Length(Form1.Caption)>Length('Turingmaschine') then
   begin
-    if IDYES=Application.MessageBox('Die Änderung des Alphabets führt zum Verlust von Einträgen in der Tabelle. Fortfahren?','Achtung!',MB_ICONWARNING+MB_YESNO) then
-    begin
+       tmInhalt.IniFileName:=ExtractFileName(currentWorkDir);
+       tmInhalt.IniSection:='edits';
+      if not string(Edit1.Text).Equals(tmInhalt.ReadString('alphabet','')) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+  end;
+
     lastInputAl := AnsiUpperCase(Edit1.Text);
-    //Edit1.Text := lastInputAl;
+    Edit1.Text := lastInputAl;
     Label1.Caption := 'Alphabet: {';
     PrepareStringGrid;
-    for i := 2 to StringGrid1.ColCount - 2 do
-    begin
-      Label1.Caption := Label1.Caption + StringGrid1.Cells[i, 0] + ',';
-    end;
-    Label1.Caption := Label1.Caption + StringGrid1.Cells[StringGrid1.ColCount - 1, 0] + '}';
-    setViewMode(1);
-  end;
 
-  end
-  else
-  begin
-     lastInputAl := AnsiUpperCase(Edit1.Text);
-    //Edit1.Text := lastInputAl;
-    Label1.Caption := 'Alphabet: {';
-    PrepareStringGrid;
     for i := 2 to StringGrid1.ColCount - 2 do
     begin
       Label1.Caption := Label1.Caption + StringGrid1.Cells[i, 0] + ',';
@@ -250,12 +363,22 @@ begin
     Label1.Caption := Label1.Caption + StringGrid1.Cells[StringGrid1.ColCount - 1, 0] + '}';
     setViewMode(1);
 
-  end;
-end;
+    end;
 end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  ShowMessage(zeiger.ToString);
+  //ShowMessage(zeiger.ToString);
+end;
+
+procedure TForm1.CheckGroup1Click(Sender: TObject);
+begin
+
+
+end;
+
+procedure TForm1.CheckGroup2Click(Sender: TObject);
+begin
+
 end;
 
 procedure TForm1.Edit2EditingDone(Sender: TObject);
@@ -263,7 +386,12 @@ begin
   if not lastInputEin.Equals(AnsiUpperCase(Edit2.Text)) then
   begin
     // ShowMessage('äy: ' + lastInputEin);
-
+    if Length(Form1.Caption)>Length('Turingmaschine') then
+  begin
+       tmInhalt.IniFileName:=ExtractFileName(currentWorkDir);
+       tmInhalt.IniSection:='edits';
+      if not string(Edit2.Text).Equals(tmInhalt.ReadString('eingabewort','')) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+  end;
     lastInputEin := AnsiUpperCase(Edit2.Text);
     Edit2.Text := lastInputEin;
     ToolButton5.Click;
@@ -291,12 +419,26 @@ begin
           0: Wohin := '0';
           1: Wohin := 'R';
         end;
+
+         if Length(Form1.Caption)>Length('Turingmaschine') then
+          begin
+
+          if not StringGrid1.Cells[StringGrid1.Col,StringGrid1.Row].Equals(Wohin + ';' + Form2.WhatToWrite + ';Z' + Form2.Zustand.toString) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+          end;
+
         StringGrid1.Cells[StringGrid1.Col, StringGrid1.Row] :=
           Wohin + ';' + Form2.WhatToWrite + ';Z' + Form2.Zustand.toString;
       end;
     end;
   end;
 
+end;
+
+procedure TForm1.einstellungenLesenUndSetzen();
+begin
+  settings.iniSection:='settings';
+  CheckGroup1.Checked[0]:=settings.ReadBoolean('DoAutoSizeCols',True);
+  CheckGroup2.Checked[0]:=settings.ReadBoolean('DoAnimation',True);
 end;
 
 procedure TForm1.moveForward();
@@ -435,7 +577,8 @@ begin
     ToolButton1.Down := False;
     Timer3.Enabled := False;
     setViewMode(3);
-    ShowMessage('Keine Anweisung Vorhanden für: Column: ' + X.toString + ' Zustand: ' + Y.toString);
+    Application.MessageBox(PChar('Keine Anweisung Vorhanden für: Column: ' + X.toString + ' Zustand: ' + Y.toString + sLineBreak +sLineBreak+ 'Breche ab ...'),PChar('Fehler!'),MB_ICONERROR+MB_OK);
+
   end
   else
   begin
@@ -516,6 +659,7 @@ procedure TForm1.Timer1StopTimer(Sender: TObject);
 begin
   if finished then
     setViewMode(3);
+
 end;
 
 
@@ -715,16 +859,47 @@ end;
 
 procedure TForm1.ToolButton12Click(Sender: TObject);
 begin
-
+  Form1.Caption:='Turingmaschine';
+  Label1.Caption:='Alphabet: {}';
+  Label2.Caption:='';
+  Label3.Caption:='';
   Edit1.Clear;
   Edit2.Clear;
-  Edit3.Clear;
+ // Edit3.Clear;
   ToolButton5.Click;
   setViewMode(0);
   StringGrid1.ColCount:=2;
   StringGRID1.RowCount:=2;
   StringGRID1.Cells[1,1]:='';
+
   end;
+
+procedure TForm1.ToolButton13Click(Sender: TObject);
+Var h,g:Integer;
+begin
+  ToolButton13.Enabled:=false;
+  Form1.Caption:='Turingmaschine - ' + extractfilename(currentWorkDir);
+  tmInhalt.IniFileName := currentWorkDir;
+    tmInhalt.IniSection := 'edits';
+    tmInhalt.WriteString('eingabewort', Edit2.Text);
+    tmInhalt.WriteString('leerzeichen', Edit3.Text);
+    tmInhalt.WriteString('alphabet', Edit1.Text);
+    tmInhalt.WriteInteger('zustände', StringGrid1.RowCount);
+    tmInhalt.IniSection := 'grid';
+    h := 1;
+    for g := 1 to StringGrid1.RowCount - 1 do
+    begin
+      for i := 1 to StringGrid1.ColCount - 1 do
+      begin
+        tmInhalt.WriteString('I' + h.toString, StringGrid1.Cells[i, g]);
+        Inc(h);
+      end;
+    end;
+    tmInhalt.IniSection := 'info';
+    tmInhalt.WriteString('programmname', LabeledEdit2.Text);
+    tmInhalt.WriteString('autor', LabeledEdit3.Text);
+    tmInhalt.WriteString('kurzbeschreibung', LabeledEdit4.Text);
+end;
 
 procedure TForm1.ToolButton1Click(Sender: TObject);
 begin
@@ -739,6 +914,14 @@ end;
 
 procedure TForm1.ToolButton3Click(Sender: TObject);
 begin
+  if Length(Form1.Caption)>Length('Turingmaschine') then
+  begin
+       tmInhalt.IniFileName:=ExtractFileName(currentWorkDir);
+       tmInhalt.IniSection:='edits';
+      if Zustand2.Count <> tmInhalt.ReadInteger('zustände',1) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+     // else Form1.Caption:='Turingmaschine - '  + extractFileName(currentWorkDir);
+  end;
+
   Zustand2.add(Zustand2.Count + 1);
   with StringGrid1 do
   begin
@@ -750,6 +933,14 @@ end;
 
 procedure TForm1.ToolButton4Click(Sender: TObject);
 begin
+  if Length(Form1.Caption)>Length('Turingmaschine') then
+  begin
+       tmInhalt.IniFileName:=ExtractFileName(currentWorkDir);
+       tmInhalt.IniSection:='edits';
+      if Zustand2.Count <> tmInhalt.ReadInteger('zustände',1) then begin Form1.Caption:='Turingmaschine - ' + '*' + extractFileName(currentWorkDir); ToolButton13.Enabled:=true; end;
+     // else Form1.Caption:='Turingmaschine - '  + extractFileName(currentWorkDir);
+  end;
+
   if StringGrid1.RowCount > 2 then
   begin
     Zustand2.deleteItemAt(Zustand2.Count - 1);
@@ -780,6 +971,7 @@ begin
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
       ToolButton12.enabled:=false;
+      //ToolButton13.Enabled:=false;
     end;
     1:
     begin     //Das Alphabet wurde eingegeben
@@ -799,6 +991,7 @@ begin
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
       ToolButton12.enabled:=true;
+      //  ToolButton13.Enabled:=false;
     end;
     2:
     begin //tm läuft aktuell
@@ -818,6 +1011,7 @@ begin
       ToolButton10.Enabled := False;
       ToolButton11.Enabled := False;
       ToolButton12.enabled:=false;
+      // ToolButton13.Enabled:=false;
     end;
     3:
     begin //tm ist fertig
@@ -837,6 +1031,7 @@ begin
       ToolButton10.Enabled := True;
       ToolButton11.Enabled := True;
       ToolButton12.enabled:=true;
+      // ToolButton13.Enabled:=false;
     end;
     4:
     begin //wurde resettet / startbereit
@@ -856,6 +1051,7 @@ begin
       ToolButton10.Enabled := True;
       ToolButton11.Enabled := True;
       ToolButton12.enabled:=true;
+      // ToolButton13.Enabled:=false;
     end;
     5:
     begin     //Das Eingabewort wurde eingegeben
@@ -929,7 +1125,7 @@ procedure TForm1.prepareStringGrid();
 var
   rawA: string;
   Col: integer;
-  j: integer;
+  j,l: integer;
   isIn: boolean;
   doneDeleting:boolean;
 begin
@@ -945,37 +1141,70 @@ begin
       (rawA[i]=leerzeichen) then
     begin
       Delete(rawA, i, 1);
-     // Edit1.text:=rawA;
     end;
   end;
   if (i>Length(rawA)) and (Length(rawA)<>0) then doneDeleting:=false else doneDeleting:=true;
 
   until doneDeleting;
+  // ShowMessage('rawA: ' + Length(rawA).toString);
   if Length(rawA)<>0 then
   begin
+    StringGrid1.Cells[1, 0] := leerzeichen;
 
-  isIn := False;
-  StringGrid1.ColCount := 2;
-  StringGrid1.Cells[1, 0] := leerzeichen;
-  for j := 1 to Length(rawA) do    //Durchlaufe Eingabe
-  begin
-    isIn := False;
-    for Col := 1 to StringGrid1.ColCount - 1 do   //Durchlaufe Cols
+
+    //Lösche alle Überflüssigen Cols
+    for i:=2 to StringGrid1.ColCount-1 do
     begin
-      if rawA[j] = StringGrid1.Cells[Col, 0] then  //Wenn Char in Cols isIn True
-      begin
-        isIn := True;
-      end;
+            if i>=StringGrid1.ColCount then break;
+
+             while not rawA.Contains(StringGrid1.Cells[i,0]) and (StringGrid1.ColCount > 2) do
+             begin
+             ShowMessage(StringGrid1.Cells[i,0] + ' ist nicht in ' + rawA + ' und ' + StringGrid1.ColCount.toString + ' > 2');
+               if i+1<StringGrid1.ColCount then
+               begin
+                 for l:=i to StringGrid1.ColCount-2 do
+                 begin
+                   for j:=0 to StringGrid1.RowCount-1 do
+                   begin
+                       //ShowMessage('Zelle ['+l.toString+','+j.toString+'] := ['+(l+1).toString+','+j.toString+']');
+                        StringGrid1.Cells[l,j]:=StringGrid1.Cells[l+1,j]
+                   end;
+
+                 end;
+
+               end;
+               StringGrid1.ColCount:=StringGrid1.ColCount-1;
+               if i>=StringGrid1.ColCount then break;
+             end;
+
+
+
+
+
+
+
+
     end;
-    if not isIn then                 //Wenn Char nicht in Col = Hinzufügen
+    //Lösche alle bereits vorhandenen aus rawA
+    for i:=2 to StringGrid1.ColCount-1 do
     begin
-      StringGrid1.ColCount := StringGrid1.ColCount + 1;
-      StringGrid1.Cells[Col + 1, 0] := rawA[j];
-      Inc(Col);
-      isIn := False;
+    if rawA.Contains(StringGrid1.Cells[i,0]) then
+             begin
+          //   ShowMessage('Bye: ' + StringGrid1.Cells[i,0]);
+             rawA:=rawA.Remove(rawA.IndexOf(StringGrid1.Cells[i,0]),1);
+
+             end;
+
     end;
-  end;
-  isIn := False;
+    //Füge alle benötigten hinzu
+    //ShowMessage('I need: '+rawA);
+    for i:=1 to Length(rawA) do
+    begin
+       StringGrid1.ColCount:=StringGrid1.ColCount+1;
+       StringGrid1.Cells[StringGrid1.ColCount-1,0]:=rawA[i];
+    end;
+    Edit2.Clear;
+    Edit2.EditingDone;
   StringGrid1.RowCount := Zustand2.Count + 1;
   for i := 1 to StringGrid1.RowCount - 1 do
   begin
