@@ -55,7 +55,7 @@ end;
 procedure TList.insertItem(Value: T; index: integer);
 var
   i: integer;
-  tValue: T;
+ // tValue: T;
 begin
   if (index = 0) and (Length(items) = 0) then
   begin
@@ -179,8 +179,8 @@ begin
 end;
 
 function TList.Count(): integer;
-var
-  i: integer;
+//var
+  //i: integer;
 begin
   Result := Length(items);
 end;
