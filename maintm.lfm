@@ -3226,7 +3226,7 @@ object Form1: TForm1
   end
   object settings: TIniPropStorage
     StoredValues = <>
-    IniFileName = 'settings.ini'
+    IniFileName = 'settings'
     left = 344
     top = 313
   end
