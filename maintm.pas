@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
   PairSplitter, Grids, StdCtrls, IniPropStorage, lists, inputDialogforTM,
-  lclintf, LCLType, Spin;
+  lclintf, LCLType, Spin, XMLPropStorage;
 
 type
 
@@ -40,7 +40,6 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
-    tmInhalt: TIniPropStorage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -80,6 +79,7 @@ type
     ToolButton7: TToolButton;
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
+    tminhalt: TXMLPropStorage;
     procedure Edit1EditingDone(Sender: TObject);
     procedure Edit2EditingDone(Sender: TObject);
     procedure Edit3EditingDone(Sender: TObject);
@@ -196,8 +196,8 @@ procedure TForm1.LabeledEdit2EditingDone(Sender: TObject);
 begin
   if Length(Form1.Caption) > Length('Turingmaschine') then
   begin
-    tmInhalt.IniFileName := ExtractFileName(currentWorkDir);
-    tmInhalt.IniSection := 'info';
+    tmInhalt.FileName := ExtractFileName(currentWorkDir);
+
     if not string(LabeledEdit2.Text).Equals(tmInhalt.ReadString(
       'programmname', '')) then
     begin
@@ -214,8 +214,8 @@ procedure TForm1.LabeledEdit3EditingDone(Sender: TObject);
 begin
   if Length(Form1.Caption) > Length('Turingmaschine') then
   begin
-    tmInhalt.IniFileName := ExtractFileName(currentWorkDir);
-    tmInhalt.IniSection := 'info';
+    tmInhalt.FileName := ExtractFileName(currentWorkDir);
+
     if not string(LabeledEdit3.Text).Equals(tmInhalt.ReadString('autor', '')) then
     begin
       Form1.Caption := 'Turingmaschine - ' + '*' + extractFileName(currentWorkDir);
@@ -231,8 +231,8 @@ procedure TForm1.LabeledEdit4EditingDone(Sender: TObject);
 begin
   if Length(Form1.Caption) > Length('Turingmaschine') then
   begin
-    tmInhalt.IniFileName := ExtractFileName(currentWorkDir);
-    tmInhalt.IniSection := 'info';
+    tmInhalt.FileName := ExtractFileName(currentWorkDir);
+    // tmInhalt.IniSection := 'info';
     if not string(LabeledEdit4.Text).Equals(tmInhalt.ReadString(
       'kurzbeschreibung', '')) then
     begin
@@ -319,8 +319,8 @@ begin
   }
       if Length(Form1.Caption) > Length('Turingmaschine') then
       begin
-        tmInhalt.IniFileName := ExtractFileName(currentWorkDir);
-        tmInhalt.IniSection := 'edits';
+        tmInhalt.FileName := ExtractFileName(currentWorkDir);
+
         if not string(Edit3.Text).Equals(tmInhalt.ReadString('leerzeichen', '')) then
         begin
           Form1.Caption := 'Turingmaschine - ' + '*' + extractFileName(currentWorkDir);
@@ -372,13 +372,13 @@ begin
     {
      Speicher...
     }
-      tmInhalt.IniFileName := currentWorkDir;
-      tmInhalt.IniSection := 'edits';
+      tmInhalt.FileName := currentWorkDir;
+
       tmInhalt.WriteString('eingabewort', Edit2.Text);
       tmInhalt.WriteString('leerzeichen', Edit3.Text);
       tmInhalt.WriteString('alphabet', Edit1.Text);
       tmInhalt.WriteInteger('zustände', StringGrid1.RowCount);
-      tmInhalt.IniSection := 'grid';
+
       h := 1;
       for g := 1 to StringGrid1.RowCount - 1 do
       begin
@@ -388,7 +388,7 @@ begin
           Inc(h);
         end;
       end;
-      tmInhalt.IniSection := 'info';
+
       tmInhalt.WriteString('programmname', LabeledEdit2.Text);
       tmInhalt.WriteString('autor', LabeledEdit3.Text);
       tmInhalt.WriteString('kurzbeschreibung', LabeledEdit4.Text);
@@ -409,8 +409,8 @@ begin
   }
     if Length(Form1.Caption) > Length('Turingmaschine') then
     begin
-      tmInhalt.IniFileName := ExtractFileName(currentWorkDir);
-      tmInhalt.IniSection := 'edits';
+      tmInhalt.FileName := ExtractFileName(currentWorkDir);
+
       if not string(Edit1.Text).Equals(tmInhalt.ReadString('alphabet', '')) then
       begin
         Form1.Caption := 'Turingmaschine - ' + '*' + extractFileName(currentWorkDir);
@@ -421,6 +421,7 @@ begin
     {
      Eigentliches Setzen des Alphabets
     }
+
     lastInputAl := AnsiUpperCase(Edit1.Text);
     Edit1.Text := lastInputAl;
     Label1.Caption := 'Alphabet: {';
@@ -452,8 +453,8 @@ begin
   }
     if Length(Form1.Caption) > Length('Turingmaschine') then
     begin
-      tmInhalt.IniFileName := ExtractFileName(currentWorkDir);
-      tmInhalt.IniSection := 'edits';
+      tmInhalt.FileName := ExtractFileName(currentWorkDir);
+
       if not string(Edit2.Text).Equals(tmInhalt.ReadString('eingabewort', '')) then
       begin
         Form1.Caption := 'Turingmaschine - ' + '*' + extractFileName(currentWorkDir);
@@ -742,19 +743,24 @@ begin
   try
     Zustand2.Clear;
     Zustand2.Add(1);
-    tmInhalt.IniFileName := OpenDialog1.FileName;
-    tmInhalt.IniSection := 'edits';
-    Edit2.Text := tmInhalt.ReadString('eingabewort', '');
-    Edit3.Text := tmInhalt.ReadString('leerzeichen', '#');
+    StringGrid1.RowCount := 2;
+    tmInhalt.FileName := OpenDialog1.FileName;
+
+
     Edit1.Text := tmInhalt.ReadString('alphabet', '');
+
     Edit1.EditingDone;
+    Edit2.Text := tmInhalt.ReadString('eingabewort', '');
+
     edit2.EditingDone;
+    Edit3.Text := tmInhalt.ReadString('leerzeichen', '#');
+
     edit3.EditingDone;
     for g := tmInhalt.ReadInteger('zustände', 2) - 1 downto 2 do
     begin
       ToolButton3.Click;
     end;
-    tmInhalt.IniSection := 'grid';
+
     h := 1;
     for g := 1 to StringGrid1.RowCount - 1 do
     begin
@@ -764,7 +770,7 @@ begin
         Inc(h);
       end;
     end;
-    tmInhalt.IniSection := 'info';
+    //  tmInhalt.IniSection := 'info';
     LabeledEdit2.Text := tmInhalt.ReadString('programmname', '');
     LabeledEdit3.Text := tmInhalt.ReadString('autor', '');
     LabeledEdit4.Text := tmInhalt.ReadString('kurzbeschreibung', '');
@@ -1031,13 +1037,13 @@ var
 begin
   ToolButton13.Enabled := False;
   Form1.Caption := 'Turingmaschine - ' + extractfilename(currentWorkDir);
-  tmInhalt.IniFileName := currentWorkDir;
-  tmInhalt.IniSection := 'edits';
+  tmInhalt.FileName := currentWorkDir;
+
   tmInhalt.WriteString('eingabewort', Edit2.Text);
   tmInhalt.WriteString('leerzeichen', Edit3.Text);
   tmInhalt.WriteString('alphabet', Edit1.Text);
   tmInhalt.WriteInteger('zustände', StringGrid1.RowCount);
-  tmInhalt.IniSection := 'grid';
+
   h := 1;
   for g := 1 to StringGrid1.RowCount - 1 do
   begin
@@ -1047,7 +1053,7 @@ begin
       Inc(h);
     end;
   end;
-  tmInhalt.IniSection := 'info';
+
   tmInhalt.WriteString('programmname', LabeledEdit2.Text);
   tmInhalt.WriteString('autor', LabeledEdit3.Text);
   tmInhalt.WriteString('kurzbeschreibung', LabeledEdit4.Text);
@@ -1072,8 +1078,8 @@ procedure TForm1.ToolButton3Click(Sender: TObject);
 begin
   if Length(Form1.Caption) > Length('Turingmaschine') then
   begin
-    tmInhalt.IniFileName := ExtractFileName(currentWorkDir);
-    tmInhalt.IniSection := 'edits';
+    tmInhalt.FileName := ExtractFileName(currentWorkDir);
+
     if Zustand2.Count <> tmInhalt.ReadInteger('zustände', 1) then
     begin
       Form1.Caption := 'Turingmaschine - ' + '*' + extractFileName(currentWorkDir);
@@ -1111,8 +1117,8 @@ begin
   begin
     if Length(Form1.Caption) > Length('Turingmaschine') then
     begin
-      tmInhalt.IniFileName := ExtractFileName(currentWorkDir);
-      tmInhalt.IniSection := 'edits';
+      tmInhalt.FileName := ExtractFileName(currentWorkDir);
+
       if Zustand2.Count <> tmInhalt.ReadInteger('zustände', 1) then
       begin
         Form1.Caption := 'Turingmaschine - ' + '*' + extractFileName(currentWorkDir);
@@ -1274,13 +1280,13 @@ var
 begin
   if SaveDialog1.Execute then
   begin
-    tmInhalt.IniFileName := SaveDialog1.FileName;
-    tmInhalt.IniSection := 'edits';
+    tmInhalt.FileName := SaveDialog1.FileName;
+
     tmInhalt.WriteString('eingabewort', Edit2.Text);
     tmInhalt.WriteString('leerzeichen', Edit3.Text);
     tmInhalt.WriteString('alphabet', Edit1.Text);
     tmInhalt.WriteInteger('zustände', StringGrid1.RowCount);
-    tmInhalt.IniSection := 'grid';
+
     h := 1;
     for g := 1 to StringGrid1.RowCount - 1 do
     begin
@@ -1290,7 +1296,7 @@ begin
         Inc(h);
       end;
     end;
-    tmInhalt.IniSection := 'info';
+
     tmInhalt.WriteString('programmname', LabeledEdit2.Text);
     tmInhalt.WriteString('autor', LabeledEdit3.Text);
     tmInhalt.WriteString('kurzbeschreibung', LabeledEdit4.Text);
@@ -1332,10 +1338,14 @@ begin
     doneDeleting := False;
     for i := 1 to Length(rawA) do
     begin
-      if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+-/0123456789'.Contains(rawA[i]) or
-        (rawA[i] = leerzeichen) then
+      if i <= Length(rawA) then
       begin
-        Delete(rawA, i, 1);
+        if not 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+-/0123456789'.Contains(rawA[i]) or
+          (rawA[i] = leerzeichen) then
+        begin
+          Delete(rawA, i, 1);
+        end;
+
       end;
     end;
     if (i > Length(rawA)) and (Length(rawA) <> 0) then
@@ -1381,8 +1391,11 @@ begin
     //Füge alle benötigten hinzu
     for i := 1 to Length(rawA) do
     begin
-      StringGrid1.ColCount := StringGrid1.ColCount + 1;
-      StringGrid1.Cells[StringGrid1.ColCount - 1, 0] := rawA[i];
+      if not StringGrid1.Rows[0].Text.Contains(rawA[i]) then
+      begin
+        StringGrid1.ColCount := StringGrid1.ColCount + 1;
+        StringGrid1.Cells[StringGrid1.ColCount - 1, 0] := rawA[i];
+      end;
     end;
     Edit2.Clear;
     Edit2.EditingDone;
