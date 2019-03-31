@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
   PairSplitter, Grids, StdCtrls, IniPropStorage, lists, inputDialogforTM,
-  lclintf, LCLType, Spin, XMLPropStorage,FileUtil,FileAssoc;
+  lclintf, LCLType, Spin, XMLPropStorage,FileUtil;
 
 type
 
@@ -149,7 +149,7 @@ var
   Zustand2: TListOfInt;
   currentWorkDir: string;
   delay: integer;
-  assoc: TFileAssociation;
+
 
 implementation
 
@@ -162,7 +162,7 @@ implementation
 }
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  assoc := TFileAssociation.Create(Self);
+
   einstellungenLesenUndSetzen;
   finished := True;
   hasMoved := True;
@@ -183,15 +183,7 @@ begin
   Zustand2.Add(1);
   setViewMode(0);
 
-  assoc.ApplicationName:= 'Turingmaschine';
-  assoc.ApplicationDescription:='Turingmaschine simulator';
-  assoc.Extension:='.tm';
-  assoc.ExtensionName := 'Turingmaschine Programm';
-  assoc.ExtensionIcon:='"C:\turingMaschine\Film-Roll-256.ico"';
-  assoc.Action:=Application.Location+' "%1"';
-  assoc.ActionName:='Open';
-  assoc.ActionIcon:='"C:\turingMaschine\Film-Roll-256.ico"';
-  assoc.RegisterForAllUsers:=True;
+
 
 end;
 
@@ -201,11 +193,11 @@ end;
 procedure TForm1.FormShow(Sender: TObject);
 begin
   breite := Panel7.Width;
-  if assoc.Execute then
+  if not ParamStr(1).Equals('') then
   begin
-   // ShowMessage(ParamStr(1));
+    ShowMessage(ParamStr(1));
     loadTM(ParamStr(1));
-    assoc.ClearIconCache;
+    //assoc.ClearIconCache;
   end;
 end;
 

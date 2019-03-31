@@ -89,6 +89,7 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
+  LCLVersion = '2.0.0.4'
   object Panel1: TPanel
     AnchorSideBottom.Control = StatusBar1
     Left = -40
@@ -123,7 +124,7 @@ object Form1: TForm1
     end
     object ToolButton2: TToolButton
       Left = 181
-      Height = 32
+      Height = 8
       Top = 2
       Caption = 'ToolButton2'
       Style = tbsSeparator
@@ -160,7 +161,7 @@ object Form1: TForm1
     end
     object ToolButton6: TToolButton
       Left = 333
-      Height = 32
+      Height = 8
       Top = 2
       Caption = 'ToolButton6'
       Style = tbsSeparator
@@ -1157,6 +1158,7 @@ object Form1: TForm1
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = TabSheet1
         AnchorSideBottom.Side = asrBottom
+        Cursor = crDefault
         Left = 0
         Height = 249
         Top = 0
@@ -1370,7 +1372,7 @@ object Form1: TForm1
             OnDblClick = StringGrid1DblClick
             ColWidths = (
               75
-              221
+              225
             )
             Cells = (
               2
