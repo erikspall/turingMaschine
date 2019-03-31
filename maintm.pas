@@ -1111,6 +1111,7 @@ begin
         reply := True
       else
         reply := False;
+      break;
     end;
   end;
   if reply then

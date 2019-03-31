@@ -1139,10 +1139,10 @@ object Form1: TForm1
     Height = 277
     Top = 32
     Width = 440
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 15
     OnChange = PageControl1Change
     object TabSheet1: TTabSheet
@@ -1514,7 +1514,7 @@ object Form1: TForm1
         Top = 217
         Width = 68
         Anchors = [akLeft, akBottom]
-        Caption = 'Version: 1.0.0'
+        Caption = 'Version: 1.0.1'
         ParentColor = False
         ParentFont = False
       end
