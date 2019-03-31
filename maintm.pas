@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
   PairSplitter, Grids, StdCtrls, IniPropStorage, lists, inputDialogforTM,
-  lclintf, LCLType, Spin, XMLPropStorage;
+  lclintf, LCLType, Spin, XMLPropStorage,FileUtil;
 
 type
 
@@ -739,13 +739,20 @@ end;
 function TForm1.loadTM(FileName: string): boolean;
 var
   g, h: integer;
+  //dir:String;
+  exists:boolean=false;
 begin
   try
+    //dir:=GetCurrentDir();
     Zustand2.Clear;
     Zustand2.Add(1);
     StringGrid1.RowCount := 2;
-    tmInhalt.FileName := OpenDialog1.FileName;
+    if OpenDialog1.FileName.Equals(ExtractFileName(OpenDialog1.FileName)) or FileExists(ExtractFileName(OpenDialog1.FileName)) then exists:=true else exists:=false;
+    if not exists then
+    CopyFile(OpenDialog1.FileName,ExtractFileName(OpenDialog1.FileName));
 
+    tmInhalt.FileName := ExtractFileName(OpenDialog1.FileName);
+    // SetCurrentDir(OpenDialog1.);
 
     Edit1.Text := tmInhalt.ReadString('alphabet', '');
 
@@ -776,6 +783,10 @@ begin
     LabeledEdit4.Text := tmInhalt.ReadString('kurzbeschreibung', '');
     Form1.Caption := 'Turingmaschine - ' + ExtractFileName(OpenDialog1.FileName);
     Result := True;
+    //ShowMessage('Read from: ' + 'temp'+ExtractFileName(OpenDialog1.FileName));
+    if not exists then
+    DeleteFile(ExtractFileName(OpenDialog1.FileName));
+   // SetCurrentDir(dir);
   except
     Result := False;
   end;
