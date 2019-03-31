@@ -21,8 +21,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="mainTM"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="174"/>
-        <CursorPos X="4" Y="198"/>
+        <TopLine Value="190"/>
+        <CursorPos X="5" Y="198"/>
         <UsageCount Value="68"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -81,7 +81,7 @@
         <UsageCount Value="10"/>
       </Unit7>
     </Units>
-    <JumpHistory Count="13" HistoryIndex="12">
+    <JumpHistory Count="14" HistoryIndex="13">
       <Position1>
         <Filename Value="maintm.pas"/>
         <Caret Line="207" Column="26" TopLine="167"/>
@@ -134,6 +134,10 @@
         <Filename Value="maintm.pas"/>
         <Caret Line="186" Column="3" TopLine="168"/>
       </Position13>
+      <Position14>
+        <Filename Value="maintm.pas"/>
+        <Caret Line="198" Column="4" TopLine="211"/>
+      </Position14>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

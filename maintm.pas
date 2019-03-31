@@ -195,7 +195,7 @@ begin
   breite := Panel7.Width;
   if not ParamStr(1).Equals('') then
   begin
-    ShowMessage(ParamStr(1));
+  //  ShowMessage(ParamStr(1));
     loadTM(ParamStr(1));
     //assoc.ClearIconCache;
   end;
