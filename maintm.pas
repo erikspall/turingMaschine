@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, ComCtrls,
   PairSplitter, Grids, StdCtrls, IniPropStorage, lists, inputDialogforTM,
-  lclintf, LCLType, Spin, XMLPropStorage,FileUtil;
+  lclintf, LCLType, Spin, XMLPropStorage,FileUtil,FileAssoc;
 
 type
 
@@ -80,6 +80,7 @@ type
     ToolButton8: TToolButton;
     ToolButton9: TToolButton;
     tminhalt: TXMLPropStorage;
+    procedure Button1Click(Sender: TObject);
     procedure Edit1EditingDone(Sender: TObject);
     procedure Edit2EditingDone(Sender: TObject);
     procedure Edit3EditingDone(Sender: TObject);
@@ -148,6 +149,7 @@ var
   Zustand2: TListOfInt;
   currentWorkDir: string;
   delay: integer;
+  assoc: TFileAssociation;
 
 implementation
 
@@ -160,6 +162,7 @@ implementation
 }
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  assoc := TFileAssociation.Create(Self);
   einstellungenLesenUndSetzen;
   finished := True;
   hasMoved := True;
@@ -179,6 +182,17 @@ begin
   Zustand2 := TListOFInt.Create;
   Zustand2.Add(1);
   setViewMode(0);
+
+  assoc.ApplicationName:= 'Turingmaschine';
+  assoc.ApplicationDescription:='Turingmaschine simulator';
+  assoc.Extension:='.tm';
+  assoc.ExtensionName := 'Turingmaschine Programm';
+  assoc.ExtensionIcon:='"C:\turingMaschine\Film-Roll-256.ico"';
+  assoc.Action:=Application.Location+' "%1"';
+  assoc.ActionName:='Open';
+  assoc.ActionIcon:='"C:\turingMaschine\Film-Roll-256.ico"';
+  assoc.RegisterForAllUsers:=True;
+
 end;
 
 {
@@ -187,6 +201,12 @@ end;
 procedure TForm1.FormShow(Sender: TObject);
 begin
   breite := Panel7.Width;
+  if assoc.Execute then
+  begin
+   // ShowMessage(ParamStr(1));
+    loadTM(ParamStr(1));
+    assoc.ClearIconCache;
+  end;
 end;
 
 {
@@ -438,6 +458,11 @@ begin
       1, 0] + '}';
     setViewMode(1);
   end;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+
 end;
 
 {
@@ -747,11 +772,11 @@ begin
     Zustand2.Clear;
     Zustand2.Add(1);
     StringGrid1.RowCount := 2;
-    if OpenDialog1.FileName.Equals(ExtractFileName(OpenDialog1.FileName)) or FileExists(ExtractFileName(OpenDialog1.FileName)) then exists:=true else exists:=false;
+    if FileName.Equals(ExtractFileName(FileName)) or FileExists(ExtractFileName(FileName)) then exists:=true else exists:=false;
     if not exists then
-    CopyFile(OpenDialog1.FileName,ExtractFileName(OpenDialog1.FileName));
+    CopyFile(FileName,ExtractFileName(FileName));
 
-    tmInhalt.FileName := ExtractFileName(OpenDialog1.FileName);
+    tmInhalt.FileName := ExtractFileName(FileName);
     // SetCurrentDir(OpenDialog1.);
 
     Edit1.Text := tmInhalt.ReadString('alphabet', '');
@@ -781,11 +806,11 @@ begin
     LabeledEdit2.Text := tmInhalt.ReadString('programmname', '');
     LabeledEdit3.Text := tmInhalt.ReadString('autor', '');
     LabeledEdit4.Text := tmInhalt.ReadString('kurzbeschreibung', '');
-    Form1.Caption := 'Turingmaschine - ' + ExtractFileName(OpenDialog1.FileName);
+    Form1.Caption := 'Turingmaschine - ' + ExtractFileName(FileName);
     Result := True;
     //ShowMessage('Read from: ' + 'temp'+ExtractFileName(OpenDialog1.FileName));
     if not exists then
-    DeleteFile(ExtractFileName(OpenDialog1.FileName));
+    DeleteFile(ExtractFileName(FileName));
    // SetCurrentDir(dir);
   except
     Result := False;
