@@ -744,12 +744,13 @@ begin
     Zustand2.Add(1);
     tmInhalt.IniFileName := OpenDialog1.FileName;
     tmInhalt.IniSection := 'edits';
-    Edit2.Text := tmInhalt.ReadString('eingabewort', '');
-    Edit3.Text := tmInhalt.ReadString('leerzeichen', '#');
     Edit1.Text := tmInhalt.ReadString('alphabet', '');
     Edit1.EditingDone;
+    Edit2.Text := tmInhalt.ReadString('eingabewort', '');
     edit2.EditingDone;
+    Edit3.Text := tmInhalt.ReadString('leerzeichen', '#');
     edit3.EditingDone;
+
     for g := tmInhalt.ReadInteger('zustände', 2) - 1 downto 2 do
     begin
       ToolButton3.Click;
@@ -1342,7 +1343,6 @@ begin
       doneDeleting := False
     else
       doneDeleting := True;
-
   until doneDeleting;
 
   if Length(rawA) <> 0 then
@@ -1381,8 +1381,13 @@ begin
     //Füge alle benötigten hinzu
     for i := 1 to Length(rawA) do
     begin
+      if not StringGrid1.Rows[0].Text.Contains(rawA[i]) then
+      begin
+
       StringGrid1.ColCount := StringGrid1.ColCount + 1;
       StringGrid1.Cells[StringGrid1.ColCount - 1, 0] := rawA[i];
+      end;
+
     end;
     Edit2.Clear;
     Edit2.EditingDone;
