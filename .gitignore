@@ -1,5 +1,6 @@
 *.tm
 backup/
+*.xml
 *.bat
 *.exe
 lib/
