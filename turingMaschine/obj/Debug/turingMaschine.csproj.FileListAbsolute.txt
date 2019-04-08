@@ -1,0 +1,15 @@
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\bin\Debug\turingMaschine.exe.config
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\bin\Debug\turingMaschine.exe
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\bin\Debug\turingMaschine.pdb
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine.csprojAssemblyReference.cache
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\MainWindow.g.cs
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\App.g.cs
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine_MarkupCompile.cache
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine_MarkupCompile.lref
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\MainWindow.baml
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine.g.resources
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine.Properties.Resources.resources
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine.csproj.GenerateResource.cache
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine.csproj.CoreCompileInputs.cache
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine.exe
+C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine.pdb

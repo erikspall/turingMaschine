@@ -1,0 +1,68 @@
+﻿<Window x:Class="turingMaschine.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:turingMaschine"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ToolBarTray Background="White" Width="auto" Height="auto" VerticalAlignment="top" HorizontalAlignment="stretch" Margin="0 0 0 0">
+            <ToolBar Background="White">
+                <Button Content="Jo"/>
+            </ToolBar>
+        </ToolBarTray>
+        <TabControl Height="auto" Width="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0 27.2 0 100">
+            <TabItem Header="TM">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        
+                        <GroupBox Header="Test" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="auto" Height="auto">
+                            <StackPanel>
+                                <TextBox/>
+                                <Label Content="Alphabet: {}"/>
+                            </StackPanel>
+                            
+                        </GroupBox>
+                        <GroupBox Header="Eingabewort" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="auto" Height="auto">
+                            <StackPanel>
+                                <TextBox/>
+                                <Label/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Leerzeichen" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="auto" Height="auto">
+                            <StackPanel>
+                                <TextBox/>
+                            </StackPanel>
+                        </GroupBox>
+
+                    </StackPanel>
+
+                    <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                    <DataGrid Grid.Column="2" FontSize="55" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></DataGrid>
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Info">
+                <Label Content="info"/>
+            </TabItem>
+            <TabItem Header="Settings">
+                <Label Content="settings"/>
+            </TabItem>
+
+        </TabControl>
+        <DockPanel VerticalAlignment="Bottom" Height="auto" HorizontalAlignment="Stretch" Width="auto">
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock>Aha</TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+    </DockPanel>
+    </Grid>
+    
+</Window>
