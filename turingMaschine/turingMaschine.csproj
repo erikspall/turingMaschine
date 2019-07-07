@@ -137,5 +137,11 @@
   <ItemGroup>
     <None Include="Resources\StepForward_16x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpfControlLibrary1\WpfControlLibrary1.csproj">
+      <Project>{E2774F71-3EB4-4DD8-8C6A-BFFB8A6B5A6F}</Project>
+      <Name>WpfControlLibrary1</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

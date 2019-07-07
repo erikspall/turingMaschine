@@ -8,3 +8,16 @@ C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschi
 C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\turingMaschine.csproj.CoreCompileInputs.cache
 C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\qLearning.exe
 C:\Users\espal\source\repos\turingMaschine\turingMaschine\obj\Debug\qLearning.pdb
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\bin\Debug\qLearning.exe.config
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\bin\Debug\qLearning.exe
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\bin\Debug\qLearning.pdb
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\obj\Debug\qLearning.Form1.resources
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\obj\Debug\qLearning.Properties.Resources.resources
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\obj\Debug\turingMaschine.csproj.GenerateResource.cache
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\obj\Debug\turingMaschine.csproj.CoreCompileInputs.cache
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\obj\Debug\qLearning.exe
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\obj\Debug\qLearning.pdb
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\bin\Debug\WpfControlLibrary1.dll
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\bin\Debug\WpfControlLibrary1.pdb
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\obj\Debug\turingMaschine.csprojAssemblyReference.cache
+C:\Users\espal\Documents\GitHub\turingMaschine\turingMaschine\obj\Debug\turingMaschine.csproj.CopyComplete
