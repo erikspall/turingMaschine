@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace turingMaschine.Properties
+namespace qLearning.Properties
 {
 
 

@@ -1,0 +1,10 @@
+C:\Users\espal\source\repos\qLearning\qLearning\bin\Debug\qLearning.exe.config
+C:\Users\espal\source\repos\qLearning\qLearning\bin\Debug\qLearning.exe
+C:\Users\espal\source\repos\qLearning\qLearning\bin\Debug\qLearning.pdb
+C:\Users\espal\source\repos\qLearning\qLearning\obj\Debug\qLearning.csprojAssemblyReference.cache
+C:\Users\espal\source\repos\qLearning\qLearning\obj\Debug\qLearning.Form1.resources
+C:\Users\espal\source\repos\qLearning\qLearning\obj\Debug\qLearning.Properties.Resources.resources
+C:\Users\espal\source\repos\qLearning\qLearning\obj\Debug\qLearning.csproj.GenerateResource.cache
+C:\Users\espal\source\repos\qLearning\qLearning\obj\Debug\qLearning.csproj.CoreCompileInputs.cache
+C:\Users\espal\source\repos\qLearning\qLearning\obj\Debug\qLearning.exe
+C:\Users\espal\source\repos\qLearning\qLearning\obj\Debug\qLearning.pdb
