@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfControlLibrary1"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
-    <Canvas>
-        <Rectangle x:Name="Test1" Width="50" Height="50" Fill="Black"></Rectangle>
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded" SourceUpdated="UserControl_SourceUpdated" SizeChanged="UserControl_SizeChanged">
+    <Canvas x:Name="Canvas1">
+        <Label x:Name="Test1" Width="50" Height="50" Content="#" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" BorderThickness="1">
+            
+        </Label>
 
     </Canvas>
 </UserControl>

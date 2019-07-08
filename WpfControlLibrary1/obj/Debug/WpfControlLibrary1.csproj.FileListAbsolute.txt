@@ -10,3 +10,4 @@ C:\Users\espal\Documents\GitHub\turingMaschine\WpfControlLibrary1\obj\Debug\WpfC
 C:\Users\espal\Documents\GitHub\turingMaschine\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.csproj.CoreCompileInputs.cache
 C:\Users\espal\Documents\GitHub\turingMaschine\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.dll
 C:\Users\espal\Documents\GitHub\turingMaschine\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.pdb
+C:\Users\espal\Documents\GitHub\turingMaschine\WpfControlLibrary1\obj\Debug\WpfControlLibrary1.csprojAssemblyReference.cache
