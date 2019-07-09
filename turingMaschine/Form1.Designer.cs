@@ -51,7 +51,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.labelBlank = new System.Windows.Forms.Label();
             this.textBoxBlank = new System.Windows.Forms.TextBox();
@@ -79,7 +78,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.userControl11 = new WpfControlLibrary1.UserControl1();
+            this.userControl12 = new WpfControlLibrary1.UserControl1();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -177,6 +176,7 @@
             this.buttonStepBackwards.Name = "buttonStepBackwards";
             this.buttonStepBackwards.Size = new System.Drawing.Size(23, 22);
             this.buttonStepBackwards.Text = "toolStripButton3";
+            this.buttonStepBackwards.Click += new System.EventHandler(this.ButtonStepBackwards_Click);
             // 
             // buttonStepForward
             // 
@@ -186,6 +186,7 @@
             this.buttonStepForward.Name = "buttonStepForward";
             this.buttonStepForward.Size = new System.Drawing.Size(23, 22);
             this.buttonStepForward.Text = "toolStripButton4";
+            this.buttonStepForward.Click += new System.EventHandler(this.ButtonStepForward_Click);
             // 
             // toolStripSeparator1
             // 
@@ -306,7 +307,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Transparent;
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
@@ -318,16 +318,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(537, 257);
             this.splitContainer1.SplitterDistance = 201;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(80, 198);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
             // groupBox3
             // 
@@ -359,6 +349,7 @@
             this.textBoxBlank.Size = new System.Drawing.Size(195, 20);
             this.textBoxBlank.TabIndex = 0;
             this.textBoxBlank.Text = "#";
+            this.textBoxBlank.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxBlank_KeyPress);
             // 
             // groupBox2
             // 
@@ -441,6 +432,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(332, 257);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.DataGridView1_DoubleClick);
             // 
             // tabPage2
             // 
@@ -623,7 +615,7 @@
             this.elementHost1.Size = new System.Drawing.Size(557, 50);
             this.elementHost1.TabIndex = 2;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.userControl11;
+            this.elementHost1.Child = this.userControl12;
             // 
             // Form1
             // 
@@ -719,8 +711,8 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStateLabel;
+        private WpfControlLibrary1.UserControl1 userControl12;
     }
 }
 

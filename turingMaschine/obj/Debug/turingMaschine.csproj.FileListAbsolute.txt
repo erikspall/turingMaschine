@@ -34,3 +34,4 @@ C:\Users\espal\PycharmProjects\turingMaschine\turingMaschine\obj\Debug\turingMas
 C:\Users\espal\PycharmProjects\turingMaschine\turingMaschine\obj\Debug\qLearning.exe
 C:\Users\espal\PycharmProjects\turingMaschine\turingMaschine\obj\Debug\qLearning.pdb
 C:\Users\espal\PycharmProjects\turingMaschine\turingMaschine\obj\Debug\turingMaschine.Form1.resources
+C:\Users\espal\PycharmProjects\turingMaschine\turingMaschine\obj\Debug\turingMaschineInput.inputDialog.resources

@@ -21,11 +21,14 @@ namespace WpfControlLibrary1
     /// Interaktionslogik für UserControl1.xaml
     /// </summary>
     /// 
-
+  
 
     public partial class UserControl1 : UserControl
     {
-        private static List<Label> tape = new List<Label>(); //tapeArray of Labels used to Display content of TM
+        
+
+
+        public static List<Label> tape = new List<Label>(); //tapeArray of Labels used to Display content of TM
         public static bool loaded = false;    //bool to track if everthing loaded already, so tape creation isn't messed up
         public static int sizing = 50;
         private static int index = -1;
@@ -33,6 +36,9 @@ namespace WpfControlLibrary1
         public static string blank = "#";
         public static List<string> tapeContent = new List<string>();
         public static Canvas Canvas1 = new Canvas();
+        //public bool hasMoved { get; set; } = false;
+        public static ThicknessAnimation tA = new ThicknessAnimation();
+
 
         public UserControl1()
         {
@@ -67,9 +73,9 @@ namespace WpfControlLibrary1
                 indexInContent = index;
             }
             /// MessageBox.Show(ActualWidth.ToString());
-
+           // tA.Completed += new EventHandler(myanim_Completed);
         }
-
+        
         private void UserControl_SourceUpdated(object sender, DataTransferEventArgs e)
         {
 
@@ -186,7 +192,15 @@ namespace WpfControlLibrary1
             tLabel.Height = sizing;
             tLabel.HorizontalContentAlignment = HorizontalAlignment.Center;
             tLabel.VerticalContentAlignment = VerticalAlignment.Center;
-            tLabel.Content = blank; //Content should load here
+            if (indexInContent + (tape.Count - index) < tapeContent.Count)
+            {
+                tLabel.Content = tapeContent[indexInContent + (tape.Count - index)];
+            }
+            else
+            {
+                tLabel.Content = blank; //Content should load here
+                tapeContent.Add(blank);
+            }
             tLabel.BorderBrush = Brushes.Black;
             tLabel.BorderThickness = new Thickness(1);
             tLabel.Margin = new Thickness((tape.Count - 1) * sizing, 0, 0, 0);
@@ -195,7 +209,10 @@ namespace WpfControlLibrary1
 
             foreach (Label lbl in tape)
             {
-                ThicknessAnimation tA = new ThicknessAnimation(new Thickness(lbl.Margin.Left - sizing, 0, 0, 0), new Duration(TimeSpan.FromSeconds(1)));
+                //tA = new ThicknessAnimation(new Thickness(lbl.Margin.Left - sizing, 0, 0, 0), new Duration(TimeSpan.FromSeconds(1)));
+                tA.From = new Thickness(lbl.Margin.Left,0,0,0);
+                tA.To = new Thickness(lbl.Margin.Left - sizing, 0, 0, 0);
+                tA.Duration = new Duration(TimeSpan.FromSeconds(1));
                 lbl.BeginAnimation(MarginProperty, tA);
             }
 
@@ -203,6 +220,45 @@ namespace WpfControlLibrary1
             Canvas1.Children.Remove(tape[0]);
             tape.RemoveAt(0);
             indexInContent++;
+        }
+
+        public static void moveBackward()
+        {
+            Label tLabel = new Label(); //temporary Label that gets added to Array
+            tLabel.Width = sizing;
+            tLabel.Height = sizing;
+            tLabel.HorizontalContentAlignment = HorizontalAlignment.Center;
+            tLabel.VerticalContentAlignment = VerticalAlignment.Center;
+
+            if (indexInContent - (index+1) >= 0)
+            {
+                tLabel.Content = tapeContent[indexInContent - (index+1)];
+            }
+            else
+            {
+                tLabel.Content = blank; //Content should load here
+                tapeContent.Add(blank);
+            }
+
+            tLabel.BorderBrush = Brushes.Black;
+            tLabel.BorderThickness = new Thickness(1);
+            tLabel.Margin = new Thickness(-sizing*2, 0, 0, 0);
+            Canvas1.Children.Add(tLabel);
+            tape.Insert(0, tLabel);
+
+            foreach (Label lbl in tape)
+            {
+                // tA = new ThicknessAnimation(new Thickness(lbl.Margin.Left + sizing, 0, 0, 0), new Duration(TimeSpan.FromSeconds(1)));
+                tA.From = new Thickness(lbl.Margin.Left, 0, 0, 0);
+                tA.To = new Thickness(lbl.Margin.Left + sizing, 0, 0, 0);
+                tA.Duration = new Duration(TimeSpan.FromSeconds(1));
+                lbl.BeginAnimation(MarginProperty, tA);
+            }
+
+            Canvas1.Children.Remove(tape[tape.Count()-1]);
+            tape.RemoveAt(tape.Count-1);
+
+            indexInContent--;
         }
 
         public static void resetTape(string input)

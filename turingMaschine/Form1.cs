@@ -16,7 +16,8 @@ namespace turingMaschine
     {
         Random rnd = new Random();
         string abc,input="";
-        int currentS,steps = 0;
+
+        int currentS,steps,animatedTiles = 0;
         public Form1()
         {
             InitializeComponent();
@@ -26,13 +27,26 @@ namespace turingMaschine
             dataGridView1.RowHeadersWidth = 61;
             dataGridView1.Rows[0].HeaderCell.Value = "Z0";
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            UserControl1.tA.Completed += new EventHandler(myanim_Completed);
 
+        }
+
+        private void myanim_Completed(object sender, EventArgs e)
+        {
+            if (animatedTiles >= UserControl1.tape.Count)
+            {
+                MessageBox.Show("Jo");
+                animatedTiles = 0;
+            } else
+            {
+                animatedTiles++;
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
            
-            
+           
         }
 
         private void Form1_Click(object sender, EventArgs e)
@@ -233,6 +247,11 @@ namespace turingMaschine
             resetTM();
         }
 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            UserControl1.moveBackward();
+        }
+
         private void setInputWord()
         {
             bool isInvalid = false;
@@ -267,6 +286,78 @@ namespace turingMaschine
             }
         }
 
+        private void TextBoxBlank_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                //textBoxInput.Text = textBoxInput.Text.ToUpper();
+
+                setBlank();
+
+                e.Handled = true;
+            }
+        }
+
+        private void DataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            List<string> zeichen = new List<string>();
+            int direction=-1;
+            bool isEndState = false;
+            char currentChar;
+            int currentState;
+            foreach (DataGridViewColumn c in dataGridView1.Columns)
+            {
+                zeichen.Add(c.HeaderText);
+            }
+            if (dataGridView1.CurrentCell.Value != null)
+            {
+                switch (dataGridView1.CurrentCell.Value.ToString()[0])
+                {
+                    case 'L':
+                        direction = 0;
+                        break;
+                    case '0':
+                        direction = 1;
+                        break;
+                    case 'R':
+                        direction = 2;
+                        break;
+                }
+                currentChar = dataGridView1.CurrentCell.Value.ToString()[2];
+                currentState = int.Parse(dataGridView1.CurrentCell.Value.ToString().Substring(5));
+                if (dataGridView1.CurrentCell.Value.ToString().Equals("~ Ende ~"))
+                {
+                    isEndState = true;
+                }
+            } else
+            {
+                currentChar = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].HeaderText[0];
+                currentState = dataGridView1.CurrentRow.Index;
+            }
+         
+          
+
+
+            
+            
+
+            turingMaschineInput.inputDialog t = new turingMaschineInput.inputDialog(dataGridView1.Rows.Count,zeichen,direction,isEndState,currentChar,currentState);
+            t.ShowDialog();
+            if (!t.returnValue.Equals(""))
+            {
+                dataGridView1.CurrentCell.Value = t.returnValue;
+            }
+        }
+
+        private void ButtonStepBackwards_Click(object sender, EventArgs e)
+        {
+            UserControl1.moveBackward();
+        }
+
+        private void ButtonStepForward_Click(object sender, EventArgs e)
+        {
+            UserControl1.moveForward();
+        }
 
         private void resetTM()
         {
@@ -286,6 +377,7 @@ namespace turingMaschine
             {
                 UserControl1.blank = "#";
             }
+            dataGridView1.Columns[0].HeaderText = UserControl1.blank;
             UserControl1.resetTape(textBoxInput.Text);
             
 
@@ -293,6 +385,17 @@ namespace turingMaschine
 
         }
 
+        private void setBlank()
+        {
+            if (!textBoxBlank.Text.Contains(UserControl1.blank) && !textBoxAlphabet.Text.Contains(textBoxBlank.Text))
+            {
+                UserControl1.blank = textBoxBlank.Text;
+                resetTM();
+                
+
+                
+            }
+        }
 
         
     }
