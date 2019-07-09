@@ -14,44 +14,60 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace WpfControlLibrary1
 {
     /// <summary>
     /// Interaktionslogik für UserControl1.xaml
     /// </summary>
+    /// 
+
+
     public partial class UserControl1 : UserControl
     {
-        List<Label> tape = new List<Label>(); //tapeArray of Labels used to Display content of TM
-        bool loaded = false;    //bool to track if everthing loaded already, so tape creation isn't messed up
+        private static List<Label> tape = new List<Label>(); //tapeArray of Labels used to Display content of TM
+        public static bool loaded = false;    //bool to track if everthing loaded already, so tape creation isn't messed up
+        public static int sizing = 50;
+        private static int index = -1;
+        private static int indexInContent = 0;
+        public static string blank = "#";
+        public static List<string> tapeContent = new List<string>();
+        public static Canvas Canvas1 = new Canvas();
 
         public UserControl1()
         {
             InitializeComponent();
+            dummyGrid.Children.Add(Canvas1);
+            Grid.SetColumn(Canvas1, 0);
+            Grid.SetRow(Canvas1, 0);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (!loaded) {
                 loaded = true;
-                for (int i = -1; (Canvas1.ActualWidth / 50) + 2 > tape.Count; i++)
+                for (int i = -1; (Canvas1.ActualWidth / sizing) + 2 > tape.Count; i++)
                 {
                     Label tLabel = new Label(); //temporary Label that gets added to Array
-                    tLabel.Width = 50;
-                    tLabel.Height = 50;
+                    tLabel.Width = sizing;
+                    tLabel.Height = sizing;
                     tLabel.HorizontalContentAlignment = HorizontalAlignment.Center;
                     tLabel.VerticalContentAlignment = VerticalAlignment.Center;
-                    tLabel.Content = "#";
+                    tLabel.Content = blank;
                     tLabel.BorderBrush = Brushes.Black;
                     tLabel.BorderThickness = new Thickness(1);
-                    tLabel.Margin = new Thickness(i * 50, 0, 0, 0);
+                    tLabel.Margin = new Thickness(i * sizing, 0, 0, 0);
                     Canvas1.Children.Add(tLabel);
                     tape.Add(tLabel);
-                   
+                    tapeContent.Add(blank);
+
+
                 }
-               
+                index = ((tape.Count) / 2) - 1;
+                indexInContent = index;
             }
-           /// MessageBox.Show(ActualWidth.ToString());
-            
+            /// MessageBox.Show(ActualWidth.ToString());
+
         }
 
         private void UserControl_SourceUpdated(object sender, DataTransferEventArgs e)
@@ -61,23 +77,173 @@ namespace WpfControlLibrary1
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-           // MessageBox.Show(tape.Count.ToString());
-           if ((Canvas1.ActualWidth/50)+2 > tape.Count) //Check if tape needs more Lables
+            if (loaded)
             {
-                 if (tape.Count % 2 == 0) //if even
+                while ((Canvas1.ActualWidth / sizing) + 2 > tape.Count) //Check if tape needs more Lables
                 {
+                    if (tape.Count % 2 != 0) //if even
+                    {   //Move everything
+                        for (int i = 0; i < tape.Count; i++)
+                        {
+                            tape[i].Margin = new Thickness(tape[i].Margin.Left + sizing, 0, 0, 0);
+                        }
 
-                } else //if uneven
-                {
+                        //Insert Label
+                        Label tLabel = new Label(); //temporary Label that gets added to Array
+                        tLabel.Width = sizing;
+                        tLabel.Height = sizing;
+                        tLabel.HorizontalContentAlignment = HorizontalAlignment.Center;
+                        tLabel.VerticalContentAlignment = VerticalAlignment.Center;
 
+                        if (indexInContent - (index - 1) >= 0)
+                        {
+                            tLabel.Content = tapeContent[indexInContent - (index - 1)];
+                        } else { 
+                            tLabel.Content = blank; //Content should load here
+                            tapeContent.Add(blank);
+                        }
+
+                        tLabel.BorderBrush = Brushes.Black;
+                        tLabel.BorderThickness = new Thickness(1);
+                        tLabel.Margin = new Thickness(-sizing, 0, 0, 0);
+                        Canvas1.Children.Add(tLabel);
+                        tape.Insert(0, tLabel);
+                        index++;//Index of current item changed
+
+                    }
+                    else //if uneven
+                    {
+                        //Add Label
+                        Label tLabel = new Label(); //temporary Label that gets added to Array
+                        tLabel.Width = sizing;
+                        tLabel.Height = sizing;
+                        tLabel.HorizontalContentAlignment = HorizontalAlignment.Center;
+                        tLabel.VerticalContentAlignment = VerticalAlignment.Center;
+
+
+                        if (indexInContent + (tape.Count-index) < tapeContent.Count)
+                        {
+                            tLabel.Content = tapeContent[indexInContent + (tape.Count - index)];
+                        }
+                        else
+                        {
+                            tLabel.Content = blank; //Content should load here
+                            tapeContent.Add(blank);
+                        }
+
+                        tLabel.BorderBrush = Brushes.Black;
+                        tLabel.BorderThickness = new Thickness(1);
+                        tLabel.Margin = new Thickness((tape.Count - 1) * sizing, 0, 0, 0);
+                        Canvas1.Children.Add(tLabel);
+                        tape.Add(tLabel);
+                    }
                 }
+                while ((Canvas1.ActualWidth / sizing) + 2 < tape.Count - 1)//Check if tape needs less Lables
+                {
+                    if (tape.Count % 2 != 0) //if even
+                    {//Move everything
+                        for (int i = 0; i < tape.Count; i++)
+                        {
+                            tape[i].Margin = new Thickness(tape[i].Margin.Left - sizing, 0, 0, 0);
+                        }
+                        //Remove first Label
+                        Canvas1.Children.Remove(tape[0]);
+                        tape.RemoveAt(0);
+                        index--;//Index of current item changed
+                    }
+                    else //if uneven
+                    {
+                        //remove Label
+                        Canvas1.Children.Remove(tape[tape.Count - 1]);
+                        tape.RemoveAt(tape.Count - 1);
+                    }
+                }
+
+
+
+
+
+
             }
 
         }
 
-        public int currentIndex()
+        public static void setText(int index, string str)
         {
-            
+            tape[index].Content = str;
+        }
+
+        public static int currentItem()
+        {
+            return index;
+        }
+
+
+        public static void moveForward()
+        {
+            Label tLabel = new Label(); //temporary Label that gets added to Array
+            tLabel.Width = sizing;
+            tLabel.Height = sizing;
+            tLabel.HorizontalContentAlignment = HorizontalAlignment.Center;
+            tLabel.VerticalContentAlignment = VerticalAlignment.Center;
+            tLabel.Content = blank; //Content should load here
+            tLabel.BorderBrush = Brushes.Black;
+            tLabel.BorderThickness = new Thickness(1);
+            tLabel.Margin = new Thickness((tape.Count - 1) * sizing, 0, 0, 0);
+            Canvas1.Children.Add(tLabel);
+            tape.Add(tLabel);
+
+            foreach (Label lbl in tape)
+            {
+                ThicknessAnimation tA = new ThicknessAnimation(new Thickness(lbl.Margin.Left - sizing, 0, 0, 0), new Duration(TimeSpan.FromSeconds(1)));
+                lbl.BeginAnimation(MarginProperty, tA);
+            }
+
+
+            Canvas1.Children.Remove(tape[0]);
+            tape.RemoveAt(0);
+            indexInContent++;
+        }
+
+        public static void resetTape(string input)
+        {
+            tapeContent.Clear();
+            indexInContent = index;
+            foreach(Label lbl in tape)
+            {
+                tapeContent.Add(blank);
+            }
+            //Set ABC again?
+            prepareTape(input);
+        }
+        public static void prepareTape(string input)
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (i + index < tapeContent.Count)
+                {
+                    tapeContent.RemoveAt(i + index);
+                    tapeContent.Insert(i + index, input[i].ToString());
+                } else
+                {
+                    tapeContent.Add(input[i].ToString());
+                }
+            }
+            initTape();
+        }
+
+        public static void initTape()
+        {
+            for (int i = 0; i < tape.Count; i++)
+            {
+                if (i >= index)
+                {
+                    tape[i].Content = tapeContent[i];
+                } else
+                {
+                    tape[i].Content = blank;
+                }
+            }
         }
     }
 }

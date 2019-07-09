@@ -73,6 +73,16 @@ namespace qLearning.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Arrowhead_Down_01_24__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Arrowhead-Down-01-24 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Download_16x {
             get {
                 object obj = ResourceManager.GetObject("Download_16x", resourceCulture);
