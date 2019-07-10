@@ -21,11 +21,11 @@ namespace WpfControlLibrary1
     /// Interaktionslogik für UserControl1.xaml
     /// </summary>
     /// 
-  
+
 
     public partial class UserControl1 : UserControl
     {
-        
+
 
 
         public static List<Label> tape = new List<Label>(); //tapeArray of Labels used to Display content of TM
@@ -34,12 +34,12 @@ namespace WpfControlLibrary1
         public static int index = -1;
         public static int indexInContent = 0;
         public static string blank = "#";
-        public static bool done=false;
+        public static bool done = false;
         public static List<string> tapeContent = new List<string>();
         public static Canvas Canvas1 = new Canvas();
         //public bool hasMoved { get; set; } = false;
         public static ThicknessAnimation tA = new ThicknessAnimation();
-
+        private static int duration=1000;
 
         public UserControl1()
         {
@@ -226,7 +226,7 @@ namespace WpfControlLibrary1
                 //tA = new ThicknessAnimation(new Thickness(lbl.Margin.Left - sizing, 0, 0, 0), new Duration(TimeSpan.FromSeconds(1)));
                 tA.From = new Thickness(lbl.Margin.Left,0,0,0);
                 tA.To = new Thickness(lbl.Margin.Left - sizing, 0, 0, 0);
-                tA.Duration = new Duration(TimeSpan.FromSeconds(1));
+                tA.Duration = new Duration(TimeSpan.FromMilliseconds(duration));
                 tA.FillBehavior = FillBehavior.Stop;
                 lbl.BeginAnimation(MarginProperty, null);
                 lbl.BeginAnimation(MarginProperty, tA);
@@ -272,7 +272,7 @@ namespace WpfControlLibrary1
                 // tA = new ThicknessAnimation(new Thickness(lbl.Margin.Left + sizing, 0, 0, 0), new Duration(TimeSpan.FromSeconds(1)));
                 tA.From = new Thickness(lbl.Margin.Left, 0, 0, 0);
                 tA.To = new Thickness(lbl.Margin.Left + sizing, 0, 0, 0);
-                tA.Duration = new Duration(TimeSpan.FromSeconds(1));
+                tA.Duration = new Duration(TimeSpan.FromMilliseconds(duration));
                 lbl.BeginAnimation(MarginProperty, null);
                 lbl.BeginAnimation(MarginProperty, tA);
                 lbl.Margin = new Thickness(lbl.Margin.Left + sizing, 0, 0, 0);
@@ -324,6 +324,12 @@ namespace WpfControlLibrary1
                     tape[i].Content = blank;
                 }
             }
+        }
+
+        public static void newDuration(int milli)
+        {
+
+            duration = milli;
         }
     }
 }
