@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace turingMaschineInput
+namespace turingMachineInput
 {
     public partial class inputDialog : Form
     {
@@ -36,7 +36,7 @@ namespace turingMaschineInput
             {
                 comboBox1.Items.Add(str);
             }
-            for (int i = 0; i <= zustände; i++)
+            for (int i = 0; i < zustände; i++)
             {
                 comboBox2.Items.Add("Z"+i.ToString());
             }

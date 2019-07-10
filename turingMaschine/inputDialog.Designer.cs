@@ -1,4 +1,4 @@
-﻿namespace turingMaschineInput
+﻿namespace turingMachineInput
 {
     partial class inputDialog
     {

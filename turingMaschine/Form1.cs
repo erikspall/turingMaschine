@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using WpfControlLibrary1;
 
 
-namespace turingMaschine
+namespace turingMachine
 {
     public partial class Form1 : Form
     {
         Random rnd = new Random();
         string abc,input="";
+        bool isRunning = false;
+
 
         int currentS,steps,animatedTiles = 0;
         public Form1()
@@ -33,13 +35,17 @@ namespace turingMaschine
 
         private void myanim_Completed(object sender, EventArgs e)
         {
+           // MessageBox.Show(UserControl1.tape[0].Margin.Left.ToString());
+            if (isRunning) { 
             if (animatedTiles >= UserControl1.tape.Count)
             {
-                MessageBox.Show("Jo");
+                // MessageBox.Show("Jo");
+                timer1.Enabled = true;
                 animatedTiles = 0;
             } else
             {
                 animatedTiles++;
+            }
             }
         }
 
@@ -68,6 +74,9 @@ namespace turingMaschine
 
         private void Form1_Resize(object sender, EventArgs e)
         {
+            
+
+            label1.Margin = new Padding((UserControl1.sizing * (UserControl1.currentItem() - 1)) + (UserControl1.sizing / 4) + 1, 0, 0, 0);
             label1.Margin = new Padding((UserControl1.sizing * (UserControl1.currentItem() - 1)) + (UserControl1.sizing / 4) + 1, 0, 0, 0);
         }
 
@@ -309,7 +318,7 @@ namespace turingMaschine
             {
                 zeichen.Add(c.HeaderText);
             }
-            if (dataGridView1.CurrentCell.Value != null)
+            if (dataGridView1.CurrentCell.Value != null && !dataGridView1.CurrentCell.Value.ToString().Equals("~ Ende ~"))
             {
                 switch (dataGridView1.CurrentCell.Value.ToString()[0])
                 {
@@ -341,7 +350,7 @@ namespace turingMaschine
             
             
 
-            turingMaschineInput.inputDialog t = new turingMaschineInput.inputDialog(dataGridView1.Rows.Count,zeichen,direction,isEndState,currentChar,currentState);
+            turingMachineInput.inputDialog t = new turingMachineInput.inputDialog(dataGridView1.Rows.Count,zeichen,direction,isEndState,currentChar,currentState);
             t.ShowDialog();
             if (!t.returnValue.Equals(""))
             {
@@ -354,18 +363,48 @@ namespace turingMaschine
             UserControl1.moveBackward();
         }
 
+        private void Timer1_Tick_1(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+
+            if (isRunning)
+            {
+                
+                handleMove();
+            }
+        }
+
         private void ButtonStepForward_Click(object sender, EventArgs e)
         {
             UserControl1.moveForward();
         }
 
+        private void ButtonRun_Click(object sender, EventArgs e)
+        {
+            isRunning = true;
+            handleMove();
+        }
+
+        private void ToolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void ButtonStepRun_Click(object sender, EventArgs e)
+        {
+            handleMove();
+            
+        }
+
         private void resetTM()
         {
             dataGridView1.ClearSelection();
-            //finished
-            //hasMoved
+            isRunning = false;
+            timer1.Enabled = false;
             currentS = 0;
             steps = 0;
+            UserControl1.index = ((UserControl1.tape.Count) / 2) - 1;
+            UserControl1.indexInContent = UserControl1.index;
             toolStripStateLabel.Text = "State: " + currentS.ToString();
             toolStripStepsLabel.Text = "Steps: " + steps.ToString();
             
@@ -397,7 +436,80 @@ namespace turingMaschine
             }
         }
 
-        
+        private void handleMove()
+        {
+
+            timer1.Enabled = false;
+            string read = UserControl1.tapeContent[UserControl1.indexInContent];
+            //MessageBox.Show("IndexInContent: " + UserControl1.indexInContent.ToString() + " Read: " + read);
+            int x = 0, y = 0;
+
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                if (dataGridView1.Columns[i].HeaderText == read)
+                {
+                    x = i;
+                    break;
+                }
+            }
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (int.Parse(dataGridView1.Rows[i].HeaderCell.Value.ToString().Substring(1)) == currentS)
+                {
+                    y = i;
+                    break;
+                }
+            }
+
+            dataGridView1.CurrentCell = dataGridView1.Rows[y].Cells[x];
+
+            if (dataGridView1.CurrentCell.Value == null || dataGridView1.CurrentCell.Value.ToString() == "")
+            {
+                MessageBox.Show("No command for Char: " + dataGridView1.Columns[x].HeaderText + " and State: " + dataGridView1.Rows[y].HeaderCell.Value.ToString() + "\n" +" Stopping...", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } else
+            {
+                steps++;
+                if (dataGridView1.Rows[y].Cells[x].Value.ToString() != "~ Ende ~")
+                {
+                    
+                    
+
+                    currentS = int.Parse(dataGridView1.Rows[y].Cells[x].Value.ToString().Substring(5));
+                    toolStripStateLabel.Text = "State: " + currentS.ToString();
+                    toolStripStepsLabel.Text = "Steps: " + steps.ToString();
+                    UserControl1.setText(UserControl1.currentItem(), dataGridView1.Rows[y].Cells[x].Value.ToString()[2].ToString());
+
+                  //  toolStripStateLabel.Text = "";
+                  //  foreach (string str in UserControl1.tapeContent)
+                  //  {
+                  //      toolStripStateLabel.Text += str;
+                  //  }
+                  //  toolStripStepsLabel.Text = "index Content: " + UserControl1.indexInContent.ToString() + " Index: " + UserControl1.index.ToString() + " Gelesesn: " + read;
+                    if (dataGridView1.Rows[y].Cells[x].Value.ToString()[0] == 'L')
+                    {
+                    
+                        UserControl1.moveBackward();
+                    }
+                    else if (dataGridView1.Rows[y].Cells[x].Value.ToString()[0] == 'R')
+                    {
+                        
+                        UserControl1.moveForward();
+                    }
+                    else if (dataGridView1.Rows[y].Cells[x].Value.ToString()[0] == '0')
+                    {
+                        //???
+                    }
+
+                } else
+                {
+                    isRunning = false;
+                    toolStripStateLabel.Text = "State: " + currentS.ToString();
+                    toolStripStepsLabel.Text = "Steps: " + steps.ToString();
+                    MessageBox.Show("Done", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+        }
     }
 
     

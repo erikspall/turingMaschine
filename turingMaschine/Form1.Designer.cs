@@ -1,4 +1,4 @@
-﻿namespace turingMaschine
+﻿namespace turingMachine
 {
     partial class Form1
     {
@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStepsLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStateLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.buttonRun = new System.Windows.Forms.ToolStripButton();
             this.buttonStepRun = new System.Windows.Forms.ToolStripButton();
@@ -78,7 +82,8 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.userControl12 = new WpfControlLibrary1.UserControl1();
+            this.userControl1 = new WpfControlLibrary1.UserControl1();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -101,7 +106,10 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStepsLabel,
-            this.toolStripStateLabel});
+            this.toolStripStateLabel,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2,
+            this.toolStripStatusLabel3});
             this.statusStrip1.Location = new System.Drawing.Point(0, 395);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(557, 22);
@@ -111,14 +119,27 @@
             // toolStripStepsLabel
             // 
             this.toolStripStepsLabel.Name = "toolStripStepsLabel";
-            this.toolStripStepsLabel.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStepsLabel.Text = "toolStripStatusLabel1";
+            this.toolStripStepsLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStripStateLabel
             // 
             this.toolStripStateLabel.Name = "toolStripStateLabel";
-            this.toolStripStateLabel.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStateLabel.Text = "toolStripStatusLabel2";
+            this.toolStripStateLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStrip1
             // 
@@ -142,27 +163,30 @@
             this.toolStrip1.Size = new System.Drawing.Size(557, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolStrip1_ItemClicked);
             // 
             // buttonRun
             // 
             this.buttonRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonRun.Image = global::qLearning.Properties.Resources.Run_16x;
+            this.buttonRun.Image = global::turingMachine.Properties.Resources.Run_16x;
             this.buttonRun.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonRun.Name = "buttonRun";
             this.buttonRun.Size = new System.Drawing.Size(23, 22);
+            this.buttonRun.Click += new System.EventHandler(this.ButtonRun_Click);
             // 
             // buttonStepRun
             // 
             this.buttonStepRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonStepRun.Image = global::qLearning.Properties.Resources.PlayStep_16x;
+            this.buttonStepRun.Image = global::turingMachine.Properties.Resources.PlayStep_16x;
             this.buttonStepRun.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonStepRun.Name = "buttonStepRun";
             this.buttonStepRun.Size = new System.Drawing.Size(23, 22);
+            this.buttonStepRun.Click += new System.EventHandler(this.ButtonStepRun_Click);
             // 
             // buttonRefresh
             // 
             this.buttonRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonRefresh.Image = global::qLearning.Properties.Resources.Refresh_16x;
+            this.buttonRefresh.Image = global::turingMachine.Properties.Resources.Refresh_16x;
             this.buttonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonRefresh.Name = "buttonRefresh";
             this.buttonRefresh.Size = new System.Drawing.Size(23, 22);
@@ -171,7 +195,7 @@
             // buttonStepBackwards
             // 
             this.buttonStepBackwards.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonStepBackwards.Image = global::qLearning.Properties.Resources.StepBackwards_16x;
+            this.buttonStepBackwards.Image = global::turingMachine.Properties.Resources.StepBackwards_16x;
             this.buttonStepBackwards.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonStepBackwards.Name = "buttonStepBackwards";
             this.buttonStepBackwards.Size = new System.Drawing.Size(23, 22);
@@ -181,7 +205,7 @@
             // buttonStepForward
             // 
             this.buttonStepForward.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonStepForward.Image = global::qLearning.Properties.Resources.StepForward_16x;
+            this.buttonStepForward.Image = global::turingMachine.Properties.Resources.StepForward_16x;
             this.buttonStepForward.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonStepForward.Name = "buttonStepForward";
             this.buttonStepForward.Size = new System.Drawing.Size(23, 22);
@@ -196,16 +220,17 @@
             // buttonNewFile
             // 
             this.buttonNewFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonNewFile.Image = global::qLearning.Properties.Resources.NewFile_16x;
+            this.buttonNewFile.Image = global::turingMachine.Properties.Resources.NewFile_16x;
             this.buttonNewFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonNewFile.Name = "buttonNewFile";
             this.buttonNewFile.Size = new System.Drawing.Size(23, 22);
             this.buttonNewFile.Text = "toolStripButton5";
+            this.buttonNewFile.Click += new System.EventHandler(this.ButtonNewFile_Click);
             // 
             // buttonSaveAs
             // 
             this.buttonSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonSaveAs.Image = global::qLearning.Properties.Resources.SaveAs_16x;
+            this.buttonSaveAs.Image = global::turingMachine.Properties.Resources.SaveAs_16x;
             this.buttonSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonSaveAs.Name = "buttonSaveAs";
             this.buttonSaveAs.Size = new System.Drawing.Size(23, 22);
@@ -214,7 +239,7 @@
             // buttonSave
             // 
             this.buttonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonSave.Image = global::qLearning.Properties.Resources.Save_16x;
+            this.buttonSave.Image = global::turingMachine.Properties.Resources.Save_16x;
             this.buttonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(23, 22);
@@ -223,7 +248,7 @@
             // buttonOpenFile
             // 
             this.buttonOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonOpenFile.Image = global::qLearning.Properties.Resources.OpenFolder_16x;
+            this.buttonOpenFile.Image = global::turingMachine.Properties.Resources.OpenFolder_16x;
             this.buttonOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOpenFile.Name = "buttonOpenFile";
             this.buttonOpenFile.Size = new System.Drawing.Size(23, 22);
@@ -237,7 +262,7 @@
             // buttonAddRow
             // 
             this.buttonAddRow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonAddRow.Image = global::qLearning.Properties.Resources.AddRow_16x;
+            this.buttonAddRow.Image = global::turingMachine.Properties.Resources.AddRow_16x;
             this.buttonAddRow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAddRow.Name = "buttonAddRow";
             this.buttonAddRow.Size = new System.Drawing.Size(23, 22);
@@ -247,7 +272,7 @@
             // buttonRowRemove
             // 
             this.buttonRowRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonRowRemove.Image = global::qLearning.Properties.Resources.RemoveRow_16x;
+            this.buttonRowRemove.Image = global::turingMachine.Properties.Resources.RemoveRow_16x;
             this.buttonRowRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonRowRemove.Name = "buttonRowRemove";
             this.buttonRowRemove.Size = new System.Drawing.Size(23, 22);
@@ -596,7 +621,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Image = global::qLearning.Properties.Resources.Arrowhead_Down_01_24__1_;
+            this.label1.Image = global::turingMachine.Properties.Resources.Arrowhead_Down_01_24__1_;
             this.label1.Location = new System.Drawing.Point(0, 295);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.MaximumSize = new System.Drawing.Size(25, 25);
@@ -615,7 +640,12 @@
             this.elementHost1.Size = new System.Drawing.Size(557, 50);
             this.elementHost1.TabIndex = 2;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.userControl12;
+            this.elementHost1.Child = this.userControl1;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick_1);
             // 
             // Form1
             // 
@@ -684,7 +714,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private WpfControlLibrary1.UserControl1 userControl11;
+      
         private System.Windows.Forms.ToolStripStatusLabel toolStripStepsLabel;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -712,7 +742,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStateLabel;
-        private WpfControlLibrary1.UserControl1 userControl12;
+      
+        private System.Windows.Forms.Timer timer1;
+        private WpfControlLibrary1.UserControl1 userControl1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
     }
 }
 

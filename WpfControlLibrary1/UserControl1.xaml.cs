@@ -31,9 +31,10 @@ namespace WpfControlLibrary1
         public static List<Label> tape = new List<Label>(); //tapeArray of Labels used to Display content of TM
         public static bool loaded = false;    //bool to track if everthing loaded already, so tape creation isn't messed up
         public static int sizing = 50;
-        private static int index = -1;
-        private static int indexInContent = 0;
+        public static int index = -1;
+        public static int indexInContent = 0;
         public static string blank = "#";
+        public static bool done=false;
         public static List<string> tapeContent = new List<string>();
         public static Canvas Canvas1 = new Canvas();
         //public bool hasMoved { get; set; } = false;
@@ -46,6 +47,7 @@ namespace WpfControlLibrary1
             dummyGrid.Children.Add(Canvas1);
             Grid.SetColumn(Canvas1, 0);
             Grid.SetRow(Canvas1, 0);
+            
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -83,14 +85,18 @@ namespace WpfControlLibrary1
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+           // done = false;
             if (loaded)
             {
+                
                 while ((Canvas1.ActualWidth / sizing) + 2 > tape.Count) //Check if tape needs more Lables
                 {
+                  
                     if (tape.Count % 2 != 0) //if even
                     {   //Move everything
                         for (int i = 0; i < tape.Count; i++)
                         {
+                           // MessageBox.Show(tape[i].Margin.Left.ToString());
                             tape[i].Margin = new Thickness(tape[i].Margin.Left + sizing, 0, 0, 0);
                         }
 
@@ -143,10 +149,12 @@ namespace WpfControlLibrary1
                         Canvas1.Children.Add(tLabel);
                         tape.Add(tLabel);
                     }
+                  
                 }
                 while ((Canvas1.ActualWidth / sizing) + 2 < tape.Count - 1)//Check if tape needs less Lables
                 {
-                    if (tape.Count % 2 != 0) //if even
+                    
+                    if (tape.Count % 2 == 0) //if even
                     {//Move everything
                         for (int i = 0; i < tape.Count; i++)
                         {
@@ -163,6 +171,7 @@ namespace WpfControlLibrary1
                         Canvas1.Children.Remove(tape[tape.Count - 1]);
                         tape.RemoveAt(tape.Count - 1);
                     }
+                   
                 }
 
 
@@ -171,12 +180,16 @@ namespace WpfControlLibrary1
 
 
             }
-
+           // done = true;
         }
 
         public static void setText(int index, string str)
         {
-            tape[index].Content = str;
+            
+            
+                tape[index].Content = str;
+                tapeContent[indexInContent] = str;
+            
         }
 
         public static int currentItem()
@@ -206,6 +219,7 @@ namespace WpfControlLibrary1
             tLabel.Margin = new Thickness((tape.Count - 1) * sizing, 0, 0, 0);
             Canvas1.Children.Add(tLabel);
             tape.Add(tLabel);
+            
 
             foreach (Label lbl in tape)
             {
@@ -213,12 +227,16 @@ namespace WpfControlLibrary1
                 tA.From = new Thickness(lbl.Margin.Left,0,0,0);
                 tA.To = new Thickness(lbl.Margin.Left - sizing, 0, 0, 0);
                 tA.Duration = new Duration(TimeSpan.FromSeconds(1));
+                tA.FillBehavior = FillBehavior.Stop;
+                lbl.BeginAnimation(MarginProperty, null);
                 lbl.BeginAnimation(MarginProperty, tA);
+                lbl.Margin = new Thickness(lbl.Margin.Left-sizing,0,0,0);
             }
 
 
             Canvas1.Children.Remove(tape[0]);
             tape.RemoveAt(0);
+            //index++;
             indexInContent++;
         }
 
@@ -237,7 +255,8 @@ namespace WpfControlLibrary1
             else
             {
                 tLabel.Content = blank; //Content should load here
-                tapeContent.Add(blank);
+                tapeContent.Insert(0,blank);
+                indexInContent++;
             }
 
             tLabel.BorderBrush = Brushes.Black;
@@ -245,6 +264,8 @@ namespace WpfControlLibrary1
             tLabel.Margin = new Thickness(-sizing*2, 0, 0, 0);
             Canvas1.Children.Add(tLabel);
             tape.Insert(0, tLabel);
+           
+            
 
             foreach (Label lbl in tape)
             {
@@ -252,12 +273,15 @@ namespace WpfControlLibrary1
                 tA.From = new Thickness(lbl.Margin.Left, 0, 0, 0);
                 tA.To = new Thickness(lbl.Margin.Left + sizing, 0, 0, 0);
                 tA.Duration = new Duration(TimeSpan.FromSeconds(1));
+                lbl.BeginAnimation(MarginProperty, null);
                 lbl.BeginAnimation(MarginProperty, tA);
+                lbl.Margin = new Thickness(lbl.Margin.Left + sizing, 0, 0, 0);
             }
 
             Canvas1.Children.Remove(tape[tape.Count()-1]);
             tape.RemoveAt(tape.Count-1);
-
+            
+          
             indexInContent--;
         }
 
