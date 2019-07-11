@@ -35,12 +35,11 @@ namespace turingMachine
 
         private void myanim_Completed(object sender, EventArgs e)
         {
-            // MessageBox.Show(UserControl1.tape[0].Margin.Left.ToString()); 
-            
+                      
             if (isRunning) {
                 if (animatedTiles >= UserControl1.tape.Count)
                 {
-                    // MessageBox.Show("Jo");
+                    MessageBox.Show("Animation done, starting delay");
                     timer1.Enabled = true;
                     animatedTiles = 0;
                 } else
@@ -373,10 +372,11 @@ namespace turingMachine
         private void Timer1_Tick_1(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            
+            MessageBox.Show("Tick");
+
             if (isRunning)
             {
-
+                MessageBox.Show("Handling");
                 handleMove();
             }
         }
@@ -467,6 +467,10 @@ namespace turingMachine
                     {
                         ini.Write("I" + h.ToString(), dataGridView1.Rows[g].Cells[i].Value.ToString(), "Grid");
                         h++;
+                    } else
+                    {
+                        ini.Write("I" + h.ToString(), "", "Grid");
+                        h++;
                     }
                 }
             }
@@ -489,7 +493,11 @@ namespace turingMachine
             TextBoxInput_KeyPress(this, new KeyPressEventArgs((char)13));
             textBoxBlank.Text = ini.Read("blank", "Program");
             TextBoxBlank_KeyPress(this, new KeyPressEventArgs((char)13));
-            MessageBox.Show(ini.Read("states", "Program"));
+          //  MessageBox.Show(ini.Read("states", "Program"));
+          while (dataGridView1.Rows.Count > 1)
+            {
+                removeRow();
+            }
             for (int i = 1; i < int.Parse(ini.Read("states", "Program")); i++)
             {
                 addRow();
@@ -500,7 +508,7 @@ namespace turingMachine
                 for (int i = 0; i < dataGridView1.Columns.Count; i++)
                 {
                    
-                        MessageBox.Show(ini.Read("I" + h.ToString(), "Grid"));
+                      //  MessageBox.Show(ini.Read("I" + h.ToString(), "Grid"));
                         dataGridView1.Rows[g].Cells[i].Value = ini.Read("I" + h.ToString(), "Grid");
                         h++;
                     
@@ -509,13 +517,21 @@ namespace turingMachine
             textBoxPName.Text = ini.Read("programname", "Info");
             textBoxAuthor.Text = ini.Read("author", "Info");
             textBoxDesc.Text = ini.Read("description", "Info");
-
+            //resetTM();
         }
 
         private void ButtonOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            openTM(openFileDialog1.FileName);
+            
+            try
+            {
+                openTM(openFileDialog1.FileName);
+            } finally
+            {
+                workingDirectory = openFileDialog1.FileName;
+                this.Text = "Turingmachine - " + workingDirectory;
+            }
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -645,17 +661,16 @@ namespace turingMachine
                   //  toolStripStepsLabel.Text = "index Content: " + UserControl1.indexInContent.ToString() + " Index: " + UserControl1.index.ToString() + " Gelesesn: " + read;
                     if (dataGridView1.Rows[y].Cells[x].Value.ToString()[0] == 'L')
                     {
-                    
                         UserControl1.moveBackward();
                     }
                     else if (dataGridView1.Rows[y].Cells[x].Value.ToString()[0] == 'R')
-                    {
-                        
+                    {       
                         UserControl1.moveForward();
                     }
                     else if (dataGridView1.Rows[y].Cells[x].Value.ToString()[0] == '0')
                     {
-                        //???
+                        MessageBox.Show("No Animation, starting delay");
+                        timer1.Enabled = true;
                     }
 
                 } else
@@ -729,12 +744,12 @@ namespace turingMachine
                 buttonRowRemove.Enabled = false;
             } else if (mode == 3) //tm is done
             {
-                groupBox1.Enabled = true;
-                groupBox2.Enabled = true;
-                groupBox3.Enabled = true;
-                dataGridView1.Enabled = true;
-                buttonRun.Enabled = true;
-                buttonStepRun.Enabled = true;
+                groupBox1.Enabled = false;
+                groupBox2.Enabled = false;
+                groupBox3.Enabled = false;
+                dataGridView1.Enabled = false;
+                buttonRun.Enabled = false;
+                buttonStepRun.Enabled = false;
                 buttonRefresh.Enabled = true;
                 buttonStepBackwards.Enabled = true;
                 buttonStepForward.Enabled = true;
@@ -742,8 +757,8 @@ namespace turingMachine
                 buttonSaveAs.Enabled = true;
                 buttonSave.Enabled = true;
                 buttonOpenFile.Enabled = true;
-                buttonAddRow.Enabled = true;
-                buttonRowRemove.Enabled = true;
+                buttonAddRow.Enabled = false;
+                buttonRowRemove.Enabled = false;
             } else if (mode == 4) //was resettet
             {
                 groupBox1.Enabled = true;

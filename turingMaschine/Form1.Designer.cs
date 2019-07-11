@@ -80,20 +80,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.userControl1 = new WpfControlLibrary1.UserControl1();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.userControl11 = new WpfControlLibrary1.UserControl1();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -110,11 +110,11 @@
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -639,72 +639,6 @@
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Image = global::turingMachine.Properties.Resources.Arrowhead_Down_01_24__1_;
-            this.label1.Location = new System.Drawing.Point(0, 295);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.MaximumSize = new System.Drawing.Size(25, 25);
-            this.label1.MinimumSize = new System.Drawing.Size(25, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 25);
-            this.label1.TabIndex = 1;
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // elementHost1
-            // 
-            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementHost1.Location = new System.Drawing.Point(0, 320);
-            this.elementHost1.Margin = new System.Windows.Forms.Padding(0);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(557, 50);
-            this.elementHost1.TabIndex = 2;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.userControl1;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick_1);
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.DefaultExt = "tm";
-            this.saveFileDialog1.Filter = "TM-Program|*.tm";
-            this.saveFileDialog1.Title = "Save program to...";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.DefaultExt = "tm";
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "TM-Program|*.tm";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.checkBox1);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(0, 0);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(543, 59);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "General";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.checkBox1.Location = new System.Drawing.Point(3, 16);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(127, 40);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Enable resizing (beta)";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Click += new System.EventHandler(this.CheckBox1_Click);
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.tableLayoutPanel2);
@@ -757,7 +691,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Increment = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -768,7 +702,7 @@
             0,
             0});
             this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
+            50,
             0,
             0,
             0});
@@ -785,7 +719,7 @@
             // numericUpDown2
             // 
             this.numericUpDown2.Increment = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -796,7 +730,7 @@
             0,
             0});
             this.numericUpDown2.Minimum = new decimal(new int[] {
-            1,
+            50,
             0,
             0,
             0});
@@ -809,6 +743,72 @@
             0,
             0});
             this.numericUpDown2.ValueChanged += new System.EventHandler(this.NumericUpDown2_ValueChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.checkBox1);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox5.Location = new System.Drawing.Point(0, 0);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(543, 59);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "General";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.checkBox1.Location = new System.Drawing.Point(3, 16);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(127, 40);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Enable resizing (beta)";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Click += new System.EventHandler(this.CheckBox1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Image = global::turingMachine.Properties.Resources.Arrowhead_Down_01_24__1_;
+            this.label1.Location = new System.Drawing.Point(0, 295);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.MaximumSize = new System.Drawing.Size(25, 25);
+            this.label1.MinimumSize = new System.Drawing.Size(25, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(25, 25);
+            this.label1.TabIndex = 1;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // elementHost1
+            // 
+            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementHost1.Location = new System.Drawing.Point(0, 320);
+            this.elementHost1.Margin = new System.Windows.Forms.Padding(0);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(557, 50);
+            this.elementHost1.TabIndex = 2;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = this.userControl11;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick_1);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "tm";
+            this.saveFileDialog1.Filter = "TM-Program|*.tm";
+            this.saveFileDialog1.Title = "Save program to...";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "tm";
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "TM-Program|*.tm";
             // 
             // Form1
             // 
@@ -849,13 +849,13 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -928,6 +928,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private WpfControlLibrary1.UserControl1 userControl11;
     }
 }
 
