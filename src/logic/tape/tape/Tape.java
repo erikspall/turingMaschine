@@ -33,7 +33,7 @@ public class Tape {
             tapeContent.add(this.blank);
         }
 
-        index = ((panelTape.size()/2)-1);
+        index = ((panelTape.size()/2));
         indexInContent = index;
 
     }

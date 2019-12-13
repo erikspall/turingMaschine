@@ -20,6 +20,11 @@ public class MainWindow {
     private JButton button1;
     private JButton button2;
     private JButton button3;
+    private JPanel panelInput;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JPanel panelTable;
     static Tape tape;
     boolean isLoaded = false;
 
