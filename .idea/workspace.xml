@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7689742b-88c1-490c-b4e7-4e8db0236bd1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1XtU5anYpVK2pVAJSv3PhnMMYnB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="183" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="426" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="de.erikspall.turingMaschine.UI.Tape" />
+      <recent name="de.erikspall.turingMaschine.UI" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Erik\IdeaProjects\turingMachine\src\res" />
+      <recent name="C:\Users\Erik\IdeaProjects\turingMachine\src" />
+      <recent name="C:\Users\Erik\IdeaProjects\turingMachine\res" />
+      <recent name="C:\Users\Erik\IdeaProjects\turingMachine\src\de\erikspall\turingMaschine\UI" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MainWindow">
+    <configuration name="MainWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.erikspall.turingMaschine.UI.MainWindow" />
+      <module name="turingMachine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.erikspall.turingMaschine.UI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProgramGridInputDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.erikspall.turingMaschine.UI.ProgramGridInputDialog.ProgramGridInputDialog" />
+      <module name="turingMachine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.erikspall.turingMaschine.UI.ProgramGridInputDialog.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainWindow" />
+        <item itemvalue="Application.ProgramGridInputDialog" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Erik\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7689742b-88c1-490c-b4e7-4e8db0236bd1" name="Default Changelist" comment="" />
+      <created>1581864701335</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581864701335</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1126" y="367" width="652" height="566" key="#com.intellij.ide.util.MemberChooser" timestamp="1583073643903">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1126" y="367" width="652" height="566" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1583073643903" />
+    <state x="1009" y="484" width="942" height="432" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1582804387182">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1009" y="484" width="942" height="432" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1582804387182" />
+    <state x="480" y="547" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1583071960597">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="480" y="547" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1583071960597" />
+    <state x="1546" y="589" width="764" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1581867046334">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1546" y="589" width="764" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.2560.1400@0.0.2560.1400" timestamp="1581867046334" />
+    <state x="1010" y="447" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583071087187">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1010" y="447" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1583071087187" />
+    <state x="1154" y="587" key="#com.intellij.uiDesigner.palette.ComponentItemDialog.OneOff" timestamp="1582804394860">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1154" y="587" key="#com.intellij.uiDesigner.palette.ComponentItemDialog.OneOff/0.0.2560.1400@0.0.2560.1400" timestamp="1582804394860" />
+    <state x="1552" y="446" key="FileChooserDialogImpl" timestamp="1581867920262">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1552" y="446" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1581867920262" />
+    <state width="1408" height="487" key="GridCell.Tab.0.bottom" timestamp="1583074210400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1408" height="487" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1583074210400" />
+    <state width="1408" height="487" key="GridCell.Tab.0.center" timestamp="1583074210400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1408" height="487" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1583074210400" />
+    <state width="1408" height="487" key="GridCell.Tab.0.left" timestamp="1583074210400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1408" height="487" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1583074210400" />
+    <state width="1408" height="487" key="GridCell.Tab.0.right" timestamp="1583074210400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1408" height="487" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1583074210400" />
+    <state width="1408" height="487" key="GridCell.Tab.1.bottom" timestamp="1583074210400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1408" height="487" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1583074210400" />
+    <state width="1408" height="487" key="GridCell.Tab.1.center" timestamp="1583074210400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1408" height="487" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1583074210400" />
+    <state width="1408" height="487" key="GridCell.Tab.1.left" timestamp="1583074210400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1408" height="487" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1583074210400" />
+    <state width="1408" height="487" key="GridCell.Tab.1.right" timestamp="1583074210400">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1408" height="487" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1583074210400" />
+    <state x="93" y="100" width="1094" height="1207" key="dock-window-1" timestamp="1582319755018">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="93" y="100" width="1094" height="1207" key="dock-window-1/0.0.2560.1400@0.0.2560.1400" timestamp="1582319755018" />
+    <state x="1155" y="325" key="new project wizard" timestamp="1581867722640">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1155" y="325" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1581867722640" />
+    <state x="936" y="353" width="672" height="676" key="search.everywhere.popup" timestamp="1582885035685">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="936" y="353" width="672" height="676" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1582885035685" />
+  </component>
+</project>
