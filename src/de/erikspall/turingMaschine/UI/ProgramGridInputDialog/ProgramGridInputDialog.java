@@ -5,6 +5,7 @@ import de.erikspall.turingMaschine.UI.ProgramGrid.ProgramCommand;
 import de.erikspall.turingMaschine.UI.ProgramGrid.ProgramGridModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class ProgramGridInputDialog extends JDialog {
@@ -24,11 +25,12 @@ public class ProgramGridInputDialog extends JDialog {
 
     private boolean isOK;
 
-    public ProgramGridInputDialog() {
+    public ProgramGridInputDialog(Component c) {
         setContentPane(contentPane);
         setModal(true);
         setSize(284,200);
         setTitle("Input");
+        setLocationRelativeTo(c);
         getRootPane().setDefaultButton(buttonOK);
         isOK = false;
 

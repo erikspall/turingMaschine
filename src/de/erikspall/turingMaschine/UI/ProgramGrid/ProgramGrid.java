@@ -61,7 +61,7 @@ public class ProgramGrid extends JTable {
     }
 
     public void prepareStringGrid(String alphabet){
-        if (alphabet.length() != 0)  {
+        if (alphabet.length() != -1)  {
             // Set Blank
 
             for (int i = 2; i < model.getColumnCount(); i++){

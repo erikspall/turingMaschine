@@ -10,19 +10,39 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TuringMachine implements AnimationListener {
-
-    private int state;
+    private int steps;
     private Tape guiTape;
     private ProgramGrid guiProgramGrid;
     private Timer delay;
     private boolean isRunning;
 
+
+    public int getState() {
+        return state;
+    }
+
+    private int state;
+
+    public int getSteps() {
+        return steps;
+    }
+    public String getBlank() {
+        return blank;
+    }
+
+    public void setBlank(String blank) {
+        this.blank = blank;
+        resetTape(blank);
+    }
+
+    private String blank;
     private String alphabet;
 
     public TuringMachine(Tape guiTape, ProgramGrid guiProgramGrid) {
         this.guiTape = guiTape;
         this.guiProgramGrid = guiProgramGrid;
         this.alphabet = "";
+        this.blank = "#";
         guiTape.init();
         guiTape.addListener(this);
         state = 1;
@@ -50,7 +70,7 @@ public class TuringMachine implements AnimationListener {
         for (Character c:
              alphabet.toCharArray()) {
 
-            if (this.alphabet.indexOf(c) == -1 && !c.equals('#')){
+            if (this.alphabet.indexOf(c) == -1 && !c.equals('#') && !c.equals(',')){
                 System.out.println("Char: " +  c);
                 this.alphabet += c;
             }
@@ -72,6 +92,14 @@ public class TuringMachine implements AnimationListener {
         if (guiTape.getMoveLeftTimer() != null)
             guiTape.getMoveRightTimer().stop();
         guiTape.reset(string);
+    }
+
+    public void reset(){
+        guiProgramGrid.clearSelection();
+        isRunning = false;
+        state = 1;
+        // set new statuspanels here
+        steps = 0;
     }
 
     public void execute(ProgramCommand command){
@@ -138,7 +166,7 @@ public class TuringMachine implements AnimationListener {
     @Override
     public void onRightAnimationEnd() {
         System.out.println("Right Animation ended");
-        execute(guiProgramGrid.getCommand(state,guiTape.read()));
+     //   execute(guiProgramGrid.getCommand(state,guiTape.read()));
         delay.start();
     }
 }

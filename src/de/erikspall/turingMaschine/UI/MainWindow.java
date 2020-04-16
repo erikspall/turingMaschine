@@ -23,7 +23,7 @@ public class MainWindow {
     private ProgramGrid programGrid;
     private JTextField abcTextField;
     private JTextField inputTextField;
-    private JTextField textField3;
+    private JTextField blankTextFiel;
     private JPanel panelTape;
     private Tape tape;
     private JButton buttonReset;
@@ -37,6 +37,8 @@ public class MainWindow {
     private JButton buttonOpen;
     private JButton buttonAddState;
     private JButton buttonRemoveState;
+    private JLabel statusLabelState;
+    private JLabel statusLabelSteps;
     private TuringMachine tm;
 
     public MainWindow(){
@@ -64,7 +66,7 @@ public class MainWindow {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     if (programGrid.getSelectedColumn() != 0 && programGrid.getSelectedRow() != programGrid.getRowCount()-1) {
-                        ProgramGridInputDialog dialog = new ProgramGridInputDialog();
+                        ProgramGridInputDialog dialog = new ProgramGridInputDialog(mainPanel);
                         dialog.showDialog((ProgramGridModel) programGrid.getModel(), programGrid.getSelectedRow(), programGrid.getSelectedColumn());
                         if (dialog.isOK()) {
                             programGrid.setValueAt(dialog.getValue(), programGrid.getSelectedRow(), programGrid.getSelectedColumn());
@@ -111,8 +113,10 @@ public class MainWindow {
                         isValid = false;
                     }
                 }
-                if (isValid)
+                if (isValid) {
                     tape.reset(inputTextField.getText());
+                    inputLabel.setText("");
+                }
                 else {
                     inputLabel.setText("Invalid Input!");
                     inputTextField.setText("");
@@ -127,13 +131,14 @@ public class MainWindow {
 
                 abcTextField.setText(tm.getAlphabet());
 
-                abcLabel.setText("Alphabet: {");
+                abcLabel.setText("Alphabet: {" + tm.getBlank());
                 for (Character c:
                      tm.getAlphabet().toCharArray()) {
-                    abcLabel.setText(abcLabel.getText() + c);
-                    abcLabel.setText(abcLabel.getText() + ", ");
+                    abcLabel.setText(abcLabel.getText() + ", " + c);
                 }
-                abcLabel.setText(abcLabel.getText().substring(0,abcLabel.getText().length()-2));
+               /* if (abcTextField.getText().length() > 0) {
+                    abcLabel.setText(abcLabel.getText().substring(0, abcLabel.getText().length() - 2));
+                }*/
                 abcLabel.setText(abcLabel.getText()+"}");
 
                 inputTextField.setText("");
@@ -153,6 +158,18 @@ public class MainWindow {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 programGrid.removeState();
+            }
+        });
+
+
+        blankTextFiel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if (blankTextFiel.getText().length() != 1){
+                    blankTextFiel.setText(tm.getBlank());
+                } else {
+                    //check if blank is already used as input in alphabet
+                }
             }
         });
     }
