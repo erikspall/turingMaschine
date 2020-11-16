@@ -15,7 +15,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void updateStatusBar(int *steps,int *state);
+
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *ui;  
 };
 #endif // MAINWINDOW_H
