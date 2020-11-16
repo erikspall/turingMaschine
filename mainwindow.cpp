@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QLabel *lbl = new QLabel;
+    lbl->setText("Du Hurensohn");
+    statusBar()->addWidget(lbl);
 }
 
 MainWindow::~MainWindow()
