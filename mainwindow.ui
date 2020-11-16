@@ -35,8 +35,134 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionRunButton"/>
+   <addaction name="actionStepButton"/>
+   <addaction name="actionResetButton"/>
+   <addaction name="actionLeftButton"/>
+   <addaction name="actionRightButton"/>
+   <addaction name="separator"/>
+   <addaction name="actionCreateButton"/>
+   <addaction name="actionSaveAsButton"/>
+   <addaction name="actionSaveButton"/>
+   <addaction name="actionOpenButton"/>
+   <addaction name="separator"/>
+   <addaction name="actionAddButton"/>
+   <addaction name="actionRemoveButton"/>
   </widget>
+  <action name="actionRunButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_start.png</normaloff>:/icons/icons/ic_start.png</iconset>
+   </property>
+   <property name="text">
+    <string>Start</string>
+   </property>
+   <property name="toolTip">
+    <string>Starte Maschine</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionStepButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_step.png</normaloff>:/icons/icons/ic_step.png</iconset>
+   </property>
+   <property name="text">
+    <string>Schrittweise</string>
+   </property>
+  </action>
+  <action name="actionResetButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_reset.png</normaloff>:/icons/icons/ic_reset.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zurücksetzen</string>
+   </property>
+  </action>
+  <action name="actionLeftButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_left.png</normaloff>:/icons/icons/ic_left.png</iconset>
+   </property>
+   <property name="text">
+    <string>Links</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Left</string>
+   </property>
+  </action>
+  <action name="actionRightButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_right.png</normaloff>:/icons/icons/ic_right.png</iconset>
+   </property>
+   <property name="text">
+    <string>Right</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Right</string>
+   </property>
+  </action>
+  <action name="actionCreateButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_newProgram.png</normaloff>:/icons/icons/ic_newProgram.png</iconset>
+   </property>
+   <property name="text">
+    <string>createProgram</string>
+   </property>
+  </action>
+  <action name="actionSaveAsButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_saveAs.png</normaloff>:/icons/icons/ic_saveAs.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save As</string>
+   </property>
+  </action>
+  <action name="actionSaveButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_save.png</normaloff>:/icons/icons/ic_save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionOpenButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_open.png</normaloff>:/icons/icons/ic_open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionAddButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_add.png</normaloff>:/icons/icons/ic_add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionRemoveButton">
+   <property name="icon">
+    <iconset resource="Ressources/images.qrc">
+     <normaloff>:/icons/icons/ic_remove.png</normaloff>:/icons/icons/ic_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="Ressources/images.qrc"/>
+ </resources>
  <connections/>
 </ui>
