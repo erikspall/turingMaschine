@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <qtape.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,7 +19,11 @@ public:
 private slots:
     void updateStatusBar(int *steps,int *state);
 
+    void on_actionRunButton_triggered();
+
 private:
-    Ui::MainWindow *ui;  
+    Ui::MainWindow *ui;
+    QTape *tape;
+
 };
 #endif // MAINWINDOW_H

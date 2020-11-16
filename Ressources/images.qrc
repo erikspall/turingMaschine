@@ -11,5 +11,6 @@
         <file>icons/ic_open.png</file>
         <file>icons/ic_add.png</file>
         <file>icons/ic_remove.png</file>
+        <file>icons/ic_arrow_downward.png</file>
     </qresource>
 </RCC>
