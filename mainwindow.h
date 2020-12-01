@@ -17,8 +17,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void updateStatusBar(int *steps,int *state);
-
+    void updateStatusBar(int steps,int state);
+     void resizeEvent(QResizeEvent*);
     void on_actionRunButton_triggered();
 
 private:
