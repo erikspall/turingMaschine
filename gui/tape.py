@@ -20,4 +20,3 @@ class QTape(QFrame):
         #
         # add Indicator
 
-

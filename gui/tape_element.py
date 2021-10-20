@@ -9,3 +9,4 @@ class QTapeElement(QLabel):
         self.setAlignment(Qt.AlignCenter | Qt.AlignCenter)
         self.setGeometry(x, y, size, size)
         self.setText(blank)
+

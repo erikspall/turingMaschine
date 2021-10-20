@@ -6,3 +6,4 @@ class QIndicator(QLabel):
         super().__init__(parent)
         self.setGeometry(x, 0, size, size)
 
+
