@@ -3,6 +3,8 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import QFile, QIODevice
 
+from gui.tape import QTape
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
@@ -19,4 +21,9 @@ if __name__ == "__main__":
         sys.exit(-1)
     window.show()
 
+    test = QTape(window, size=50)
+    window.layout().addWidget(test, 0, 1)
+    #self.setLayout(QHBoxLayout(self))  # needed?
+    window.tape_frame.children().append(test)
+    test.show()
     sys.exit(app.exec())

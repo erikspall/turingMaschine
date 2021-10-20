@@ -3,10 +3,10 @@ from PySide6.QtWidgets import QLabel, QFrame
 
 
 class QTapeElement(QLabel):
-    def __init__(self, x, y, parent=None, size=25, blank="#"):
+    def __init__(self, x, y, parent=None, size=50, blank="#"):
         super().__init__(parent)
         # Set all important style stuff
         self.setAlignment(Qt.AlignCenter | Qt.AlignCenter)
         self.setGeometry(x, y, size, size)
         self.setText(blank)
-
+        self.setStyleSheet("border: 1px solid black;")
